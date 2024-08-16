@@ -43,6 +43,7 @@ public class Timer : MonoBehaviour
 
     public void StartTimer(float waitTime)
     {
+        print("Starting timer for " + waitTime);
         timerData.duration = waitTime;
         timer = 0;
     }
