@@ -1,4 +1,5 @@
 using ExtensionsFunctions;
+using System.Threading;
 using UnityEngine;
 
 namespace GameLogic
@@ -20,8 +21,14 @@ namespace GameLogic
         [SerializeField] PhysicsConfig deflatedPhysicsConfig;
         [SerializeField] PhysicsConfig puffedPhysicsConfig;
         [SerializeField] [Range(3, 7)] private float puffTimeout;
+        CancellationTokenSource cancellationToken;
         PuffStateHandler _puffStateHandler;
         Vector2 currentVelocity;
+
+        private void OnDestroy()
+        {
+            GenericExtensions.CancelAndGenerateNew(ref cancellationToken);
+        }
 
         private void Start()
         {
@@ -59,14 +66,17 @@ namespace GameLogic
         public void Puff()
         {
             print("OW FUCK PANIC");
-            transform.localScale = new Vector2(3, 3);
+            GenericExtensions.CancelAndGenerateNew(ref cancellationToken);
+            this.LerpScale(Vector2.one * 3, 0.23f, AnimationCurve.EaseInOut(0, 0, 1, 1), cancellationToken.Token);
+
             _puffStateHandler.SetState(PuffStateHandler.State.Puffed);
         }
 
         public void Deflate()
         {
             print("calm once again");
-            transform.localScale = new Vector2(1, 1);
+            GenericExtensions.CancelAndGenerateNew(ref cancellationToken);
+            this.LerpScale(Vector2.one, 0.23f, AnimationCurve.EaseInOut(0, 0, 1, 1), cancellationToken.Token);
             _puffStateHandler.SetState(PuffStateHandler.State.Deflated);
         }
     }    
