@@ -307,10 +307,10 @@ GameObject:
   - component: {fileID: 866842060}
   - component: {fileID: 866842059}
   - component: {fileID: 866842062}
+  - component: {fileID: 866842065}
   - component: {fileID: 866842061}
   - component: {fileID: 866842063}
   - component: {fileID: 866842064}
-  - component: {fileID: 866842065}
   m_Layer: 0
   m_Name: FISH
   m_TagString: Untagged
@@ -424,7 +424,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6322b081e1ff180009299381490e6d95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  deflatedPhysicsConfig:
+    targetMoveSpeed: 5
+    moveAcceleration: 3
+    stoppingAcceleration: 0.1
+  puffedPhysicsConfig:
+    targetMoveSpeed: 17.5
+    moveAcceleration: 9
+    stoppingAcceleration: 2
   puffTimeout: 3
 --- !u!114 &866842063
 MonoBehaviour:

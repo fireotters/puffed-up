@@ -3,13 +3,22 @@ using UnityEngine;
 
 namespace GameLogic
 {
+
+    [System.Serializable]
+    struct PhysicsConfig
+    {
+        [SerializeField][Range(0.01f, 100)] public float targetMoveSpeed;
+        [SerializeField][Range(0.01f, 100)] public float moveAcceleration;
+        [SerializeField][Range(0.01f, 100)] public float stoppingAcceleration;
+    }
+
     public class Player : MonoBehaviour
     {
         private Rigidbody2D _rigidbody2D;
         private Timer _puffingTimer;
-        [SerializeField][Range(0.01f, 100)] private float targetMoveSpeed;
-        [SerializeField][Range(0.01f, 100)] private float moveAcceleration;
-        [SerializeField][Range(0.01f, 100)] private float stoppingAcceleration;
+
+        [SerializeField] PhysicsConfig deflatedPhysicsConfig;
+        [SerializeField] PhysicsConfig puffedPhysicsConfig;
         [SerializeField] [Range(3, 7)] private float puffTimeout;
         PuffStateHandler _puffStateHandler;
         Vector2 currentVelocity;
@@ -24,10 +33,15 @@ namespace GameLogic
         private void Update()
         {
             var direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
-            if (direction == Vector2.zero)
-                currentVelocity = Vector2.MoveTowards(currentVelocity, Vector2.zero, stoppingAcceleration);
-            else
-                currentVelocity = Vector2.MoveTowards(currentVelocity, direction * targetMoveSpeed, moveAcceleration);
+            
+            float moveAcceleration = _puffStateHandler.IsPuffed ? puffedPhysicsConfig.moveAcceleration : deflatedPhysicsConfig.moveAcceleration;
+            float stoppingAcceleration = _puffStateHandler.IsPuffed ? puffedPhysicsConfig.stoppingAcceleration : deflatedPhysicsConfig.stoppingAcceleration;
+            float targetMoveSpeed = _puffStateHandler.IsPuffed ? puffedPhysicsConfig.targetMoveSpeed : deflatedPhysicsConfig.targetMoveSpeed;
+
+            currentVelocity = new Vector2(
+               Mathf.MoveTowards(currentVelocity.x, direction.x * targetMoveSpeed, direction.x == 0 ? stoppingAcceleration : moveAcceleration),
+                 Mathf.MoveTowards(currentVelocity.y, direction.y * targetMoveSpeed, direction.y == 0 ? stoppingAcceleration : moveAcceleration)
+                );
 
             _rigidbody2D.AccelerateTo2D(currentVelocity);   // it freaked out!!! :(
             
