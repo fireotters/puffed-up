@@ -26,6 +26,7 @@ namespace GameLogic
             {
                 PuffOut();
                 _puffingTimer.StartTimer(3);
+                _puffingTimer.Resume();
             }
         }
 

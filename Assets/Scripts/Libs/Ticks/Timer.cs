@@ -13,7 +13,6 @@ public class Timer : MonoBehaviour
     }
 
     [SerializeField] TimerData timerData = new TimerData { startOnAwake = true, oneShot = false, duration = 1f };
-    TimerData copy;
 
     public UnityEvent OnTimerEnd;
 
@@ -32,8 +31,6 @@ public class Timer : MonoBehaviour
 
     protected virtual void Awake()
     {
-        copy = timerData;
-
         if (timerData.startOnAwake)
         {
             StartTimer(timerData.duration);
@@ -41,10 +38,10 @@ public class Timer : MonoBehaviour
         }
     }
 
-    public void StartTimer(float waitTime)
+    public void StartTimer(float waitTime = -1)
     {
         print("Starting timer for " + waitTime);
-        timerData.duration = waitTime;
+        timerData.duration = waitTime < 0 ? timerData.duration : waitTime;
         timer = 0;
     }
 
