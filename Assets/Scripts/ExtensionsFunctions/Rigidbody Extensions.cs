@@ -9,11 +9,10 @@ namespace ExtensionsFunctions
         /// <summary>
         /// Makes the rigidbody accelerate to targetVelocity with maxAcceleration acceleration.
         /// </summary>
-        public static float2 AccelerateTo2D(this Rigidbody2D rb, Vector2 targetVelocity,
-            float maxAcceleration = float.PositiveInfinity)
+        public static float2 AccelerateTo2D(this Rigidbody2D rb, Vector2 targetVelocity, float maxAcceleration = float.PositiveInfinity)
         {
-            var deltaVelocity = targetVelocity - rb.velocity;
-            var acceleration = deltaVelocity / Time.deltaTime;
+            float2 deltaVelocity = targetVelocity - rb.velocity;
+            float2 acceleration = deltaVelocity / Time.deltaTime;
 
             if (lengthsq(acceleration) > maxAcceleration * maxAcceleration)
                 acceleration = normalize(acceleration) * maxAcceleration;
