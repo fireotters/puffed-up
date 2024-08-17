@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c27971f4240226445a47a83aafade632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerDetectorManager: {fileID: 1360650029}
 --- !u!4 &11922496
 Transform:
   m_ObjectHideFlags: 0
@@ -211,11 +212,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 17.51086, y: -7.679537}
+    - - {x: 34.774452, y: -7.679537}
       - {x: -0.2080298, y: -7.6863523}
       - {x: -0.2069745, y: -45.70132}
       - {x: 34.810276, y: -45.702938}
-      - {x: 34.78888, y: -7.6683083}
   m_UseDelaunayMesh: 0
 --- !u!1 &30162190
 GameObject:
@@ -340,12 +340,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 30162193}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 30162193}
+  m_maskType: 0
 --- !u!23 &30162193
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -599,12 +599,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 387414609}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 387414609}
+  m_maskType: 0
 --- !u!23 &387414609
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -208500,6 +208500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c27971f4240226445a47a83aafade632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerDetectorManager: {fileID: 1360650029}
 --- !u!4 &656758729
 Transform:
   m_ObjectHideFlags: 0
@@ -208895,6 +208896,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c27971f4240226445a47a83aafade632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerDetectorManager: {fileID: 1360650029}
 --- !u!4 &1242697174
 Transform:
   m_ObjectHideFlags: 0
@@ -208954,12 +208956,55 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 10.947365, y: -10.80732}
+    - - {x: 22.550766, y: -10.878075}
       - {x: -0.28774172, y: -10.755479}
       - {x: -0.21286148, y: -47.796455}
       - {x: 22.699793, y: -47.86353}
-      - {x: 22.76107, y: -10.763148}
   m_UseDelaunayMesh: 0
+--- !u!1 &1360650028
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1360650030}
+  - component: {fileID: 1360650029}
+  m_Layer: 0
+  m_Name: PlayerDetectorManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1360650029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360650028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62473126b4da92f4dae995298ad44fba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1360650030
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360650028}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.5161185, y: -11.644178, z: -0.21555561}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1389195076
 GameObject:
   m_ObjectHideFlags: 0
@@ -209354,6 +209399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c27971f4240226445a47a83aafade632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerDetectorManager: {fileID: 1360650029}
 --- !u!60 &1410457095
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -209398,12 +209444,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.28802395, y: 3.3258958}
-      - {x: -0.19448668, y: 0.3054984}
-      - {x: -0.19155067, y: -1.6984327}
-      - {x: -0.19971883, y: -7.6987925}
-      - {x: 34.80589, y: -7.700388}
-      - {x: 34.799904, y: 3.3033063}
+    - - {x: 34.80589, y: 3.3258958}
+      - {x: -0.33599097, y: 3.2063468}
+      - {x: -0.33305305, y: -7.570883}
+      - {x: 34.80589, y: -7.6987925}
   m_UseDelaunayMesh: 0
 --- !u!4 &1417197146 stripped
 Transform:
@@ -720988,3 +721032,4 @@ SceneRoots:
   - {fileID: 11922496}
   - {fileID: 656758729}
   - {fileID: 1242697174}
+  - {fileID: 1360650030}

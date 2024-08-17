@@ -6,6 +6,11 @@ namespace GameLogic.Camera
     public class PlayerDetector : MonoBehaviour
     {
         private PolygonCollider2D _polygonCollider2D;
+        [SerializeField] PlayerDetectorManager _playerDetectorManager;
+
+        public PolygonCollider2D PolygonCollider2D => _polygonCollider2D;
+
+        public void SetManagerTo(PlayerDetectorManager manager) => _playerDetectorManager = manager;
 
         private void Start()
         {
@@ -15,8 +20,13 @@ namespace GameLogic.Camera
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.gameObject.GetComponent<Player>() != null)
-                SignalBus<SignalSwitchCameraBoundary>.Fire(new SignalSwitchCameraBoundary
-                    { ColliderToSwitch = _polygonCollider2D });
+                _playerDetectorManager.PlayerEntered(this);
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            if (other.gameObject.GetComponent<Player>() != null)
+                _playerDetectorManager.PlayerExited(this);
         }
     }
 }
