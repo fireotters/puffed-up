@@ -20,7 +20,7 @@ namespace GameLogic
         [SerializeField] PhysicsConfig puffedPhysicsConfig;
         private Rigidbody2D _rigidbody2D;
         Vector2 currentVelocity;
-        private bool _slowedDown;
+        private int seaweedAffectingPlayer;
 
         [Header("Abilities")]
         [SerializeField] [Range(3, 7)] private float puffTimeout;
@@ -67,7 +67,8 @@ namespace GameLogic
                     direction.y == 0 ? stoppingAcceleration : moveAcceleration)
             );
 
-            _rigidbody2D.AccelerateTo2D(_slowedDown ? currentVelocity / 2 : currentVelocity);
+            bool slowedDown = seaweedAffectingPlayer > 0;
+            _rigidbody2D.AccelerateTo2D(slowedDown ? currentVelocity / 2 : currentVelocity);
 
             if (Input.GetKeyDown(KeyCode.F))
             {
@@ -77,22 +78,9 @@ namespace GameLogic
             }
         }
 
-        // This might cause bugs
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            if (other.tag.Equals("Seaweed"))
-            {
-                _slowedDown = true;
-            }
-        }
+        public void SeaweedAffect() => seaweedAffectingPlayer++;
 
-        private void OnTriggerExit2D(Collider2D other)
-        {
-            if (other.tag.Equals("Seaweed"))
-            {
-                _slowedDown = false;
-            }
-        }
+        public void RemoveSeaweedAffect() => seaweedAffectingPlayer--;
 
         public void Puff()
         {
