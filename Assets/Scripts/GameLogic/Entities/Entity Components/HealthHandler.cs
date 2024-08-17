@@ -1,7 +1,5 @@
 using Cysharp.Threading.Tasks;
 using GameLogic;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HealthHandler : MonoBehaviour

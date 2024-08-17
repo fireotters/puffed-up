@@ -1,4 +1,8 @@
+using System;
+using System.Threading;
+using ExtensionsFunctions;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace GameLogic.Entities.Enemies
 {
@@ -7,8 +11,9 @@ namespace GameLogic.Entities.Enemies
         [SerializeField][Range(0, 100)] private float moveSpeed;
         [SerializeField] private PuffStateSo puffStateSo;
         private Rigidbody2D _rigidbody2D;
-        private bool _chasing, _evading;
+        private bool _chasing, _evading, _normalBehaviourRunning;
         private Vector2 _target = Vector2.zero;
+        private CancellationTokenSource _cancellationToken = new();
 
         private void Start()
         {
@@ -32,6 +37,17 @@ namespace GameLogic.Entities.Enemies
             else
             {
                 // standby behaviour
+                if (_normalBehaviourRunning) return;
+
+                var direction = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+                var duration = Random.Range(0f, 4f);
+                print($"Imma go {direction} for {Random.Range(0f, 4f)}s!");
+                _normalBehaviourRunning = true;
+                this.ExecuteOverDuration(duration, _cancellationToken.Token, time =>
+                {
+                    _rigidbody2D.AddForce(direction * moveSpeed);
+                    if (time == 1f) _normalBehaviourRunning = false;
+                }).Forget();
             }
         }
 
@@ -40,13 +56,19 @@ namespace GameLogic.Entities.Enemies
             if (other.gameObject.TryGetComponent(out Player player))
             {
                 _target = player.gameObject.transform.position;
-                print($"Player is at {_target}");
+                // print($"Player is at {_target}");
                 var puffState = puffStateSo.State;
                 _evading = puffState == PuffStateHandler.State.Puffed;
                 _chasing = puffState == PuffStateHandler.State.Deflated;
             }
         }
-        
+
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            GenericExtensions.CancelAndGenerateNew(ref _cancellationToken);
+            _normalBehaviourRunning = false;
+        }
+
         private void OnTriggerEnter2D(Collider2D other)
         {
             FindPlayerAndSetEnemyState(other);
@@ -59,9 +81,14 @@ namespace GameLogic.Entities.Enemies
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            print("Stopping chase");
+            // print("Stopping chase");
             _evading = false;
             _chasing = false;
+        }
+
+        private void OnDestroy()
+        {
+            GenericExtensions.CancelAndGenerateNew(ref _cancellationToken);
         }
     }
 }

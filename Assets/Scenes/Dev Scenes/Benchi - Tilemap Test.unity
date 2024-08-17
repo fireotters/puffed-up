@@ -209145,11 +209145,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1482917260322899866, guid: 0aa4fbe1c62231441bce4041b83c90cd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 26.03
+      value: -11.8
       objectReference: {fileID: 0}
     - target: {fileID: 1482917260322899866, guid: 0aa4fbe1c62231441bce4041b83c90cd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -34.16
+      value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: 1482917260322899866, guid: 0aa4fbe1c62231441bce4041b83c90cd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -720531,7 +720531,7 @@ Transform:
   m_GameObject: {fileID: 1824745955}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26.03, y: -34.16, z: -10}
+  m_LocalPosition: {x: -11.8, y: -0.2, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -720652,7 +720652,7 @@ Transform:
   m_GameObject: {fileID: 1893070037}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.888187, y: -0.8354988, z: -10}
+  m_LocalPosition: {x: -7.0169015, y: -0.19958, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -720739,7 +720739,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &1994302618
 SpriteRenderer:
   m_ObjectHideFlags: 0

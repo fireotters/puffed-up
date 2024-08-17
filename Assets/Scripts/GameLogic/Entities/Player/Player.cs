@@ -1,16 +1,12 @@
 using System;
-using ExtensionsFunctions;
 using System.Threading;
+using ExtensionsFunctions;
 using UnityEngine;
-using Unity.VisualScripting.FullSerializer;
-
-
-/// Añadir turn speed, rebotar en las paredes y que baje/suba (según el estado) cuando la magnitud de la velocidad esté cerca de 0
-/// Muerto también flota hacia arriba
+using Random = UnityEngine.Random;
 
 namespace GameLogic
 {
-    [System.Serializable]
+    [Serializable]
     struct PhysicsConfig
     {
         [SerializeField] [Range(0.01f, 100)] public float targetMoveSpeed;
@@ -36,6 +32,7 @@ namespace GameLogic
         Vector2 currentVelocity;
         private int seaweedAffectingPlayer;
         bool stopped = false;
+        CancellationTokenSource cancellationToken;
 
         [Header("Abilities")]
         [SerializeField] [Range(3, 7)] private float puffTimeout;
@@ -59,10 +56,6 @@ namespace GameLogic
             _puffingTimer = GetComponent<Timer>();
             _puffStateHandler = GetComponent<PuffStateHandler>();
             _healthHandler = GetComponent<HealthHandler>();
-        }
-        private void Start()
-        {
-
         }
 
         private void Update()
@@ -123,7 +116,7 @@ namespace GameLogic
                 this.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 0f));
                 if (!currentAnimaton.StartsWith(swimName) && !currentAnimaton.Contains("Hurt") && !currentAnimaton.Contains("Death"))
                 {
-                    int swimType = (int)Math.Round(UnityEngine.Random.Range(1f, 2f));
+                    int swimType = (int)Math.Round(Random.Range(1f, 2f));
                     ChangeAnimationState("Swim" + swimType);
                 }
             }
@@ -132,7 +125,7 @@ namespace GameLogic
                 this.transform.rotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
                 if (!currentAnimaton.StartsWith(swimName) && !currentAnimaton.Contains("Hurt") && !currentAnimaton.Contains("Death"))
                 {
-                    int swimType = (int)Math.Round(UnityEngine.Random.Range(1f, 2f));
+                    int swimType = (int)Math.Round(Random.Range(1f, 2f));
                     ChangeAnimationState("Swim" + swimType);
                 }
             }
