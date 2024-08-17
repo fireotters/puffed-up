@@ -26,6 +26,8 @@ namespace GameLogic.Entities.Enemies
             else if (_evading)
             {
                 // evading behaviour
+                var direction = _target + (Vector2) transform.position;
+                _rigidbody2D.AddForce(direction.normalized * moveSpeed);
             }
             else
             {
@@ -33,34 +35,26 @@ namespace GameLogic.Entities.Enemies
             }
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
+        private void FindPlayerAndSetEnemyState(Collider2D other)
         {
             if (other.gameObject.TryGetComponent(out Player player))
             {
+                _target = player.gameObject.transform.position;
+                print($"Player is at {_target}");
                 var puffState = puffStateSo.State;
-                if (puffState == PuffStateHandler.State.Puffed)
-                {
-                    _evading = true;
-                }
-                else
-                {
-                    _chasing = true;
-                    _target = player.gameObject.transform.position;
-                    print($"Player is at {_target}");
-                }
+                _evading = puffState == PuffStateHandler.State.Puffed;
+                _chasing = puffState == PuffStateHandler.State.Deflated;
             }
+        }
+        
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            FindPlayerAndSetEnemyState(other);
         }
 
         private void OnTriggerStay2D(Collider2D other)
         {
-            if (other.gameObject.TryGetComponent(out Player player))
-            {
-                var puffState = puffStateSo.State;
-                if (puffState == PuffStateHandler.State.Deflated)
-                {
-                    _target = player.gameObject.transform.position;
-                }
-            }
+            FindPlayerAndSetEnemyState(other);
         }
 
         private void OnTriggerExit2D(Collider2D other)
