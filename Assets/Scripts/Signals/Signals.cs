@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Signals
 {
     // UI Signals
@@ -24,13 +26,15 @@ namespace Signals
         public GameEndCondition result;
         public int score;
     }
-
-
-
     // Game Signals
     public struct SignalToggleEffect
     {
         public bool Enabled;
+    }
+
+    public struct SignalSwitchCameraBoundary
+    {
+        public Collider2D ColliderToSwitch;
     }
 }
 
