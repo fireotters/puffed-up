@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using GameLogic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -8,6 +7,7 @@ public class PuffStateHandler : MonoBehaviour
     public enum State { Deflated, Puffed };
 
     [SerializeField] private State state = State.Deflated;
+    [SerializeField] private PuffStateSo playerPuffStateSo;
     [Range(0.1f, 100.0f)][SerializeField] private float massWhenPuffed;
     [Range(0.1f, 100.0f)][SerializeField] private float massWhenDeflated;
     Rigidbody2D rb;
@@ -15,6 +15,7 @@ public class PuffStateHandler : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        SetState(state);
     }
 
     public bool IsPuffed => state == State.Puffed;
@@ -23,12 +24,13 @@ public class PuffStateHandler : MonoBehaviour
 
     float Mass => state == State.Puffed ? massWhenPuffed : massWhenDeflated;
 
-    public void SetState(State state)
+    public void SetState(State newState)
     {
-        this.state = state;
+        this.state = newState;
+        playerPuffStateSo.SetPuffState(newState);
         rb.mass = Mass;
     }
-
+    
     private void OnValidate()
     {
         rb = GetComponent<Rigidbody2D>();
