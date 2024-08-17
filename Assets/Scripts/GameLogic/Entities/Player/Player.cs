@@ -18,7 +18,13 @@ namespace GameLogic
         [SerializeField] [Range(0.01f, 100)] public float stoppingAcceleration;
     }
 
-    public class Player : MonoBehaviour
+    interface ICustomPhysics
+    {
+        public void AddImpulse(Vector2 impulseForce, bool resetPreviousVelocity = true);
+        public void ResetVelocity();
+    }
+
+    public class Player : MonoBehaviour, ICustomPhysics
     {
         [Header("Physics")]
         [SerializeField] PhysicsConfig deflatedPhysicsConfig;
@@ -115,6 +121,19 @@ namespace GameLogic
             GenericExtensions.CancelAndGenerateNew(ref cancellationToken);
             this.LerpScale(Vector2.one, 0.23f, AnimationCurve.EaseInOut(0, 0, 1, 1), cancellationToken.Token);
             _puffStateHandler.SetState(PuffStateHandler.State.Deflated);
+        }
+
+        public void ResetVelocity()
+        {
+            currentVelocity = Vector2.zero;
+        }
+
+        public void AddImpulse(Vector2 impulseForce, bool resetPreviousVelocity = true)
+        {
+            if (resetPreviousVelocity)
+                ResetVelocity();
+
+            this._rigidbody2D.AddForce(impulseForce, ForceMode2D.Impulse);
         }
     }
 }

@@ -147,8 +147,8 @@ MonoBehaviour:
     moveAcceleration: 9
     turnAcceleration: 1
     stoppingAcceleration: 2
-  floatDownSpeed: 0
-  floatUpSpeed: 0
+  floatDownSpeed: 0.5
+  floatUpSpeed: 0.9
   puffTimeout: 3
 --- !u!114 &9097965446356606795
 MonoBehaviour:

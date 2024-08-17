@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using GameLogic;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,7 @@ public class HealthHandler : MonoBehaviour
 {
     [Header("Health")]
     [SerializeField] private int startingHealth;
-    Rigidbody2D _rb;
+    ICustomPhysics _rb;
     [SerializeField] float recoilImpulseForce = 2.5f;
     public int currentHealth { get; private set; }
 
@@ -27,7 +28,7 @@ public class HealthHandler : MonoBehaviour
     private void Start()
     {
         currentHealth = startingHealth;
-        _rb = GetComponent<Rigidbody2D>();
+        _rb = GetComponent<ICustomPhysics>();
     }
 
     public void Damage(int damage, Vector2 recoilDirection)
@@ -56,7 +57,7 @@ public class HealthHandler : MonoBehaviour
         }
         else
         {
-            _rb.AddForce(recoilDirection * this.recoilImpulseForce, ForceMode2D.Impulse);
+            _rb.AddImpulse(recoilDirection * this.recoilImpulseForce);
             print("Owie I took damage: " + damage.ToString());
         }
     }
