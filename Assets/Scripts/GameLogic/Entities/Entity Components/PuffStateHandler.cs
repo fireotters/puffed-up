@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PuffStateHandler : MonoBehaviour
 {
-    public enum State { Puffed, Deflated };
+    public enum State { Deflated, Puffed };
 
     [SerializeField] private State state = State.Deflated;
     [Range(0.1f, 100.0f)][SerializeField] private float massWhenPuffed;

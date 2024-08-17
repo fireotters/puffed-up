@@ -106,10 +106,12 @@ MonoBehaviour:
   deflatedPhysicsConfig:
     targetMoveSpeed: 5
     moveAcceleration: 3
+    turnAcceleration: 0
     stoppingAcceleration: 0.1
   puffedPhysicsConfig:
     targetMoveSpeed: 17.5
     moveAcceleration: 9
+    turnAcceleration: 0
     stoppingAcceleration: 2
   puffTimeout: 3
 --- !u!114 &9097965446356606795
@@ -139,7 +141,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 3
+  m_Mass: 17
   m_LinearDrag: 1.5
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -153,7 +155,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &9056021592870373217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,16 +169,79 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 3
-  recoilImpulseForce: 2.5
-  iFrameDuration: 0
+  recoilImpulseForce: 50
+  iFrameDuration: 0.4
   flashCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.11665601
+      value: 0.9972817
+      inSlope: 0.012021741
+      outSlope: 0.012021741
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.36288315
+    - serializedVersion: 3
+      time: 0.3043651
+      value: 0.016054697
+      inSlope: 0.016111437
+      outSlope: 0.016111437
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.40136993
+    - serializedVersion: 3
+      time: 0.42636442
+      value: 1.0009964
+      inSlope: 0.04580288
+      outSlope: 0.04580288
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.23776159
+    - serializedVersion: 3
+      time: 0.6708686
+      value: -0.0016456097
+      inSlope: 0.015723018
+      outSlope: 0.015723018
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.4485384
+    - serializedVersion: 3
+      time: 0.7956612
+      value: 0.9960834
+      inSlope: -0.026314178
+      outSlope: -0.026314178
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.45557243
+    - serializedVersion: 3
+      time: 0.9984741
+      value: -0.0008468628
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   numOfFlashes: 0
-  overlaySpriteRenderer: {fileID: 0}
+  overlaySpriteRenderer: {fileID: 8396419124290923689}
 --- !u!114 &2939101326297447424
 MonoBehaviour:
   m_ObjectHideFlags: 0

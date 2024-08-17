@@ -3,6 +3,10 @@ using ExtensionsFunctions;
 using System.Threading;
 using UnityEngine;
 
+
+/// Añadir turn speed, rebotar en las paredes y que baje/suba (según el estado) cuando la magnitud de la velocidad esté cerca de 0
+/// Muerto también flota hacia arriba
+
 namespace GameLogic
 {
     [System.Serializable]
@@ -10,6 +14,7 @@ namespace GameLogic
     {
         [SerializeField] [Range(0.01f, 100)] public float targetMoveSpeed;
         [SerializeField] [Range(0.01f, 100)] public float moveAcceleration;
+        [SerializeField] [Range(0.01f, 100)] public float turnAcceleration;
         [SerializeField] [Range(0.01f, 100)] public float stoppingAcceleration;
     }
 
@@ -50,21 +55,20 @@ namespace GameLogic
         {
             var direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
 
-            float moveAcceleration = _puffStateHandler.IsPuffed
-                ? puffedPhysicsConfig.moveAcceleration
-                : deflatedPhysicsConfig.moveAcceleration;
-            float stoppingAcceleration = _puffStateHandler.IsPuffed
-                ? puffedPhysicsConfig.stoppingAcceleration
-                : deflatedPhysicsConfig.stoppingAcceleration;
-            float targetMoveSpeed = _puffStateHandler.IsPuffed
-                ? puffedPhysicsConfig.targetMoveSpeed
-                : deflatedPhysicsConfig.targetMoveSpeed;
+            PhysicsConfig config = _puffStateHandler.IsPuffed ? puffedPhysicsConfig : deflatedPhysicsConfig;
+
+            float moveAcceleration = config.moveAcceleration;
+            float stoppingAcceleration = config.stoppingAcceleration;
+            float targetMoveSpeed = config.targetMoveSpeed;
+            float turnAcceleration = config.turnAcceleration;
 
             currentVelocity = new Vector2(
                 Mathf.MoveTowards(currentVelocity.x, direction.x * targetMoveSpeed,
-                    direction.x == 0 ? stoppingAcceleration : moveAcceleration),
+                    direction.x == 0 ? stoppingAcceleration :
+                    Mathf.Sign(direction.x) == Mathf.Sign(currentVelocity.x) ? moveAcceleration : turnAcceleration),
                 Mathf.MoveTowards(currentVelocity.y, direction.y * targetMoveSpeed,
-                    direction.y == 0 ? stoppingAcceleration : moveAcceleration)
+                    direction.y == 0 ? stoppingAcceleration :
+                    Mathf.Sign(direction.y) == Mathf.Sign(currentVelocity.y) ? moveAcceleration : turnAcceleration)
             );
 
             bool slowedDown = seaweedAffectingPlayer > 0;
