@@ -15,7 +15,7 @@ public class PuffBouncer : MonoBehaviour
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _stateHandler = new PuffStateHandler();
+        _stateHandler = GetComponent<PuffStateHandler>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
