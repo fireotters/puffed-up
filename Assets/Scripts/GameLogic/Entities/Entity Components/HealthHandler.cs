@@ -13,9 +13,11 @@ public class HealthHandler : MonoBehaviour
 
     [Header("Invulnerability Frames")]
     [SerializeField] private float iFrameDuration;
+    [SerializeField] AnimationCurve flashCurve;
     [SerializeField] private int numOfFlashes;
     bool isInvulnerable = false;
     private SpriteRenderer _spr;
+    [SerializeField] private SpriteRenderer overlaySpriteRenderer;
 
     private void Awake()
     {
@@ -39,6 +41,13 @@ public class HealthHandler : MonoBehaviour
         // Here as isInvulnerable is set to true and we have the guard close at the beggining, that won't happen
         // destroyCancellationToken is a monobehaviour generated token that cancels on destroy
         this.DelayedCall(iFrameDuration, this.destroyCancellationToken, () => isInvulnerable = false).Forget();
+
+        this.ExecuteOverDuration(iFrameDuration, this.destroyCancellationToken, normalizedDuration =>
+        {
+            Color color = overlaySpriteRenderer.color;
+            color.a = flashCurve.Evaluate(normalizedDuration);
+            overlaySpriteRenderer.color = color;
+        }).Forget();
 
         currentHealth -= damage;
         if (currentHealth <= 0)
