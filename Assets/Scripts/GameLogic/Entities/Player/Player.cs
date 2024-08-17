@@ -23,9 +23,12 @@ namespace GameLogic
         [Header("Physics")]
         [SerializeField] PhysicsConfig deflatedPhysicsConfig;
         [SerializeField] PhysicsConfig puffedPhysicsConfig;
+        [SerializeField] float floatDownSpeed; // Used when deflated and speed close to 0
+        [SerializeField] float floatUpSpeed; // Used when puffed and speed close to 0 or ded
         private Rigidbody2D _rigidbody2D;
         Vector2 currentVelocity;
         private int seaweedAffectingPlayer;
+        bool stopped = false;
 
         [Header("Abilities")]
         [SerializeField] [Range(3, 7)] private float puffTimeout;
@@ -70,6 +73,17 @@ namespace GameLogic
                     direction.y == 0 ? stoppingAcceleration :
                     Mathf.Sign(direction.y) == Mathf.Sign(currentVelocity.y) ? moveAcceleration : turnAcceleration)
             );
+
+            if (stopped && direction != Vector2.zero)
+                stopped =  currentVelocity.magnitude < 0.05f;
+
+            if (currentVelocity.magnitude < 0.05f || stopped)
+            {
+                stopped = true;
+                float targetSpeed = _puffStateHandler.IsPuffed ? floatUpSpeed : floatDownSpeed;
+                float yDir = _puffStateHandler.IsPuffed ? 1 : -1;
+                currentVelocity = new Vector2 (currentVelocity.x,  Mathf.MoveTowards(currentVelocity.y, yDir * targetSpeed * _rigidbody2D.mass, config.moveAcceleration));
+            }
 
             bool slowedDown = seaweedAffectingPlayer > 0;
             _rigidbody2D.AccelerateTo2D(slowedDown ? currentVelocity / 2 : currentVelocity);
