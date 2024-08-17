@@ -208579,11 +208579,6 @@ PolygonCollider2D:
       - {x: 50.8938, y: -50.835472}
       - {x: 50.67946, y: 3.190425}
   m_UseDelaunayMesh: 0
---- !u!1 &976516259 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 854116601608941583, guid: 0aa4fbe1c62231441bce4041b83c90cd, type: 3}
-  m_PrefabInstance: {fileID: 1475170668}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1183095439
 GameObject:
   m_ObjectHideFlags: 0
@@ -209136,20 +209131,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1482917260322899866, guid: 0aa4fbe1c62231441bce4041b83c90cd, type: 3}
   m_PrefabInstance: {fileID: 1475170668}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1417197147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 976516259}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bf3fdaa80e0b62419482850784e68e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  forceWhenPuffed: 140
-  forceWhenDeflated: 30
 --- !u!1001 &1475170668
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -209161,18 +209142,6 @@ PrefabInstance:
     - target: {fileID: 854116601608941583, guid: 0aa4fbe1c62231441bce4041b83c90cd, type: 3}
       propertyPath: m_Name
       value: Fish
-      objectReference: {fileID: 0}
-    - target: {fileID: 1102466918635060855, guid: 0aa4fbe1c62231441bce4041b83c90cd, type: 3}
-      propertyPath: m_Mass
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1290779331635345926, guid: 0aa4fbe1c62231441bce4041b83c90cd, type: 3}
-      propertyPath: puffedPhysicsConfig.turnAcceleration
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1290779331635345926, guid: 0aa4fbe1c62231441bce4041b83c90cd, type: 3}
-      propertyPath: deflatedPhysicsConfig.turnAcceleration
-      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 1482917260322899866, guid: 0aa4fbe1c62231441bce4041b83c90cd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -209214,17 +209183,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9097965446356606795, guid: 0aa4fbe1c62231441bce4041b83c90cd, type: 3}
-      propertyPath: state
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 854116601608941583, guid: 0aa4fbe1c62231441bce4041b83c90cd, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1417197147}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0aa4fbe1c62231441bce4041b83c90cd, type: 3}
 --- !u!1 &1597013227
 GameObject:

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 9056021592870373217}
   - component: {fileID: 2939101326297447424}
   - component: {fileID: 8831052990208087495}
+  - component: {fileID: 8000235509001652670}
   m_Layer: 0
   m_Name: Fish
   m_TagString: Untagged
@@ -106,12 +107,12 @@ MonoBehaviour:
   deflatedPhysicsConfig:
     targetMoveSpeed: 5
     moveAcceleration: 3
-    turnAcceleration: 0
+    turnAcceleration: 0.2
     stoppingAcceleration: 0.1
   puffedPhysicsConfig:
     targetMoveSpeed: 17.5
     moveAcceleration: 9
-    turnAcceleration: 0
+    turnAcceleration: 1
     stoppingAcceleration: 2
   puffTimeout: 3
 --- !u!114 &9097965446356606795
@@ -126,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00fb5db442638bc4ca31ee36bff17687, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 1
+  state: 0
   massWhenPuffed: 17
   massWhenDeflated: 3
 --- !u!50 &1102466918635060855
@@ -141,7 +142,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 17
+  m_Mass: 3
   m_LinearDrag: 1.5
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -308,6 +309,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &8000235509001652670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854116601608941583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bf3fdaa80e0b62419482850784e68e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forceWhenPuffed: 140
+  forceWhenDeflated: 30
 --- !u!1 &8986178227732316926
 GameObject:
   m_ObjectHideFlags: 0
