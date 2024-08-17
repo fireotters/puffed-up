@@ -15,27 +15,35 @@ namespace GameLogic
 
     public class Player : MonoBehaviour
     {
-        private Rigidbody2D _rigidbody2D;
-        private Timer _puffingTimer;
-        private bool _slowedDown;
-
+        [Header("Physics")]
         [SerializeField] PhysicsConfig deflatedPhysicsConfig;
         [SerializeField] PhysicsConfig puffedPhysicsConfig;
+        private Rigidbody2D _rigidbody2D;
+        Vector2 currentVelocity;
+        private bool _slowedDown;
+
+        [Header("Abilities")]
         [SerializeField] [Range(3, 7)] private float puffTimeout;
         CancellationTokenSource cancellationToken;
+        private Timer _puffingTimer;
         PuffStateHandler _puffStateHandler;
-        Vector2 currentVelocity;
+        HealthHandler _healthHandler;
 
         private void OnDestroy()
         {
             GenericExtensions.CancelAndGenerateNew(ref cancellationToken);
         }
 
-        private void Start()
+        private void Awake()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _puffingTimer = GetComponent<Timer>();
             _puffStateHandler = GetComponent<PuffStateHandler>();
+            _healthHandler = GetComponent<HealthHandler>();
+        }
+        private void Start()
+        {
+
         }
 
         private void Update()
@@ -82,6 +90,20 @@ namespace GameLogic
             if (other.tag.Equals("Seaweed"))
             {
                 _slowedDown = false;
+            }
+        }
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            switch (other.collider.tag)
+            {
+                case "HurtMinor":
+                    _healthHandler.Damage(1);
+                    // Insert animator bool and sound
+                    break;
+                case "HurtMajor":
+                    _healthHandler.Damage(3);
+                    // Insert animator bool and sound
+                    break;
             }
         }
 
