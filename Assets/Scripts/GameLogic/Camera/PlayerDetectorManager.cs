@@ -18,7 +18,9 @@ public class PlayerDetectorManager : MonoBehaviour
     public void PlayerExited(PlayerDetector detector)
     {
         detectorsThePlayerIsIn.Remove(detector);
-        ChangeToCollider(detectorsThePlayerIsIn.Last().PolygonCollider2D);
+        
+        if (detectorsThePlayerIsIn.Count > 0)
+            ChangeToCollider(detectorsThePlayerIsIn.Last().PolygonCollider2D);
     }
 
     public void ChangeToCollider(PolygonCollider2D polygonCollider2D)
