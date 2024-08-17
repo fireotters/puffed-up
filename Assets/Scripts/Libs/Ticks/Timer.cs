@@ -50,6 +50,12 @@ public class Timer : MonoBehaviour
         IsPaused = true;
     }
 
+    public void Stop()
+    {
+        IsPaused = true;
+        timer = 0;
+    }
+
     public void Resume()
     {
         IsPaused = false;

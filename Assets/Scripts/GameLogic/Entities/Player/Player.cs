@@ -38,15 +38,9 @@ namespace GameLogic
 
         [Header("Abilities")]
         [SerializeField] [Range(3, 7)] private float puffTimeout;
-        CancellationTokenSource cancellationToken;
         private Timer _puffingTimer;
         PuffStateHandler _puffStateHandler;
         HealthHandler _healthHandler;
-
-        private void OnDestroy()
-        {
-            GenericExtensions.CancelAndGenerateNew(ref cancellationToken);
-        }
 
         private void Awake()
         {
@@ -109,17 +103,12 @@ namespace GameLogic
         public void Puff()
         {
             print("OW FUCK PANIC");
-            GenericExtensions.CancelAndGenerateNew(ref cancellationToken);
-            this.LerpScale(Vector2.one * 3, 0.23f, AnimationCurve.EaseInOut(0, 0, 1, 1), cancellationToken.Token);
-
             _puffStateHandler.SetState(PuffStateHandler.State.Puffed);
         }
 
         public void Deflate()
         {
             print("calm once again");
-            GenericExtensions.CancelAndGenerateNew(ref cancellationToken);
-            this.LerpScale(Vector2.one, 0.23f, AnimationCurve.EaseInOut(0, 0, 1, 1), cancellationToken.Token);
             _puffStateHandler.SetState(PuffStateHandler.State.Deflated);
         }
 

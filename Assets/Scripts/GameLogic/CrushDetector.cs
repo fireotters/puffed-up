@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CrushDetector : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class CrushDetector : MonoBehaviour
     [SerializeField] ContactFilter2D contactFilter;
     RaycastHit2D[] raycastHit2Ds = new RaycastHit2D[1];
     int collisionCount = 0;
+    bool waitingAfterCrush = false;
+
+    [SerializeField] UnityEvent onCrush;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -18,11 +22,14 @@ public class CrushDetector : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         collisionCount--;
+
+        if (collisionCount == 0)
+            waitingAfterCrush = false;
     }
 
     private void Update()
     {
-        if (collisionCount == 0)
+        if (collisionCount == 0 || waitingAfterCrush)
             return;
 
         int failedCount = 0;
@@ -36,7 +43,7 @@ public class CrushDetector : MonoBehaviour
             {
                 failedCount++;
                 print(raycastHit2Ds[0].collider.gameObject.name);
-                Debug.DrawLine(transform.position, raycastHit2Ds[0].point, Color.blue, 2.0f);
+                //Debug.DrawLine(transform.position, raycastHit2Ds[0].point, Color.blue, 2.0f);
             }
 
             if (failedCount >= 2)
@@ -44,6 +51,10 @@ public class CrushDetector : MonoBehaviour
         }
 
         if (failedCount >= 2)
-            print("Mamma mia");
+        {
+            print("Mamma mia it crashed");
+            onCrush?.Invoke();
+            waitingAfterCrush = true;
+        }
     }
 }
