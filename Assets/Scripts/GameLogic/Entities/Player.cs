@@ -77,6 +77,7 @@ namespace GameLogic
             }
         }
 
+        // This might cause bugs
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.tag.Equals("Seaweed"))
@@ -90,20 +91,6 @@ namespace GameLogic
             if (other.tag.Equals("Seaweed"))
             {
                 _slowedDown = false;
-            }
-        }
-        private void OnCollisionEnter2D(Collision2D other)
-        {
-            switch (other.collider.tag)
-            {
-                case "HurtMinor":
-                    _healthHandler.Damage(1);
-                    // Insert animator bool and sound
-                    break;
-                case "HurtMajor":
-                    _healthHandler.Damage(3);
-                    // Insert animator bool and sound
-                    break;
             }
         }
 
