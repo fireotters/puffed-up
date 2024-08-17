@@ -2,6 +2,7 @@ using System;
 using ExtensionsFunctions;
 using System.Threading;
 using UnityEngine;
+using Unity.VisualScripting.FullSerializer;
 
 
 /// Añadir turn speed, rebotar en las paredes y que baje/suba (según el estado) cuando la magnitud de la velocidad esté cerca de 0
@@ -42,8 +43,18 @@ namespace GameLogic
         PuffStateHandler _puffStateHandler;
         HealthHandler _healthHandler;
 
+        [Header("Animation")]
+        private Animator _animator;
+        private string currentAnimaton = "Idle";
+
+        private void OnDestroy()
+        {
+            GenericExtensions.CancelAndGenerateNew(ref cancellationToken);
+        }
+
         private void Awake()
         {
+            _animator = GetComponent<Animator>();
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _puffingTimer = GetComponent<Timer>();
             _puffStateHandler = GetComponent<PuffStateHandler>();
@@ -88,6 +99,8 @@ namespace GameLogic
             bool slowedDown = seaweedAffectingPlayer > 0;
             _rigidbody2D.AccelerateTo2D(slowedDown ? currentVelocity / 2 : currentVelocity);
 
+            MovementHandler(direction, slowedDown ? currentVelocity / 2 : currentVelocity);
+
             if (Input.GetKeyDown(KeyCode.F))
             {
                 Puff();
@@ -99,6 +112,48 @@ namespace GameLogic
         public void SeaweedAffect() => seaweedAffectingPlayer++;
 
         public void RemoveSeaweedAffect() => seaweedAffectingPlayer--;
+
+        public void MovementHandler(Vector2 direction, Vector2 trueVelocity)
+        {
+            PhysicsConfig config = _puffStateHandler.IsPuffed ? puffedPhysicsConfig : deflatedPhysicsConfig;
+            var swimName = (_puffStateHandler.IsPuffed ? "Inf_" : "") + "Swim";
+
+            if (direction.x > 0f)
+            {
+                this.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 0f));
+                if (!currentAnimaton.StartsWith(swimName) && !currentAnimaton.Contains("Hurt") && !currentAnimaton.Contains("Death"))
+                {
+                    int swimType = (int)Math.Round(UnityEngine.Random.Range(1f, 2f));
+                    ChangeAnimationState("Swim" + swimType);
+                }
+            }
+            else if (direction.x < -0f)
+            {
+                this.transform.rotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
+                if (!currentAnimaton.StartsWith(swimName) && !currentAnimaton.Contains("Hurt") && !currentAnimaton.Contains("Death"))
+                {
+                    int swimType = (int)Math.Round(UnityEngine.Random.Range(1f, 2f));
+                    ChangeAnimationState("Swim" + swimType);
+                }
+            }
+            else
+            {
+                if(!currentAnimaton.Contains("Hurt") && !currentAnimaton.Contains("Death"))
+                    ChangeAnimationState("Idle");
+            }
+
+            _animator.SetFloat("speed", (trueVelocity / config.targetMoveSpeed).magnitude);
+        }
+
+        public void Hurt()
+        {
+            ChangeAnimationState("Hurt");
+        }
+
+        public void Die()
+        {
+            ChangeAnimationState("Death");
+        }
 
         public void Puff()
         {
@@ -123,6 +178,16 @@ namespace GameLogic
                 ResetVelocity();
 
             this._rigidbody2D.AddForce(impulseForce, ForceMode2D.Impulse);
+        }
+
+        // quick animation manager :3c
+        void ChangeAnimationState(string newAnimation)
+        {
+            var trueAnimName = (_puffStateHandler.IsPuffed ? "Inf_" : "") + newAnimation;
+            if (currentAnimaton == trueAnimName) return;
+
+            _animator.Play(trueAnimName);
+            currentAnimaton = trueAnimName;
         }
     }
 }
