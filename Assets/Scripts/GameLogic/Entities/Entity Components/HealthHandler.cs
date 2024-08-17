@@ -7,6 +7,8 @@ public class HealthHandler : MonoBehaviour
 {
     [Header("Health")]
     [SerializeField] private int startingHealth;
+    Rigidbody2D _rb;
+    [SerializeField] float recoilImpulseForce = 2.5f;
     public int currentHealth { get; private set; }
 
     [Header("Invulnerability Frames")]
@@ -23,9 +25,10 @@ public class HealthHandler : MonoBehaviour
     private void Start()
     {
         currentHealth = startingHealth;
+        _rb = GetComponent<Rigidbody2D>();
     }
 
-    public void Damage(int damage)
+    public void Damage(int damage, Vector2 recoilDirection)
     {
         if (isInvulnerable)
             return;
@@ -44,6 +47,7 @@ public class HealthHandler : MonoBehaviour
         }
         else
         {
+            _rb.AddForce(recoilDirection * this.recoilImpulseForce, ForceMode2D.Impulse);
             print("Owie I took damage: " + damage.ToString());
         }
     }

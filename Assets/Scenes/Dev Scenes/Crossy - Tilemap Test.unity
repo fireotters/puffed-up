@@ -8969,6 +8969,7 @@ GameObject:
   - component: {fileID: 1215431187}
   - component: {fileID: 1215431186}
   - component: {fileID: 1215431185}
+  - component: {fileID: 1215431188}
   m_Layer: 12
   m_Name: Obstacles_HurtMinor
   m_TagString: HurtMinor
@@ -9208,6 +9209,19 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1215431188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215431183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa16d39a628ff73469c83c344e9e5533, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
 --- !u!1 &1389195076
 GameObject:
   m_ObjectHideFlags: 0
@@ -9221,6 +9235,7 @@ GameObject:
   - component: {fileID: 1389195079}
   - component: {fileID: 1389195078}
   - component: {fileID: 1389195081}
+  - component: {fileID: 1389195082}
   m_Layer: 12
   m_Name: Obstacles_HurtMajor
   m_TagString: HurtMajor
@@ -9557,6 +9572,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1389195082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389195076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa16d39a628ff73469c83c344e9e5533, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 3
 --- !u!1001 &1475170668
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9612,6 +9640,18 @@ PrefabInstance:
     - target: {fileID: 1482917260322899866, guid: 0aa4fbe1c62231441bce4041b83c90cd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9056021592870373217, guid: 0aa4fbe1c62231441bce4041b83c90cd, type: 3}
+      propertyPath: iFrameDuration
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9056021592870373217, guid: 0aa4fbe1c62231441bce4041b83c90cd, type: 3}
+      propertyPath: startingHealth
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9056021592870373217, guid: 0aa4fbe1c62231441bce4041b83c90cd, type: 3}
+      propertyPath: recoilImpulseForce
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -166,6 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 3
+  recoilImpulseForce: 2.5
   iFrameDuration: 0
   numOfFlashes: 0
 --- !u!114 &2939101326297447424

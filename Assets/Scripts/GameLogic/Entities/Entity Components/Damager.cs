@@ -9,6 +9,9 @@ public class Damager : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.TryGetComponent<HealthHandler>(out HealthHandler hh))
-            hh.Damage(damage);
+        {
+            Vector2 recoilDirection = ((Vector2)collision.transform.position - collision.contacts[0].point).normalized;
+            hh.Damage(damage, recoilDirection);
+        }
     }
 }
