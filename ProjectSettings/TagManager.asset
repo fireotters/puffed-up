@@ -42,3 +42,21 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Tilemap - Background
+    uniqueID: 2704722691
+    locked: 0
+  - name: Tilemap - Water
+    uniqueID: 3712475367
+    locked: 0
+  - name: Tilemap - Walls & Obstacles
+    uniqueID: 82927817
+    locked: 0
+  - name: Enemies n' Interactibles
+    uniqueID: 540696015
+    locked: 0
+  - name: Text
+    uniqueID: 3975953811
+    locked: 0
+  - name: Player
+    uniqueID: 560503427
+    locked: 0
