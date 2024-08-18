@@ -38,7 +38,6 @@ namespace GameLogic
         [SerializeField] [Range(3, 7)] private float puffTimeout;
         private Timer _puffingTimer;
         PuffStateHandler _puffStateHandler;
-        HealthHandler _healthHandler;
 
         [Header("Animation")]
         private Animator _animator;
@@ -55,10 +54,15 @@ namespace GameLogic
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _puffingTimer = GetComponent<Timer>();
             _puffStateHandler = GetComponent<PuffStateHandler>();
-            _healthHandler = GetComponent<HealthHandler>();
         }
 
         private void Update()
+        {
+            UpdateMovement();
+            UpdateAbilities();
+        }
+
+        private void UpdateMovement()
         {
             var direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
 
@@ -79,21 +83,23 @@ namespace GameLogic
             );
 
             if (stopped && direction != Vector2.zero)
-                stopped =  currentVelocity.magnitude < 0.05f;
+                stopped = currentVelocity.magnitude < 0.05f;
 
             if (currentVelocity.magnitude < 0.05f || stopped)
             {
                 stopped = true;
                 float targetSpeed = _puffStateHandler.IsPuffed ? floatUpSpeed : floatDownSpeed;
                 float yDir = _puffStateHandler.IsPuffed ? 1 : -1;
-                currentVelocity = new Vector2 (currentVelocity.x,  Mathf.MoveTowards(currentVelocity.y, yDir * targetSpeed * _rigidbody2D.mass, config.moveAcceleration));
+                currentVelocity = new Vector2(currentVelocity.x, Mathf.MoveTowards(currentVelocity.y, yDir * targetSpeed * _rigidbody2D.mass, config.moveAcceleration));
             }
 
             bool slowedDown = seaweedAffectingPlayer > 0;
             _rigidbody2D.AccelerateTo2D(slowedDown ? currentVelocity / 2 : currentVelocity);
-
             MovementHandler(direction, slowedDown ? currentVelocity / 2 : currentVelocity);
+        }
 
+        private void UpdateAbilities()
+        {
             if (Input.GetKeyDown(KeyCode.F))
             {
                 Puff();
