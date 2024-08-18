@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -9,7 +9,7 @@ public class CrushDetector : MonoBehaviour
     [SerializeField] Transform[] detectPoints;
     [SerializeField] ContactFilter2D contactFilter;
     RaycastHit2D[] raycastHit2Ds = new RaycastHit2D[1];
-    int collisionCount = 0;
+    [SerializeField] int collisionCount = 0;
     bool waitingAfterCrush = false;
 
     [SerializeField] UnityEvent onCrush;

@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 8866038562825984060}
   - component: {fileID: 6285540761522473382}
   - component: {fileID: 9054231225471109740}
+  - component: {fileID: 5709834126351766531}
   m_Layer: 9
   m_Name: Puffy
   m_TagString: Untagged
@@ -618,6 +619,57 @@ CircleCollider2D:
   m_Offset: {x: 0.1, y: 0.03}
   serializedVersion: 2
   m_Radius: 0.85
+--- !u!114 &5709834126351766531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854116601608941583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10b9dc95ec407194bb1edad16f844d44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectPoints:
+  - {fileID: 213552027642418513}
+  - {fileID: 3427061142858935746}
+  - {fileID: 2840890203667914385}
+  - {fileID: 8985710691011427421}
+  - {fileID: 1435865916758654208}
+  - {fileID: 4751730990500354072}
+  - {fileID: 2520998946279231245}
+  - {fileID: 5679978349228196645}
+  contactFilter:
+    useTriggers: 0
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 7223
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
+  collisionCount: 0
+  onCrush:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1290779331635345926}
+        m_TargetAssemblyTypeName: GameLogic.Player, Assembly-CSharp
+        m_MethodName: WasCrushed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2459564370892889168
 GameObject:
   m_ObjectHideFlags: 0
@@ -753,7 +805,6 @@ GameObject:
   - component: {fileID: 2833508548535086678}
   - component: {fileID: 6774265564483546637}
   - component: {fileID: 1230870180690999455}
-  - component: {fileID: 4929734019833179322}
   m_Layer: 9
   m_Name: FishPuffState
   m_TagString: Untagged
@@ -869,56 +920,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forceWhenPuffed: 140
   forceWhenDeflated: 0
---- !u!114 &4929734019833179322
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5648780091270946746}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10b9dc95ec407194bb1edad16f844d44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectPoints:
-  - {fileID: 213552027642418513}
-  - {fileID: 3427061142858935746}
-  - {fileID: 2840890203667914385}
-  - {fileID: 8985710691011427421}
-  - {fileID: 1435865916758654208}
-  - {fileID: 4751730990500354072}
-  - {fileID: 2520998946279231245}
-  - {fileID: 5679978349228196645}
-  contactFilter:
-    useTriggers: 0
-    useLayerMask: 1
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 7223
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
-  onCrush:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1290779331635345926}
-        m_TargetAssemblyTypeName: GameLogic.Player, Assembly-CSharp
-        m_MethodName: WasCrushed
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &5758445294595488589
 GameObject:
   m_ObjectHideFlags: 0
