@@ -91,16 +91,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deflatedPhysicsConfig:
     targetMoveSpeed: 5
-    moveAcceleration: 3
+    moveAcceleration: 1
     turnAcceleration: 0.2
-    stoppingAcceleration: 0.1
+    stoppingAcceleration: 0.3
   puffedPhysicsConfig:
-    targetMoveSpeed: 17.5
-    moveAcceleration: 9
+    targetMoveSpeed: 12
+    moveAcceleration: 8
     turnAcceleration: 1
     stoppingAcceleration: 2
-  floatDownSpeed: 0.5
-  floatUpSpeed: 0.9
+  idleSinkSpeedWhenSmall: 0.5
+  idleFloatSpeedWhenBig: 0.9
   puffTimeout: 3
   sndPlrMoveSmall: {fileID: 457425083976423756}
   sndPlrMoveBig: {fileID: 8866038562825984060}
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 3
-  recoilImpulseForce: 50
+  recoilImpulseForce: 5
   onHurt:
     m_PersistentCalls:
       m_Calls:
@@ -181,7 +181,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  iFrameDuration: 0.4
+  iFrameDuration: 1
   flashCurve:
     serializedVersion: 2
     m_Curve:
@@ -251,7 +251,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  numOfFlashes: 1
+  numOfFlashes: 3
   _spr: {fileID: 8396419124290923689}
   _colorWhenDamaged: {r: 1, g: 0.3254717, b: 0.3254717, a: 1}
 --- !u!114 &2939101326297447424
@@ -727,9 +727,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   playerPuffStateSo: {fileID: 11400000, guid: ef644e0bd7f4ba4df90fb91e1d1691f8, type: 2}
-  massWhenPuffed: 17
-  massWhenDeflated: 3
-  scaleWhenInflated: 1.86
+  massWhenPuffed: 5
+  massWhenDeflated: 1
+  scaleWhenInflated: 2.77
 --- !u!58 &5952534687559176453
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -764,7 +764,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.32
 --- !u!114 &1230870180690999455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -777,7 +777,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bf3fdaa80e0b62419482850784e68e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceWhenPuffed: 140
+  forceWhenPuffed: 15
   forceWhenDeflated: 0
 --- !u!114 &4929734019833179322
 MonoBehaviour:

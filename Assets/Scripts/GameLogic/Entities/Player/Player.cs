@@ -27,8 +27,8 @@ namespace GameLogic
         [Header("Physics")]
         [SerializeField] PhysicsConfig deflatedPhysicsConfig;
         [SerializeField] PhysicsConfig puffedPhysicsConfig;
-        [SerializeField] float floatDownSpeed; // Used when deflated and speed close to 0
-        [SerializeField] float floatUpSpeed; // Used when puffed and speed close to 0 or ded
+        [SerializeField] float idleSinkSpeedWhenSmall; // Used when deflated and speed close to 0
+        [SerializeField] float idleFloatSpeedWhenBig; // Used when puffed and speed close to 0 or ded
         private Rigidbody2D _rigidbody2D;
         Vector2 currentVelocity;
         private int seaweedAffectingPlayer;
@@ -36,7 +36,7 @@ namespace GameLogic
         CancellationTokenSource cancellationToken;
 
         [Header("Abilities")]
-        [SerializeField] [Range(3, 7)] private float puffTimeout;
+        [SerializeField] [Range(0, 7)] private float puffTimeout;
         private Timer _puffingTimer;
         PuffStateHandler _puffStateHandler;
 
@@ -68,8 +68,12 @@ namespace GameLogic
 
         private void Update()
         {
-            UpdateMovement();
             UpdateAbilities();
+        }
+
+        private void FixedUpdate()
+        {
+            UpdateMovement(); // TODO: Bug caused by moving to FixedUpdate - when holding movement keys while Unity is loading, Puffy will accelerate so fast they pass thru walls
         }
 
         private void UpdateMovement()
@@ -102,7 +106,7 @@ namespace GameLogic
             if (currentVelocity.magnitude < 0.05f || stopped)
             {
                 stopped = true;
-                float targetSpeed = _puffStateHandler.IsPuffed ? floatUpSpeed : floatDownSpeed;
+                float targetSpeed = _puffStateHandler.IsPuffed ? idleFloatSpeedWhenBig : idleSinkSpeedWhenSmall;
                 float yDir = _puffStateHandler.IsPuffed ? 1 : -1;
                 currentVelocity = new Vector2(currentVelocity.x, Mathf.MoveTowards(currentVelocity.y, yDir * targetSpeed * _rigidbody2D.mass, config.moveAcceleration));
             }
@@ -191,7 +195,7 @@ namespace GameLogic
 
         public void Puff()
         {
-            if (!_puffStateHandler.IsPuffed && _puffStateHandler.CanInflateAgainYet)
+            if (_healthHandler.IsAlive && !_puffStateHandler.IsPuffed && _puffStateHandler.CanInflateAgainYet)
             {
                 _puffingTimer.StartTimer(3);
                 _puffingTimer.Resume();
@@ -202,13 +206,19 @@ namespace GameLogic
 
         public void Deflate()
         {
-            sndPlrDeflate.Play();
-            _puffStateHandler.SetState(PuffStateHandler.State.Deflated);
+            if (_healthHandler.IsAlive)
+            {
+                sndPlrDeflate.Play();
+                _puffStateHandler.SetState(PuffStateHandler.State.Deflated);
+            }
         }
         public void WasCrushed()
         {
-            sndPlrDeflate.Play(); // TODO: Create a sound for 'crush' - like an "Eep!" sfx
-            _puffStateHandler.SetState(PuffStateHandler.State.Deflated);
+            if (_healthHandler.IsAlive)
+            {
+                sndPlrDeflate.Play(); // TODO: Create a sound for 'crush' - like an "Eep!" sfx
+                _puffStateHandler.SetState(PuffStateHandler.State.Deflated);
+            }
         }
 
         public void ResetVelocity()
@@ -227,7 +237,6 @@ namespace GameLogic
         // quick animation manager :3c
         void ChangeAnimationState(string newAnimation)
         {
-            print(newAnimation);
             var trueAnimName = (_puffStateHandler.IsPuffed ? "Inf_" : "") + newAnimation;
             if (currentAnimaton == trueAnimName) return;
 

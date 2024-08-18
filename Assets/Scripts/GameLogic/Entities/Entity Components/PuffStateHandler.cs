@@ -14,8 +14,8 @@ public class PuffStateHandler : MonoBehaviour
     [SerializeField] private PuffStateSo playerPuffStateSo;
 
     [Header("Physics")]
-    [Range(0.1f, 100.0f)][SerializeField] private float massWhenPuffed;
-    [Range(0.1f, 100.0f)][SerializeField] private float massWhenDeflated;
+    [Range(0.1f, 10.0f)][SerializeField] private float massWhenPuffed;
+    [Range(0.1f, 10.0f)][SerializeField] private float massWhenDeflated;
     private Rigidbody2D rb;
     private CircleCollider2D _collider;
 
@@ -29,6 +29,7 @@ public class PuffStateHandler : MonoBehaviour
     private void Start()
     {
         rb = GetComponentInParent<Rigidbody2D>();
+        _collider = GetComponent<CircleCollider2D>();
         SetState(state);
         lastDeflateTime = Time.time;
     }
@@ -77,6 +78,7 @@ public class PuffStateHandler : MonoBehaviour
 
     public void OnDeath()
     {
+        rb.gravityScale = 5f;
         _collider.radius = 0.076f; // Adjust collider size, so that the sprite will lie on the floor instead of floating
     }
 }
