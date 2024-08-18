@@ -78,7 +78,7 @@ public class PuffStateHandler : MonoBehaviour
 
     public void OnDeath()
     {
-        rb.gravityScale = 5f;
+        rb.gravityScale = 2f;
         _collider.radius = 0.076f; // Adjust collider size, so that the sprite will lie on the floor instead of floating
     }
 }

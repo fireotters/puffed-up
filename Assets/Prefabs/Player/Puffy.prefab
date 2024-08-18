@@ -90,17 +90,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deflatedPhysicsConfig:
-    targetMoveSpeed: 5
-    moveAcceleration: 1
-    turnAcceleration: 0.2
+    targetMoveSpeed: 6
+    moveAcceleration: 0.1
+    turnAcceleration: 0.3
     stoppingAcceleration: 0.3
   puffedPhysicsConfig:
-    targetMoveSpeed: 12
-    moveAcceleration: 8
-    turnAcceleration: 1
-    stoppingAcceleration: 2
-  idleSinkSpeedWhenSmall: 0.5
-  idleFloatSpeedWhenBig: 0.9
+    targetMoveSpeed: 4
+    moveAcceleration: 0.2
+    turnAcceleration: 0.15
+    stoppingAcceleration: 0.1
+  idleSinkSpeedWhenSmall: 1
+  idleFloatSpeedWhenBig: 2
   puffTimeout: 3
   sndPlrMoveSmall: {fileID: 457425083976423756}
   sndPlrMoveBig: {fileID: 8866038562825984060}
@@ -727,7 +727,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   playerPuffStateSo: {fileID: 11400000, guid: ef644e0bd7f4ba4df90fb91e1d1691f8, type: 2}
-  massWhenPuffed: 5
+  massWhenPuffed: 3
   massWhenDeflated: 1
   scaleWhenInflated: 2.77
 --- !u!58 &5952534687559176453

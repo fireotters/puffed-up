@@ -117,13 +117,17 @@ namespace GameLogic
             MovementHandler(direction, slowedDown ? currentVelocity / 2 : currentVelocity);
 
             // Sound
-            sndPlrMoveSmall.SetParameter("Movement_Pitch", 0.5f) ; // TODO adjust with acceleration when it's added; currently the feesh only goes fullspeed or no speed
+            float movePitch = currentVelocity.magnitude / targetMoveSpeed * 0.8f; // Keep within 0.0f - 0.8f
+            if (_puffStateHandler.IsPuffed)
+                movePitch /= 2f; // Pitch down when beeg
+            sndPlrMoveSmall.SetParameter("Movement_Pitch", movePitch);
             if (!stopped && !sndPlrMoveSmall.IsPlaying()) {
                 sndPlrMoveSmall.Play();
             }
             else if (stopped && sndPlrMoveSmall.IsPlaying()) {
                 sndPlrMoveSmall.Stop();
             }
+            // TODO: Implement Player_Movement_Thicc sfx - I'm unsure why it doesn't work like Player_Movement
         }
 
         private void UpdateAbilities()
@@ -214,7 +218,7 @@ namespace GameLogic
         }
         public void WasCrushed()
         {
-            if (_healthHandler.IsAlive)
+            if (_healthHandler.IsAlive && _puffStateHandler.IsPuffed)
             {
                 sndPlrDeflate.Play(); // TODO: Create a sound for 'crush' - like an "Eep!" sfx
                 _puffStateHandler.SetState(PuffStateHandler.State.Deflated);
