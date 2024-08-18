@@ -196,7 +196,6 @@ namespace GameLogic
             _rigidbody2D.gravityScale = 2f;
             // Given this gets called in a single frame it won't cause performance issues
             // It doesn't make sure to have a member variable just for this, getting it on the fly is good in this case
-            GetComponentInChildren<CircleCollider2D>().radius = 0.076f; // Adjust collider size, so that the sprite will lie on the floor instead of floating
         }
 
         public void Puff()

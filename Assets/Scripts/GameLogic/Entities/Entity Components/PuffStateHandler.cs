@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using GameLogic;
+using UnityEngine.Events;
 
 public class PuffStateHandler : MonoBehaviour
 {
@@ -25,6 +26,9 @@ public class PuffStateHandler : MonoBehaviour
     [Header("Misc")]
     [SerializeField] private float scaleWhenInflated;
     CancellationTokenSource cancellationToken;
+
+    [SerializeField] UnityEvent OnPuffed;
+    [SerializeField] UnityEvent OnDeflated;
 
     private void Start()
     {
@@ -62,6 +66,7 @@ public class PuffStateHandler : MonoBehaviour
     {
         GenericExtensions.CancelAndGenerateNew(ref cancellationToken);
         this.LerpScale(Vector2.one * scaleWhenInflated, 0.23f, AnimationCurve.EaseInOut(0, 0, 1, 1), cancellationToken.Token);
+        OnPuffed?.Invoke();
     }
 
     private void OnBecomeDeflated()
@@ -69,6 +74,7 @@ public class PuffStateHandler : MonoBehaviour
         lastDeflateTime = Time.time;
         GenericExtensions.CancelAndGenerateNew(ref cancellationToken);
         this.LerpScale(Vector2.one, 0.23f, AnimationCurve.EaseInOut(0, 0, 1, 1), cancellationToken.Token);
+        OnDeflated?.Invoke();
     }
 
     // Used in the unity event
