@@ -15,7 +15,7 @@ public class PuffBouncer : MonoBehaviour
 
     private void Start()
     {
-        _rb = GetComponent<ICustomPhysics>();
+        _rb = GetComponentInParent<ICustomPhysics>();
         _stateHandler = GetComponent<PuffStateHandler>();
     }
 

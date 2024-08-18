@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using ExtensionsFunctions;
+using FMODUnity;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -37,11 +38,16 @@ namespace GameLogic
         [Header("Abilities")]
         [SerializeField] [Range(3, 7)] private float puffTimeout;
         private Timer _puffingTimer;
+        private float lastDeflateTime, waitFromDeflateToNextInflate = 2;
         PuffStateHandler _puffStateHandler;
 
         [Header("Animation")]
         private Animator _animator;
         private string currentAnimaton = "Idle";
+
+        [Header("Sound")]
+        [SerializeField] private StudioEventEmitter sndPlrMoveSmall;
+        [SerializeField] private StudioEventEmitter sndPlrMoveBig, sndPlrInflate, sndPlrDeflate, sndPlrBounce, sndPlrDamage, sndPlrDeathNormal, sndPlrDeathExplode;
 
         private void OnDestroy()
         {
@@ -53,7 +59,8 @@ namespace GameLogic
             _animator = GetComponent<Animator>();
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _puffingTimer = GetComponent<Timer>();
-            _puffStateHandler = GetComponent<PuffStateHandler>();
+            _puffStateHandler = GetComponentInChildren<PuffStateHandler>();
+            lastDeflateTime = Time.time;
         }
 
         private void Update()
@@ -103,8 +110,6 @@ namespace GameLogic
             if (Input.GetKeyDown(KeyCode.F))
             {
                 Puff();
-                _puffingTimer.StartTimer(3);
-                _puffingTimer.Resume();
             }
         }
 
@@ -146,22 +151,32 @@ namespace GameLogic
 
         public void Hurt()
         {
+            sndPlrDamage.Play();
             ChangeAnimationState("Hurt");
         }
 
         public void Die()
         {
+            sndPlrDeathNormal.Play();
             ChangeAnimationState("Death");
         }
 
         public void Puff()
         {
-            print("OW FUCK PANIC");
-            _puffStateHandler.SetState(PuffStateHandler.State.Puffed);
+            if (!_puffStateHandler.IsPuffed && lastDeflateTime < Time.time - waitFromDeflateToNextInflate)
+            {
+                _puffingTimer.StartTimer(3);
+                _puffingTimer.Resume();
+                sndPlrInflate.Play();
+                print("OW FUCK PANIC");
+                _puffStateHandler.SetState(PuffStateHandler.State.Puffed);
+            }
         }
 
         public void Deflate()
         {
+            lastDeflateTime = Time.time;
+            sndPlrDeflate.Play();
             print("calm once again");
             _puffStateHandler.SetState(PuffStateHandler.State.Deflated);
         }

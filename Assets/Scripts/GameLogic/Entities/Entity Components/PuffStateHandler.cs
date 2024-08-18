@@ -5,7 +5,6 @@ using System.Threading;
 using UnityEngine;
 using GameLogic;
 
-[RequireComponent(typeof(Rigidbody2D))]
 public class PuffStateHandler : MonoBehaviour
 {
     public enum State { Deflated, Puffed };
@@ -19,7 +18,7 @@ public class PuffStateHandler : MonoBehaviour
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponentInParent<Rigidbody2D>();
         SetState(state);
     }
 
@@ -62,10 +61,4 @@ public class PuffStateHandler : MonoBehaviour
     public void SetPuffed() => SetState(State.Puffed);
 
     public void SetDeflated() => SetState(State.Deflated);
-
-    private void OnValidate()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        rb.mass = Mass;
-    }
 }
