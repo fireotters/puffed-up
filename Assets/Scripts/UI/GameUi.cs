@@ -184,7 +184,8 @@ namespace UI
     [System.Serializable]
     public class GameUiPlayerUi
     {
-        // Implement
+        public Image[] imageHealthIndicators;
+        public Image imageInflateCooldown;
     }
     [System.Serializable]
     public class GameUiSound

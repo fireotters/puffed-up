@@ -39,7 +39,7 @@ AnimationClip:
     - time: 0.65
       value: {fileID: 145311373, guid: 6d8c08c10e06fbd46a7ffaba531b3403, type: 3}
     attribute: m_Sprite
-    path: 
+    path: FishSprite
     classID: 212
     script: {fileID: 0}
     flags: 2
@@ -51,7 +51,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 0
+      path: 2568722324
       attribute: 0
       script: {fileID: 0}
       typeID: 212

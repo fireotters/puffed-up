@@ -5,22 +5,33 @@ using System.Threading;
 using UnityEngine;
 using GameLogic;
 
-[RequireComponent(typeof(Rigidbody2D))]
 public class PuffStateHandler : MonoBehaviour
 {
     public enum State { Deflated, Puffed };
 
+    [Header("PuffState")]
     [SerializeField] private State state = State.Deflated;
     [SerializeField] private PuffStateSo playerPuffStateSo;
-    [Range(0.1f, 100.0f)][SerializeField] private float massWhenPuffed;
-    [Range(0.1f, 100.0f)][SerializeField] private float massWhenDeflated;
-    Rigidbody2D rb;
+
+    [Header("Physics")]
+    [Range(0.1f, 30.0f)][SerializeField] private float massWhenPuffed;
+    [Range(0.1f, 30.0f)][SerializeField] private float massWhenDeflated;
+    private Rigidbody2D rb;
+    private CircleCollider2D _collider;
+
+    [Header("Cooldowns")]
+    private float lastDeflateTime, waitFromDeflateToNextInflate = 2;
+
+    [Header("Misc")]
+    [SerializeField] private float scaleWhenInflated;
     CancellationTokenSource cancellationToken;
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponentInParent<Rigidbody2D>();
+        _collider = GetComponent<CircleCollider2D>();
         SetState(state);
+        lastDeflateTime = Time.time;
     }
 
     private void OnDestroy()
@@ -31,12 +42,13 @@ public class PuffStateHandler : MonoBehaviour
     public bool IsPuffed => state == State.Puffed;
     public bool IsDeflated => state == State.Deflated;
     public State PuffState => state;
+    public bool CanInflateAgainYet => lastDeflateTime < Time.time - waitFromDeflateToNextInflate;
 
     float Mass => state == State.Puffed ? massWhenPuffed : massWhenDeflated;
 
     public void SetState(State newState)
     {
-        this.state = newState;
+        state = newState;
         playerPuffStateSo.SetPuffState(newState);
         rb.mass = Mass;
 
@@ -49,11 +61,12 @@ public class PuffStateHandler : MonoBehaviour
     private void OnBecomePuffed()
     {
         GenericExtensions.CancelAndGenerateNew(ref cancellationToken);
-        this.LerpScale(Vector2.one * 3, 0.23f, AnimationCurve.EaseInOut(0, 0, 1, 1), cancellationToken.Token);
+        this.LerpScale(Vector2.one * scaleWhenInflated, 0.23f, AnimationCurve.EaseInOut(0, 0, 1, 1), cancellationToken.Token);
     }
 
     private void OnBecomeDeflated()
     {
+        lastDeflateTime = Time.time;
         GenericExtensions.CancelAndGenerateNew(ref cancellationToken);
         this.LerpScale(Vector2.one, 0.23f, AnimationCurve.EaseInOut(0, 0, 1, 1), cancellationToken.Token);
     }
@@ -63,9 +76,9 @@ public class PuffStateHandler : MonoBehaviour
 
     public void SetDeflated() => SetState(State.Deflated);
 
-    private void OnValidate()
+    public void OnDeath()
     {
-        rb = GetComponent<Rigidbody2D>();
-        rb.mass = Mass;
+        rb.gravityScale = 2f;
+        _collider.radius = 0.076f; // Adjust collider size, so that the sprite will lie on the floor instead of floating
     }
 }

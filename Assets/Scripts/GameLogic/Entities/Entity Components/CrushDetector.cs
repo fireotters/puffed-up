@@ -52,7 +52,7 @@ public class CrushDetector : MonoBehaviour
 
         if (failedCount >= 2)
         {
-            print("Mamma mia it crashed");
+            print("Mamma mia it crushed");
             onCrush?.Invoke();
             waitingAfterCrush = true;
         }

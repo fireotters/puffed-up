@@ -1,6 +1,7 @@
+using ExtensionsFunctions;
+using FMODUnity;
 using System;
 using System.Threading;
-using ExtensionsFunctions;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -26,8 +27,8 @@ namespace GameLogic
         [Header("Physics")]
         [SerializeField] PhysicsConfig deflatedPhysicsConfig;
         [SerializeField] PhysicsConfig puffedPhysicsConfig;
-        [SerializeField] float floatDownSpeed; // Used when deflated and speed close to 0
-        [SerializeField] float floatUpSpeed; // Used when puffed and speed close to 0 or ded
+        [SerializeField] float idleSinkSpeedWhenSmall; // Used when deflated and speed close to 0
+        [SerializeField] float idleFloatSpeedWhenBig; // Used when puffed and speed close to 0 or ded
         private Rigidbody2D _rigidbody2D;
         Vector2 currentVelocity;
         private int seaweedAffectingPlayer;
@@ -35,14 +36,21 @@ namespace GameLogic
         CancellationTokenSource cancellationToken;
 
         [Header("Abilities")]
-        [SerializeField] [Range(3, 7)] private float puffTimeout;
+        [SerializeField] [Range(0, 7)] private float puffTimeout;
         private Timer _puffingTimer;
         PuffStateHandler _puffStateHandler;
-        HealthHandler _healthHandler;
 
         [Header("Animation")]
         private Animator _animator;
         private string currentAnimaton = "Idle";
+        private float hurtAnimDuration = 0.3f;
+
+        [Header("Sound")]
+        [SerializeField] private StudioEventEmitter sndPlrMoveSmall;
+        [SerializeField] private StudioEventEmitter sndPlrMoveBig, sndPlrInflate, sndPlrDeflate, sndPlrBounce, sndPlrDamage, sndPlrDeathNormal, sndPlrDeathExplode;
+
+        [Header("Vitals")]
+        private HealthHandler _healthHandler;
 
         private void OnDestroy()
         {
@@ -54,13 +62,23 @@ namespace GameLogic
             _animator = GetComponent<Animator>();
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _puffingTimer = GetComponent<Timer>();
-            _puffStateHandler = GetComponent<PuffStateHandler>();
+            _puffStateHandler = GetComponentInChildren<PuffStateHandler>();
             _healthHandler = GetComponent<HealthHandler>();
         }
 
         private void Update()
         {
-            var direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+            UpdateMovement();
+            UpdateAbilities();
+        }
+
+        private void UpdateMovement()
+        {
+            Vector2 direction;
+            if (_healthHandler.IsAlive)
+                direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+            else
+                direction = Vector2.zero;
 
             PhysicsConfig config = _puffStateHandler.IsPuffed ? puffedPhysicsConfig : deflatedPhysicsConfig;
 
@@ -79,26 +97,43 @@ namespace GameLogic
             );
 
             if (stopped && direction != Vector2.zero)
-                stopped =  currentVelocity.magnitude < 0.05f;
+                stopped = currentVelocity.magnitude < 0.05f;
 
             if (currentVelocity.magnitude < 0.05f || stopped)
             {
                 stopped = true;
-                float targetSpeed = _puffStateHandler.IsPuffed ? floatUpSpeed : floatDownSpeed;
+                float targetSpeed = _puffStateHandler.IsPuffed ? idleFloatSpeedWhenBig : idleSinkSpeedWhenSmall;
                 float yDir = _puffStateHandler.IsPuffed ? 1 : -1;
-                currentVelocity = new Vector2 (currentVelocity.x,  Mathf.MoveTowards(currentVelocity.y, yDir * targetSpeed * _rigidbody2D.mass, config.moveAcceleration));
+                currentVelocity = new Vector2(currentVelocity.x, Mathf.MoveTowards(currentVelocity.y, yDir * targetSpeed * _rigidbody2D.mass, config.moveAcceleration));
             }
 
+            // Final movement calc
             bool slowedDown = seaweedAffectingPlayer > 0;
             _rigidbody2D.AccelerateTo2D(slowedDown ? currentVelocity / 2 : currentVelocity);
-
             MovementHandler(direction, slowedDown ? currentVelocity / 2 : currentVelocity);
+
+            // Sound
+            float movePitch = currentVelocity.magnitude / targetMoveSpeed * 0.8f; // Keep within 0.0f - 0.8f
+            if (_puffStateHandler.IsPuffed)
+                movePitch /= 2f; // Pitch down when beeg
+            sndPlrMoveSmall.SetParameter("Movement_Pitch", movePitch);
+            if (!stopped && !sndPlrMoveSmall.IsPlaying()) {
+                sndPlrMoveSmall.Play();
+            }
+            else if (stopped && sndPlrMoveSmall.IsPlaying()) {
+                sndPlrMoveSmall.Stop();
+            }
+            // TODO: Implement Player_Movement_Thicc sfx - I'm unsure why it doesn't work like Player_Movement
+        }
+
+        private void UpdateAbilities()
+        {
+            if (!_healthHandler.IsAlive)
+                return;
 
             if (Input.GetKeyDown(KeyCode.F))
             {
                 Puff();
-                _puffingTimer.StartTimer(3);
-                _puffingTimer.Resume();
             }
         }
 
@@ -140,24 +175,50 @@ namespace GameLogic
 
         public void Hurt()
         {
+            sndPlrDamage.SetParameter("Inflated", _puffStateHandler.IsPuffed ? 1 : 0);
+            sndPlrDamage.SetParameter("Player_Life", _healthHandler.currentHealth);
+            sndPlrDamage.Play();
             ChangeAnimationState("Hurt");
+            Invoke(nameof(NoLongerHurt), hurtAnimDuration);
+        }
+        private void NoLongerHurt()
+        {
+            ChangeAnimationState("Idle");
         }
 
         public void Die()
         {
+            sndPlrDeathNormal.Play();
             ChangeAnimationState("Death");
+            _puffStateHandler.OnDeath();
         }
 
         public void Puff()
         {
-            print("OW FUCK PANIC");
-            _puffStateHandler.SetState(PuffStateHandler.State.Puffed);
+            if (_healthHandler.IsAlive && !_puffStateHandler.IsPuffed && _puffStateHandler.CanInflateAgainYet)
+            {
+                _puffingTimer.StartTimer(3);
+                _puffingTimer.Resume();
+                sndPlrInflate.Play();
+                _puffStateHandler.SetState(PuffStateHandler.State.Puffed);
+            }
         }
 
         public void Deflate()
         {
-            print("calm once again");
-            _puffStateHandler.SetState(PuffStateHandler.State.Deflated);
+            if (_healthHandler.IsAlive)
+            {
+                sndPlrDeflate.Play();
+                _puffStateHandler.SetState(PuffStateHandler.State.Deflated);
+            }
+        }
+        public void WasCrushed()
+        {
+            if (_healthHandler.IsAlive && _puffStateHandler.IsPuffed)
+            {
+                sndPlrDeflate.Play(); // TODO: Create a sound for 'crush' - like an "Eep!" sfx
+                _puffStateHandler.SetState(PuffStateHandler.State.Deflated);
+            }
         }
 
         public void ResetVelocity()
