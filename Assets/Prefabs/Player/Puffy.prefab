@@ -151,6 +151,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 3
   recoilImpulseForce: 50
+  onHurt:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1290779331635345926}
+        m_TargetAssemblyTypeName: GameLogic.Player, Assembly-CSharp
+        m_MethodName: Hurt
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1290779331635345926}
+        m_TargetAssemblyTypeName: GameLogic.Player, Assembly-CSharp
+        m_MethodName: Die
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   iFrameDuration: 0.4
   flashCurve:
     serializedVersion: 2
@@ -221,8 +251,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  numOfFlashes: 0
-  overlaySpriteRenderer: {fileID: 8396419124290923689}
+  numOfFlashes: 1
+  _spr: {fileID: 8396419124290923689}
+  _colorWhenDamaged: {r: 1, g: 0.3254717, b: 0.3254717, a: 1}
 --- !u!114 &2939101326297447424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -698,6 +729,7 @@ MonoBehaviour:
   playerPuffStateSo: {fileID: 11400000, guid: ef644e0bd7f4ba4df90fb91e1d1691f8, type: 2}
   massWhenPuffed: 17
   massWhenDeflated: 3
+  scaleWhenInflated: 1.86
 --- !u!58 &5952534687559176453
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -785,9 +817,9 @@ MonoBehaviour:
   onCrush:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PuffStateHandler, Assembly-CSharp
-        m_MethodName: SetDeflated
+      - m_Target: {fileID: 1290779331635345926}
+        m_TargetAssemblyTypeName: GameLogic.Player, Assembly-CSharp
+        m_MethodName: WasCrushed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

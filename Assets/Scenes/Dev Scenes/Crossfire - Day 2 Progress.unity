@@ -208572,10 +208572,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4929734019833179322, guid: 734ad9e596d50194eab7540c247d67a8, type: 3}
-      propertyPath: onCrush.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1906179739}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -720763,7 +720759,7 @@ MonoBehaviour:
   m_Follow: {fileID: 596382554}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 5.13
+    OrthographicSize: 4
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -720885,7 +720881,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.13
+  orthographic size: 4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -720950,17 +720946,6 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1906179739 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6774265564483546637, guid: 734ad9e596d50194eab7540c247d67a8, type: 3}
-  m_PrefabInstance: {fileID: 596382553}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00fb5db442638bc4ca31ee36bff17687, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1994302616
 GameObject:
   m_ObjectHideFlags: 0
