@@ -75,10 +75,4 @@ public class PuffStateHandler : MonoBehaviour
     public void SetPuffed() => SetState(State.Puffed);
 
     public void SetDeflated() => SetState(State.Deflated);
-
-    public void OnDeath()
-    {
-        rb.gravityScale = 2f;
-        _collider.radius = 0.076f; // Adjust collider size, so that the sprite will lie on the floor instead of floating
-    }
 }

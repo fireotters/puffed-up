@@ -190,7 +190,13 @@ namespace GameLogic
         {
             sndPlrDeathNormal.Play();
             ChangeAnimationState("Death");
-            _puffStateHandler.OnDeath();
+
+            // I removed PuffStateHandler.OnDeath method because of the first SOLID principle.
+            // PuffStateHandler mustn't know about lives, dead or any other state other than the puff state.
+            _rigidbody2D.gravityScale = 2f;
+            // Given this gets called in a single frame it won't cause performance issues
+            // It doesn't make sure to have a member variable just for this, getting it on the fly is good in this case
+            GetComponentInChildren<CircleCollider2D>().radius = 0.076f; // Adjust collider size, so that the sprite will lie on the floor instead of floating
         }
 
         public void Puff()
