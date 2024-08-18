@@ -68,12 +68,8 @@ namespace GameLogic
 
         private void Update()
         {
+            UpdateMovement();
             UpdateAbilities();
-        }
-
-        private void FixedUpdate()
-        {
-            UpdateMovement(); // TODO: Bug caused by moving to FixedUpdate - when holding movement keys while Unity is loading, Puffy will accelerate so fast they pass thru walls
         }
 
         private void UpdateMovement()

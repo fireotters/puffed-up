@@ -90,17 +90,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deflatedPhysicsConfig:
-    targetMoveSpeed: 6
-    moveAcceleration: 0.1
-    turnAcceleration: 0.3
-    stoppingAcceleration: 0.3
-  puffedPhysicsConfig:
-    targetMoveSpeed: 4
-    moveAcceleration: 0.2
-    turnAcceleration: 0.15
+    targetMoveSpeed: 3
+    moveAcceleration: 1
+    turnAcceleration: 0.2
     stoppingAcceleration: 0.1
-  idleSinkSpeedWhenSmall: 1
-  idleFloatSpeedWhenBig: 2
+  puffedPhysicsConfig:
+    targetMoveSpeed: 17.5
+    moveAcceleration: 9
+    turnAcceleration: 1
+    stoppingAcceleration: 2
+  idleSinkSpeedWhenSmall: 0.5
+  idleFloatSpeedWhenBig: 0.9
   puffTimeout: 3
   sndPlrMoveSmall: {fileID: 457425083976423756}
   sndPlrMoveBig: {fileID: 8866038562825984060}
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 3
-  recoilImpulseForce: 5
+  recoilImpulseForce: 50
   onHurt:
     m_PersistentCalls:
       m_Calls:
@@ -727,8 +727,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   playerPuffStateSo: {fileID: 11400000, guid: ef644e0bd7f4ba4df90fb91e1d1691f8, type: 2}
-  massWhenPuffed: 3
-  massWhenDeflated: 1
+  massWhenPuffed: 17
+  massWhenDeflated: 3
   scaleWhenInflated: 2.77
 --- !u!58 &5952534687559176453
 CircleCollider2D:
@@ -777,7 +777,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bf3fdaa80e0b62419482850784e68e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceWhenPuffed: 15
+  forceWhenPuffed: 140
   forceWhenDeflated: 0
 --- !u!114 &4929734019833179322
 MonoBehaviour:

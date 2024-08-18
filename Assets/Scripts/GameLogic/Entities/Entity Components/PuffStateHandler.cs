@@ -14,8 +14,8 @@ public class PuffStateHandler : MonoBehaviour
     [SerializeField] private PuffStateSo playerPuffStateSo;
 
     [Header("Physics")]
-    [Range(0.1f, 10.0f)][SerializeField] private float massWhenPuffed;
-    [Range(0.1f, 10.0f)][SerializeField] private float massWhenDeflated;
+    [Range(0.1f, 30.0f)][SerializeField] private float massWhenPuffed;
+    [Range(0.1f, 30.0f)][SerializeField] private float massWhenDeflated;
     private Rigidbody2D rb;
     private CircleCollider2D _collider;
 
