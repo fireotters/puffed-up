@@ -59,6 +59,7 @@ namespace GameLogic
 
         private void Awake()
         {
+            Application.targetFrameRate = 60; // For now... 
             _animator = GetComponent<Animator>();
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _puffingTimer = GetComponent<Timer>();
