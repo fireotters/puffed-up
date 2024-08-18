@@ -35,7 +35,7 @@ public class PuffStateHandler : MonoBehaviour
         rb = GetComponentInParent<Rigidbody2D>();
         _collider = GetComponent<CircleCollider2D>();
         SetState(state);
-        lastDeflateTime = Time.time;
+        lastDeflateTime = Time.time - waitFromDeflateToNextInflate;
     }
 
     private void OnDestroy()

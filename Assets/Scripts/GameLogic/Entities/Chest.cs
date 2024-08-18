@@ -6,6 +6,7 @@ namespace GameLogic
     {
         [SerializeField] private AreaEffector2D areaEffector2D;
         private SpriteRenderer _box;
+        [SerializeField] private Sprite openSprite, closedSprite;
         
         private void Start()
         {
@@ -14,20 +15,15 @@ namespace GameLogic
 
         public void EnableChest()
         {
-            _box.color = Color.green;
+            _box.sprite = openSprite;
             areaEffector2D.enabled = true;
         }
 
 
         public void DisableChest()
         {
-            _box.color = Color.red;
+            _box.sprite = closedSprite;
             areaEffector2D.enabled = false;
         }
-        
-        // private void Update()
-        // {
-        //
-        // }
     }    
 }
