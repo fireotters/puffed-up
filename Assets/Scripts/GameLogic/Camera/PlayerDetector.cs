@@ -19,13 +19,13 @@ namespace GameLogic.Camera
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject.GetComponent<Player>() != null)
+            if (other.gameObject.GetComponent<PuffStateHandler>() != null)
                 _playerDetectorManager.PlayerEntered(this);
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            if (other.gameObject.GetComponent<Player>() != null)
+            if (other.gameObject.GetComponent<PuffStateHandler>() != null)
                 _playerDetectorManager.PlayerExited(this);
         }
     }

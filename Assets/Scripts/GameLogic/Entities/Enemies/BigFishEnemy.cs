@@ -53,7 +53,7 @@ namespace GameLogic.Entities.Enemies
 
         private void FindPlayerAndSetEnemyState(Collider2D other)
         {
-            if (other.gameObject.TryGetComponent(out Player player))
+            if (other.gameObject.TryGetComponent(out PuffStateHandler player))
             {
                 _target = player.gameObject.transform.position;
                 // print($"Player is at {_target}");
