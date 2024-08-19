@@ -27,8 +27,9 @@ namespace GameLogic
         [Header("Physics")]
         [SerializeField] PhysicsConfig deflatedPhysicsConfig;
         [SerializeField] PhysicsConfig puffedPhysicsConfig;
-        [SerializeField] float idleSinkSpeedWhenSmall; // Used when deflated and speed close to 0
+        [SerializeField] float idleSinkSpeedWhenSmall; // Used when deflated and speed close to 0 or ded
         [SerializeField] float idleFloatSpeedWhenBig; // Used when puffed and speed close to 0 or ded
+        [SerializeField] float deflateBoostForce; // Used when becoming deflated, grants speed boost
         private Rigidbody2D _rigidbody2D;
         Vector2 currentVelocity;
         private int seaweedAffectingPlayer;
@@ -44,6 +45,7 @@ namespace GameLogic
         private Animator _animator;
         private string currentAnimaton = "Idle";
         private float hurtAnimDuration = 0.3f;
+        [SerializeField] private ParticleSystem _particlesBoostBubbles;
 
         [Header("Sound")]
         [SerializeField] private StudioEventEmitter sndPlrMoveSmall;
@@ -75,11 +77,7 @@ namespace GameLogic
 
         private void UpdateMovement()
         {
-            Vector2 direction;
-            if (_healthHandler.IsAlive)
-                direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
-            else
-                direction = Vector2.zero;
+            Vector2 direction = GetMovementDirection();
 
             PhysicsConfig config = _puffStateHandler.IsPuffed ? puffedPhysicsConfig : deflatedPhysicsConfig;
 
@@ -127,6 +125,13 @@ namespace GameLogic
             // TODO: Implement Player_Movement_Thicc sfx - I'm unsure why it doesn't work like Player_Movement
         }
 
+        private Vector2 GetMovementDirection()
+        {
+            if (_healthHandler.IsAlive)
+                return new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+            return Vector2.zero;
+        }
+
         private void UpdateAbilities()
         {
             if (!_healthHandler.IsAlive)
@@ -134,7 +139,10 @@ namespace GameLogic
 
             if (Input.GetKeyDown(KeyCode.F))
             {
-                Puff();
+                if (_puffStateHandler.IsDeflated && _puffStateHandler.CanInflateAgainYet)
+                    Puff();
+                else if (_puffStateHandler.IsPuffed)
+                    Deflate();
             }
         }
 
@@ -201,10 +209,10 @@ namespace GameLogic
 
         public void Puff()
         {
-            if (_healthHandler.IsAlive && !_puffStateHandler.IsPuffed && _puffStateHandler.CanInflateAgainYet)
+            if (_healthHandler.IsAlive)
             {
-                _puffingTimer.StartTimer(3);
-                _puffingTimer.Resume();
+                //_puffingTimer.StartTimer(3);
+                //_puffingTimer.Resume();
                 sndPlrInflate.Play();
                 _puffStateHandler.SetState(PuffStateHandler.State.Puffed);
             }
@@ -216,6 +224,11 @@ namespace GameLogic
             {
                 sndPlrDeflate.Play();
                 _puffStateHandler.SetState(PuffStateHandler.State.Deflated);
+
+                // Boost
+                var boostDir = GetMovementDirection().x;
+                _particlesBoostBubbles.Play();
+                _rigidbody2D.AddForce(boostDir * deflateBoostForce * Vector2.right, ForceMode2D.Force);
             }
         }
         public void WasCrushed()
