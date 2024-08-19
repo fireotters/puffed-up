@@ -1383,29 +1383,29 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0
           value: 0
-          inSlope: 0
-          outSlope: 0
+          inSlope: 0.4283396
+          outSlope: 0.4283396
           tangentMode: 34
           weightedMode: 0
           inWeight: 0
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.8402963
-          value: 0
-          inSlope: 0
-          outSlope: 0
+          time: 0.8202577
+          value: 0.35134888
+          inSlope: 1.4544129
+          outSlope: 1.4544129
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.33333334
+          inWeight: 0.13592674
           outWeight: 0.33333334
         - serializedVersion: 3
           time: 1
           value: 1
-          inSlope: 6.2615967
-          outSlope: 6.2615967
-          tangentMode: 34
+          inSlope: 3.191533
+          outSlope: 3.191533
+          tangentMode: 0
           weightedMode: 0
-          inWeight: 0.33333334
+          inWeight: 0.12867834
           outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -1496,8 +1496,12 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
+    - sprite: {fileID: -1980043810, guid: 5cb9b1f2df07b4845ba9f7fd090eb159, type: 3}
+    - sprite: {fileID: 1709758367, guid: 5cb9b1f2df07b4845ba9f7fd090eb159, type: 3}
     - sprite: {fileID: -144066888, guid: 5cb9b1f2df07b4845ba9f7fd090eb159, type: 3}
+    - sprite: {fileID: -2080041157, guid: 5cb9b1f2df07b4845ba9f7fd090eb159, type: 3}
     - sprite: {fileID: 1389999311, guid: 5cb9b1f2df07b4845ba9f7fd090eb159, type: 3}
+    - sprite: {fileID: -1805545095, guid: 5cb9b1f2df07b4845ba9f7fd090eb159, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:

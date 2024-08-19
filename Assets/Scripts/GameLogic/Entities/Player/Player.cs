@@ -168,7 +168,7 @@ namespace GameLogic
             if (direction.x > 0f)
             {
                 this.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 0f));
-                if (!currentAnimaton.StartsWith(swimName) && !currentAnimaton.Contains("Hurt") && !currentAnimaton.Contains("Death"))
+                if (!currentAnimaton.StartsWith(swimName) && !currentAnimaton.Contains("Hurt") && !currentAnimaton.Contains("Death") && !currentAnimaton.Contains("To"))
                 {
                     int swimType = (int)Math.Round(Random.Range(1f, 2f));
                     ChangeAnimationState("Swim" + swimType);
@@ -177,7 +177,7 @@ namespace GameLogic
             else if (direction.x < -0f)
             {
                 this.transform.rotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
-                if (!currentAnimaton.StartsWith(swimName) && !currentAnimaton.Contains("Hurt") && !currentAnimaton.Contains("Death"))
+                if (!currentAnimaton.StartsWith(swimName) && !currentAnimaton.Contains("Hurt") && !currentAnimaton.Contains("Death") && !currentAnimaton.Contains("To"))
                 {
                     int swimType = (int)Math.Round(Random.Range(1f, 2f));
                     ChangeAnimationState("Swim" + swimType);
@@ -185,7 +185,7 @@ namespace GameLogic
             }
             else
             {
-                if(!currentAnimaton.Contains("Hurt") && !currentAnimaton.Contains("Death"))
+                if(!currentAnimaton.Contains("Hurt") && !currentAnimaton.Contains("Death") && !currentAnimaton.Contains("To"))
                     ChangeAnimationState("Idle");
             }
 
@@ -201,6 +201,7 @@ namespace GameLogic
             ChangeAnimationState("Hurt");
             Invoke(nameof(NoLongerHurt), hurtAnimDuration);
         }
+
         private void NoLongerHurt()
         {
             ChangeAnimationState("Idle");
@@ -222,6 +223,7 @@ namespace GameLogic
         {
             if (_healthHandler.IsAlive)
             {
+                ChangeAnimationState("DefToInf");
                 sndPlrInflate.Play();
                 _puffStateHandler.SetState(PuffStateHandler.State.Puffed);
                 StartCoroutine(InflatePush());
@@ -240,6 +242,7 @@ namespace GameLogic
 
         private IEnumerator Boost()
         {
+            ChangeAnimationState("InfToDef");
             isBoosting = true;
             _particlesBoostBubbles.Play();
             int boostDir = transform.rotation.y == 0 ? 1 : -1; // Boost feesh depending on sprite's facing direction.
@@ -247,6 +250,7 @@ namespace GameLogic
             yield return new WaitForSeconds(0.5f);
             _particlesBoostBubbles.Stop();
             isBoosting = false;
+            currentAnimaton = "Idle";
 
         }
 
@@ -255,6 +259,7 @@ namespace GameLogic
             puffPushEffector.SetActive(true);
             yield return new WaitForSeconds(0.08f);
             puffPushEffector.SetActive(false);
+            currentAnimaton = "Inf_Idle";
         }
 
         public void WasCrushed()
