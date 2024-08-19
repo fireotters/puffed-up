@@ -14,10 +14,12 @@ namespace GameLogic.Entities.Enemies
         private bool _chasing, _evading, _normalBehaviourRunning, _standby;
         private Vector2 _target = Vector2.zero;
         private CancellationTokenSource _cancellationToken = new();
+        private Animator _animator;
 
         private void Start()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
+            _animator = GetComponent<Animator>();
         }
         
         private void Update()
@@ -45,7 +47,7 @@ namespace GameLogic.Entities.Enemies
                 if (Random.Range(0, 2) == 1)
                 {
                     var direction = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
-                    
+
                     //print($"Imma go {direction} for {Random.Range(0f, 4f)}s!");
                     _normalBehaviourRunning = true;
                     this.ExecuteOverDuration(duration, _cancellationToken.Token, time =>
