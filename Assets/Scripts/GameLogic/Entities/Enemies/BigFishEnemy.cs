@@ -46,7 +46,7 @@ namespace GameLogic.Entities.Enemies
                 {
                     var direction = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
                     
-                    print($"Imma go {direction} for {Random.Range(0f, 4f)}s!");
+                    //print($"Imma go {direction} for {Random.Range(0f, 4f)}s!");
                     _normalBehaviourRunning = true;
                     this.ExecuteOverDuration(duration, _cancellationToken.Token, time =>
                     {
