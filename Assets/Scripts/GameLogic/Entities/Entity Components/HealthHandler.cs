@@ -31,7 +31,7 @@ public class HealthHandler : MonoBehaviour
 
     public void Damage(int damage, Vector2 recoilDirection)
     {
-        if (isInvulnerable)
+        if (isInvulnerable || dead)
             return;
 
         isInvulnerable = true;
