@@ -105,8 +105,9 @@ MonoBehaviour:
     stoppingAcceleration: 2
   idleSinkSpeedWhenSmall: 0.5
   idleFloatSpeedWhenBig: 0.9
-  deflateBoostForce: 5000
   puffTimeout: 3
+  boostDuration: 1
+  boostForce: 16
   _particlesBoostBubbles: {fileID: 8733998541966360955}
   sndPlrMoveSmall: {fileID: 457425083976423756}
   sndPlrMoveBig: {fileID: 8866038562825984060}
@@ -1084,7 +1085,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 0
+  looping: 1
   prewarm: 0
   playOnAwake: 0
   useUnscaledTime: 0

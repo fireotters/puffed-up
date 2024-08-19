@@ -1,6 +1,7 @@
 using ExtensionsFunctions;
 using FMODUnity;
 using System;
+using System.Collections;
 using System.Threading;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -29,7 +30,6 @@ namespace GameLogic
         [SerializeField] PhysicsConfig puffedPhysicsConfig;
         [SerializeField] float idleSinkSpeedWhenSmall; // Used when deflated and speed close to 0 or ded
         [SerializeField] float idleFloatSpeedWhenBig; // Used when puffed and speed close to 0 or ded
-        [SerializeField] float deflateBoostForce; // Used when becoming deflated, grants speed boost
         private Rigidbody2D _rigidbody2D;
         Vector2 currentVelocity;
         private int seaweedAffectingPlayer;
@@ -40,6 +40,8 @@ namespace GameLogic
         [SerializeField] [Range(0, 7)] private float puffTimeout;
         private Timer _puffingTimer;
         PuffStateHandler _puffStateHandler;
+        private bool isBoosting = false;
+        [SerializeField] private float boostDuration, boostForce;
 
         [Header("Animation")]
         private Animator _animator;
@@ -108,8 +110,10 @@ namespace GameLogic
 
             // Final movement calc
             bool slowedDown = seaweedAffectingPlayer > 0;
+            MoveAnimator(direction, slowedDown ? currentVelocity / 2 : currentVelocity);
+            if (isBoosting) // While boosting, only let code above determine Animator, not movement. TODO ask Rioni/Benchi about this
+                return;
             _rigidbody2D.AccelerateTo2D(slowedDown ? currentVelocity / 2 : currentVelocity);
-            MovementHandler(direction, slowedDown ? currentVelocity / 2 : currentVelocity);
 
             // Sound
             float movePitch = currentVelocity.magnitude / targetMoveSpeed * 0.8f; // Keep within 0.0f - 0.8f
@@ -150,7 +154,7 @@ namespace GameLogic
 
         public void RemoveSeaweedAffect() => seaweedAffectingPlayer--;
 
-        public void MovementHandler(Vector2 direction, Vector2 trueVelocity)
+        public void MoveAnimator(Vector2 direction, Vector2 trueVelocity)
         {
             PhysicsConfig config = _puffStateHandler.IsPuffed ? puffedPhysicsConfig : deflatedPhysicsConfig;
             var swimName = (_puffStateHandler.IsPuffed ? "Inf_" : "") + "Swim";
@@ -211,8 +215,6 @@ namespace GameLogic
         {
             if (_healthHandler.IsAlive)
             {
-                //_puffingTimer.StartTimer(3);
-                //_puffingTimer.Resume();
                 sndPlrInflate.Play();
                 _puffStateHandler.SetState(PuffStateHandler.State.Puffed);
             }
@@ -224,13 +226,22 @@ namespace GameLogic
             {
                 sndPlrDeflate.Play();
                 _puffStateHandler.SetState(PuffStateHandler.State.Deflated);
-
-                // Boost
-                var boostDir = GetMovementDirection().x;
-                _particlesBoostBubbles.Play();
-                _rigidbody2D.AddForce(boostDir * deflateBoostForce * Vector2.right, ForceMode2D.Force);
+                StartCoroutine(Boost());
             }
         }
+
+        private IEnumerator Boost()
+        {
+            isBoosting = true;
+            _particlesBoostBubbles.Play();
+            int boostDir = transform.rotation.y == 0 ? 1 : -1; // Boost feesh depending on sprite's facing direction.
+            _rigidbody2D.velocity = new Vector2(boostDir * boostForce, 0);
+            yield return new WaitForSeconds(0.5f);
+            _particlesBoostBubbles.Stop();
+            isBoosting = false;
+
+        }
+
         public void WasCrushed()
         {
             if (_healthHandler.IsAlive && _puffStateHandler.IsPuffed)
@@ -250,7 +261,7 @@ namespace GameLogic
             if (resetPreviousVelocity)
                 ResetVelocity();
 
-            this._rigidbody2D.AddForce(impulseForce, ForceMode2D.Impulse);
+            _rigidbody2D.AddForce(impulseForce, ForceMode2D.Impulse);
         }
 
         // quick animation manager :3c
