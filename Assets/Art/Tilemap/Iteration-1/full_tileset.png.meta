@@ -1261,6 +1261,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: full_tileset_53
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 550a15b91175f9548a32ef3c49a1f679
+      internalID: -2082837028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -1321,6 +1342,7 @@ TextureImporter:
       full_tileset_50: -2118389979
       full_tileset_51: 797581967
       full_tileset_52: -328714019
+      full_tileset_53: -2082837028
       full_tileset_6: 1688291429
       full_tileset_7: -293606645
       full_tileset_8: 1493458571
