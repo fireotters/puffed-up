@@ -12,10 +12,10 @@ namespace GameLogic
     [Serializable]
     struct PhysicsConfig
     {
-        [SerializeField] [Range(0.01f, 100)] public float targetMoveSpeed;
-        [SerializeField] [Range(0.01f, 100)] public float moveAcceleration;
-        [SerializeField] [Range(0.01f, 100)] public float turnAcceleration;
-        [SerializeField] [Range(0.01f, 100)] public float stoppingAcceleration;
+        [SerializeField][Range(0.01f, 100)] public float targetMoveSpeed;
+        [SerializeField][Range(0.01f, 100)] public float moveAcceleration;
+        [SerializeField][Range(0.01f, 100)] public float turnAcceleration;
+        [SerializeField][Range(0.01f, 100)] public float stoppingAcceleration;
     }
 
     interface ICustomPhysics
@@ -38,12 +38,13 @@ namespace GameLogic
         CancellationTokenSource cancellationToken;
 
         [Header("Abilities")]
-        [SerializeField] [Range(0, 7)] private float puffTimeout;
+        [SerializeField][Range(0, 7)] private float puffTimeout;
         private Timer _puffingTimer;
         PuffStateHandler _puffStateHandler;
         private bool isBoosting = false;
         [SerializeField] private float boostDuration, boostForce;
         [SerializeField] private GameObject puffPushEffector;
+        [SerializeField] bool enableOmniDirectionalDash;
 
         [Header("Animation")]
         private Animator _animator;
@@ -126,10 +127,12 @@ namespace GameLogic
             if (_puffStateHandler.IsPuffed)
                 movePitch /= 2f; // Pitch down when beeg
             sndPlrMoveSmall.SetParameter("Movement_Pitch", movePitch);
-            if (!stopped && !sndPlrMoveSmall.IsPlaying()) {
+            if (!stopped && !sndPlrMoveSmall.IsPlaying())
+            {
                 sndPlrMoveSmall.Play();
             }
-            else if (stopped && sndPlrMoveSmall.IsPlaying()) {
+            else if (stopped && sndPlrMoveSmall.IsPlaying())
+            {
                 sndPlrMoveSmall.Stop();
             }
             // TODO: Implement Player_Movement_Thicc sfx - I'm unsure why it doesn't work like Player_Movement
@@ -185,7 +188,7 @@ namespace GameLogic
             }
             else
             {
-                if(!currentAnimaton.Contains("Hurt") && !currentAnimaton.Contains("Death") && !currentAnimaton.Contains("To"))
+                if (!currentAnimaton.Contains("Hurt") && !currentAnimaton.Contains("Death") && !currentAnimaton.Contains("To"))
                     ChangeAnimationState("Idle");
             }
 
@@ -246,8 +249,17 @@ namespace GameLogic
             isBoosting = true;
             _particlesBoostBubbles.Play();
             int boostDir = transform.rotation.y == 0 ? 1 : -1; // Boost feesh depending on sprite's facing direction.
-            _rigidbody2D.velocity = new Vector2(boostDir * boostForce, 0);
+            int upDir = Mathf.RoundToInt(Input.GetAxisRaw("Vertical"));
+            var contraintsBackup = _rigidbody2D.constraints;
+            if (!enableOmniDirectionalDash)
+            {
+                upDir = 0;
+                _rigidbody2D.constraints = RigidbodyConstraints2D.FreezePositionY;
+            }
+            _rigidbody2D.velocity = new Vector2(boostDir, upDir).normalized * boostForce;
+            currentVelocity = Vector2.zero;
             yield return new WaitForSeconds(0.5f);
+            _rigidbody2D.constraints = contraintsBackup;
             _particlesBoostBubbles.Stop();
             isBoosting = false;
             currentAnimaton = "Idle";
