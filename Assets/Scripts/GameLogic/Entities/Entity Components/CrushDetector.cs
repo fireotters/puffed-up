@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 public class CrushDetector : MonoBehaviour
 {
-    [SerializeField] Transform[] detectPoints; // Assign these in inspector as N, NW, W, SW, S, SE, E, NE
+    [SerializeField] Transform[] detectPoints; // Assign these in inspector as N, NE, E, SE, S, SW, W, NW
     [SerializeField] ContactFilter2D contactFilter;
     RaycastHit2D[] raycastHit2Ds = new RaycastHit2D[1];
     [SerializeField] int collisionCount = 0;

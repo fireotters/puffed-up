@@ -18,7 +18,6 @@ public class PuffStateHandler : MonoBehaviour
     [Range(0.1f, 30.0f)][SerializeField] private float massWhenPuffed;
     [Range(0.1f, 30.0f)][SerializeField] private float massWhenDeflated;
     private Rigidbody2D rb;
-    private CircleCollider2D _collider;
 
     [Header("Cooldowns")]
     private float lastDeflateTime, waitFromDeflateToNextInflate = 2;
@@ -33,7 +32,6 @@ public class PuffStateHandler : MonoBehaviour
     private void Start()
     {
         rb = GetComponentInParent<Rigidbody2D>();
-        _collider = GetComponent<CircleCollider2D>();
         SetState(state);
         lastDeflateTime = Time.time - waitFromDeflateToNextInflate;
     }

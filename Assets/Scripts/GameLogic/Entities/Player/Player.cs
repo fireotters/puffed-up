@@ -42,6 +42,7 @@ namespace GameLogic
         PuffStateHandler _puffStateHandler;
         private bool isBoosting = false;
         [SerializeField] private float boostDuration, boostForce;
+        [SerializeField] private GameObject puffPushEffector;
 
         [Header("Animation")]
         private Animator _animator;
@@ -184,6 +185,7 @@ namespace GameLogic
             }
 
             _animator.SetFloat("speed", (trueVelocity / config.targetMoveSpeed).magnitude);
+            puffPushEffector.transform.rotation = Quaternion.Euler(new Vector3(0f, transform.rotation.y, 0f));
         }
 
         public void Hurt()
@@ -217,6 +219,7 @@ namespace GameLogic
             {
                 sndPlrInflate.Play();
                 _puffStateHandler.SetState(PuffStateHandler.State.Puffed);
+                StartCoroutine(InflatePush());
             }
         }
 
@@ -240,6 +243,13 @@ namespace GameLogic
             _particlesBoostBubbles.Stop();
             isBoosting = false;
 
+        }
+
+        private IEnumerator InflatePush()
+        {
+            puffPushEffector.SetActive(true);
+            yield return new WaitForSeconds(0.08f);
+            puffPushEffector.SetActive(false);
         }
 
         public void WasCrushed()
