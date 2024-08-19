@@ -390,6 +390,90 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: ui_btn_restart
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f79506b9965ede42aae72d793336a42
+      internalID: 1214933116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_btn_next
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 706f7b583be3b254097c85cfb156efb0
+      internalID: -927603741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_btn_fullscreen
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c210fbca6b1ffc408ce82ec2269028a
+      internalID: 695091436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_btn_exit
+      rect:
+        serializedVersion: 2
+        x: 3584
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4ca640e0e396a04088773f382096ed0
+      internalID: 1632372270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -405,10 +489,14 @@ TextureImporter:
       ui_btn_bubble1: -632716989
       ui_btn_bubble2: 492728413
       ui_btn_credits: -1454876804
+      ui_btn_exit: 1632372270
+      ui_btn_fullscreen: 695091436
+      ui_btn_next: -927603741
       ui_btn_options: 259968850
       ui_btn_play: 789301298
       ui_btn_pop1: -27467002
       ui_btn_pop2: 1647402776
+      ui_btn_restart: 1214933116
       ui_indicator_display: -1736547314
       ui_indicator_gameplay: 76810399
       ui_indicator_music: -1400976672
