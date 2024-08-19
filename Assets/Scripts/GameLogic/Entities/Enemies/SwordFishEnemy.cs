@@ -38,6 +38,7 @@ namespace GameLogic.Entities.Enemies
                     _animator.Play("Swim" + swimType);
                     sndRazorAttack.Play();
                     alreadyPlayedAttackSnd = true;
+                    _rigidbody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
                 }
             }
             if (_charging)

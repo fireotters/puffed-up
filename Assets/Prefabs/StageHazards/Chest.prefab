@@ -1390,7 +1390,7 @@ ParticleSystem:
           inWeight: 0
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.5834299
+          time: 0.8402963
           value: 0
           inSlope: 0
           outSlope: 0
@@ -1401,8 +1401,8 @@ ParticleSystem:
         - serializedVersion: 3
           time: 1
           value: 1
-          inSlope: 2.400556
-          outSlope: 2.400556
+          inSlope: 6.2615967
+          outSlope: 6.2615967
           tangentMode: 34
           weightedMode: 0
           inWeight: 0.33333334
@@ -1498,7 +1498,6 @@ ParticleSystem:
     sprites:
     - sprite: {fileID: -144066888, guid: 5cb9b1f2df07b4845ba9f7fd090eb159, type: 3}
     - sprite: {fileID: 1389999311, guid: 5cb9b1f2df07b4845ba9f7fd090eb159, type: 3}
-    - sprite: {fileID: -1805545095, guid: 5cb9b1f2df07b4845ba9f7fd090eb159, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:
