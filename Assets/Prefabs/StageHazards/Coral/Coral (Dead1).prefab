@@ -179,6 +179,7 @@ GameObject:
   - component: {fileID: 8734718853999649044}
   - component: {fileID: 7336014141401089920}
   - component: {fileID: 2531318201824665551}
+  - component: {fileID: 614112267131021273}
   m_Layer: 0
   m_Name: Piece2
   m_TagString: Untagged
@@ -308,6 +309,19 @@ PolygonCollider2D:
       - {x: 0.256, y: -0.052}
       - {x: 0.256, y: -0.256}
   m_UseDelaunayMesh: 0
+--- !u!114 &614112267131021273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414649658698991863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa16d39a628ff73469c83c344e9e5533, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
 --- !u!1 &2088035754065429467
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,6 +417,7 @@ GameObject:
   - component: {fileID: 5082595387846028714}
   - component: {fileID: 4783035758057219605}
   - component: {fileID: 2627568085088383705}
+  - component: {fileID: 3760714865414380379}
   m_Layer: 0
   m_Name: Piece3
   m_TagString: Untagged
@@ -533,6 +548,19 @@ PolygonCollider2D:
       - {x: 0.256, y: -0.033}
       - {x: 0.256, y: -0.256}
   m_UseDelaunayMesh: 0
+--- !u!114 &3760714865414380379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3093876358466544317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa16d39a628ff73469c83c344e9e5533, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
 --- !u!1 &4211253905888769288
 GameObject:
   m_ObjectHideFlags: 0
@@ -579,6 +607,7 @@ GameObject:
   - component: {fileID: 2238405595743597280}
   - component: {fileID: 6442425800262525961}
   - component: {fileID: 6352800966834756357}
+  - component: {fileID: 9182401764645269234}
   m_Layer: 0
   m_Name: Piece1
   m_TagString: Untagged
@@ -706,6 +735,19 @@ PolygonCollider2D:
       - {x: 0.256, y: -0.15300001}
       - {x: 0.256, y: -0.256}
   m_UseDelaunayMesh: 0
+--- !u!114 &9182401764645269234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4886668305705580450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa16d39a628ff73469c83c344e9e5533, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
 --- !u!1 &7917017652872129374
 GameObject:
   m_ObjectHideFlags: 0
@@ -715,7 +757,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1753129706781628201}
-  - component: {fileID: 1373485407493122775}
   m_Layer: 0
   m_Name: Coral (Dead1)
   m_TagString: Untagged
@@ -742,19 +783,6 @@ Transform:
   - {fileID: 7811081616240124023}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1373485407493122775
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7917017652872129374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa16d39a628ff73469c83c344e9e5533, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 1
 --- !u!1 &8135458751162636397
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 namespace GameLogic
@@ -74,6 +75,10 @@ namespace GameLogic
 
         private void Update()
         {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                SceneManager.LoadScene("Level02");
+            }
             UpdateMovement();
             UpdateAbilities();
         }

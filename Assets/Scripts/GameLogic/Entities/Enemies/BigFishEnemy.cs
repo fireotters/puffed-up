@@ -11,7 +11,7 @@ namespace GameLogic.Entities.Enemies
         [SerializeField][Range(0, 100)] private float moveSpeed;
         [SerializeField] private PuffStateSo puffStateSo;
         private Rigidbody2D _rigidbody2D;
-        private bool _chasing, _evading, _normalBehaviourRunning;
+        private bool _chasing, _evading, _normalBehaviourRunning, _standby;
         private Vector2 _target = Vector2.zero;
         private CancellationTokenSource _cancellationToken = new();
 
@@ -22,6 +22,8 @@ namespace GameLogic.Entities.Enemies
         
         private void Update()
         {
+            if (!_standby) return;
+            
             if (_chasing)
             {
                 //chasing behaviour
@@ -39,21 +41,35 @@ namespace GameLogic.Entities.Enemies
                 // standby behaviour
                 if (_normalBehaviourRunning) return;
 
-                var direction = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
                 var duration = Random.Range(0f, 4f);
-                // print($"Imma go {direction} for {Random.Range(0f, 4f)}s!");
-                _normalBehaviourRunning = true;
-                this.ExecuteOverDuration(duration, _cancellationToken.Token, time =>
+                if (Random.Range(0, 2) == 1)
                 {
-                    _rigidbody2D.AddForce(direction * moveSpeed);
-                    if (time == 1f) _normalBehaviourRunning = false;
-                }).Forget();
+                    var direction = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+                    
+                    print($"Imma go {direction} for {Random.Range(0f, 4f)}s!");
+                    _normalBehaviourRunning = true;
+                    this.ExecuteOverDuration(duration, _cancellationToken.Token, time =>
+                    {
+                        _rigidbody2D.AddForce(direction * moveSpeed);
+                        if (time == 1f) _normalBehaviourRunning = false;
+                    }).Forget();
+                }
+                else
+                {
+                    print("I aint movin");
+                    _normalBehaviourRunning = true;
+                    this.ExecuteOverDuration(duration, _cancellationToken.Token, time =>
+                    {
+                        // just STOP like STOP IT ALREADY FUCKIN DONT MOVE
+                        if (time == 1f) _normalBehaviourRunning = false;
+                    }).Forget();
+                }
             }
         }
 
         private void FindPlayerAndSetEnemyState(Collider2D other)
         {
-            if (other.gameObject.TryGetComponent(out PuffStateHandler player))
+            if (other.gameObject.TryGetComponent(out Player player))
             {
                 _target = player.gameObject.transform.position;
                 // print($"Player is at {_target}");
@@ -86,6 +102,11 @@ namespace GameLogic.Entities.Enemies
             _chasing = false;
         }
 
+        public void SetBehaviour(bool enabled)
+        {
+            _standby = enabled;
+        }
+        
         private void OnDestroy()
         {
             GenericExtensions.CancelAndGenerateNew(ref _cancellationToken);

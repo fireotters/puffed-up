@@ -8,8 +8,7 @@ public class Damager : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-
-        if(collision.gameObject.TryGetComponent<HealthHandler>(out HealthHandler hh))
+        if (collision.gameObject.TryGetComponent(out HealthHandler hh))
         {
             Vector2 recoilDirection = ((Vector2)collision.transform.position - collision.contacts[0].point).normalized;
             hh.Damage(damage, recoilDirection);
