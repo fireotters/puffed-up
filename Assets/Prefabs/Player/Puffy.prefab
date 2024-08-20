@@ -263,7 +263,7 @@ MonoBehaviour:
   boostDuration: 1
   boostForce: 16
   puffPushEffector: {fileID: 5626518222098110522}
-  enableOmniDirectionalDash: 0
+  enableOmniDirectionalDash: 1
   _particlesBoostBubbles: {fileID: 8733998541966360955}
   sndPlrMoveSmall: {fileID: 2801733317078150419}
   sndPlrMoveBigCreaks: {fileID: 6400602774143852563}
@@ -7076,7 +7076,7 @@ SpriteRenderer:
   m_SortingLayerID: 560503427
   m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1866143430, guid: 6d8c08c10e06fbd46a7ffaba531b3403, type: 3}
+  m_Sprite: {fileID: -1156973668, guid: 6d8c08c10e06fbd46a7ffaba531b3403, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

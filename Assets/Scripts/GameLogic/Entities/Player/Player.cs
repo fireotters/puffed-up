@@ -293,24 +293,32 @@ namespace GameLogic
 
         private IEnumerator Boost()
         {
+            // Anim/FX Start
             ChangeAnimationState("InfToDef");
             isBoosting = true;
             _particlesBoostBubbles.Play();
-            int boostDir = transform.rotation.y == 0 ? 1 : -1; // Boost feesh depending on sprite's facing direction.
+
+            // Calculate boost direction & constrain RB
+            int boostDir = transform.rotation.y == 0 ? 1 : -1;
             int upDir = Mathf.RoundToInt(Input.GetAxisRaw("Vertical"));
+            _rigidbody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
             var contraintsBackup = _rigidbody2D.constraints;
             if (!enableOmniDirectionalDash)
             {
                 upDir = 0;
-                _rigidbody2D.constraints = RigidbodyConstraints2D.FreezePositionY;
+                _rigidbody2D.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
             }
+
+            // Perform boost by changing velocity for 0.5s
             _rigidbody2D.velocity = new Vector2(boostDir, upDir).normalized * boostForce;
             currentVelocity = Vector2.zero;
             yield return new WaitForSeconds(0.5f);
             _rigidbody2D.constraints = contraintsBackup;
+
+            // Anim/FX End
+            currentAnimaton = "Idle";
             _particlesBoostBubbles.Stop();
             isBoosting = false;
-            currentAnimaton = "Idle";
 
         }
         private IEnumerator InflatePush()
