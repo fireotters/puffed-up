@@ -20,7 +20,7 @@ public class Coin : MonoBehaviour
 
                 if(Vector2.Distance(collision.transform.position, transform.position) < 0.05f)
                 {
-                    gameState.Coins.Value++;
+                    gameState.Shells.Value++;
                     Destroy(this.gameObject);
                 }
 

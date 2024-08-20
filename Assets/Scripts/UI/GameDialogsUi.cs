@@ -10,12 +10,11 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    public class GameUi : MonoBehaviour
+    public class GameDialogsUi : MonoBehaviour
     {
         public string nextSceneToLoad;
 
         [SerializeField] private GameUiDialogs _dialogs;
-        [SerializeField] private GameUiPlayerUi _playerUi;
         [SerializeField] private GameUiSound _sound;
 
         private readonly CompositeDisposable _disposables = new();
@@ -180,12 +179,6 @@ namespace UI
                 }
             }
         }
-    }
-    [System.Serializable]
-    public class GameUiPlayerUi
-    {
-        public Image[] imageHealthIndicators;
-        public Image imageInflateCooldown;
     }
     [System.Serializable]
     public class GameUiSound
