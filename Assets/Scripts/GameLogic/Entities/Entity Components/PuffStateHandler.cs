@@ -5,6 +5,7 @@ using System.Threading;
 using UnityEngine;
 using GameLogic;
 using UnityEngine.Events;
+using Signals;
 
 public class PuffStateHandler : MonoBehaviour
 {
@@ -29,12 +30,14 @@ public class PuffStateHandler : MonoBehaviour
 
     [SerializeField] UnityEvent OnPuffed;
     [SerializeField] UnityEvent OnDeflated;
+    [SerializeField] private bool isPlayer = false;
 
     private void Start()
     {
         rb = GetComponentInParent<Rigidbody2D>();
         SetState(state);
-        lastDeflateTime = Time.time - waitFromDeflateToNextInflate;
+        if (isPlayer)
+            lastDeflateTime = Time.time - waitFromDeflateToNextInflate;
     }
 
     private void OnDestroy()
@@ -52,8 +55,11 @@ public class PuffStateHandler : MonoBehaviour
     public void SetState(State newState)
     {
         state = newState;
-        playerPuffStateSo.SetPuffState(newState);
         rb.mass = Mass;
+        if (isPlayer)
+        {
+            playerPuffStateSo.SetPuffState(newState);
+        }
 
         if (state == State.Puffed)
             OnBecomePuffed();
@@ -65,17 +71,23 @@ public class PuffStateHandler : MonoBehaviour
     {
         GenericExtensions.CancelAndGenerateNew(ref cancellationToken);
         this.LerpScale(Vector2.one * scaleWhenInflated, 0.23f, AnimationCurve.EaseInOut(0, 0, 1, 1), cancellationToken.Token);
-        OnPuffed?.Invoke();
+        if (isPlayer)
+        {
+            OnPuffed?.Invoke();
+        }
     }
 
     private void OnBecomeDeflated()
     {
-        gameState.LastPlayerPuffTime.Value = Time.time;
-        gameState.PlayerPuffWaitTime.Value = waitFromDeflateToNextInflate;
-        lastDeflateTime = Time.time;
+        if (isPlayer)
+        {
+            gameState.LastPlayerPuffTime.Value = Time.time;
+            gameState.PlayerPuffWaitTime.Value = waitFromDeflateToNextInflate;
+            lastDeflateTime = Time.time;
+            OnDeflated?.Invoke();
+        }
         GenericExtensions.CancelAndGenerateNew(ref cancellationToken);
         this.LerpScale(Vector2.one, 0.23f, AnimationCurve.EaseInOut(0, 0, 1, 1), cancellationToken.Token);
-        OnDeflated?.Invoke();
     }
 
     // Used in the unity event

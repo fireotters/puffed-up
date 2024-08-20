@@ -7,14 +7,6 @@ namespace Editor_Related
 {
     public class PlayerEnd : MonoBehaviour
     {
-        
-        private SpriteRenderer _sprite;
-
-        void Start()
-        {
-            _sprite = GetComponent<SpriteRenderer>();
-            _sprite.enabled = false;
-        }
 
         private void OnTriggerEnter2D(Collider2D other)
         {

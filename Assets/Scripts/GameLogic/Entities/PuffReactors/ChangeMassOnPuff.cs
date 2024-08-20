@@ -26,7 +26,7 @@ public class ChangeMassOnPuff : MonoBehaviour
 
     void OnPuffStateChanged(PuffStateHandler.State state)
     {
-        Debug.Log($"Puff state {state}");
+        //Debug.Log($"Puff state {state}");
         rb.mass = Mass;
     }
 
