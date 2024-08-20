@@ -4916,7 +4916,6 @@ GameObject:
   - component: {fileID: 2067658491}
   - component: {fileID: 2067658494}
   - component: {fileID: 2067658493}
-  - component: {fileID: 2067658495}
   - component: {fileID: 2067658492}
   - component: {fileID: 2067658496}
   m_Layer: 5
@@ -5052,22 +5051,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2067658490}
   m_CullTransparentMesh: 1
---- !u!114 &2067658495
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2067658490}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6d39b8e0a5c48541bd01ae8e5776269, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 1}
-  highlightColor: {r: 0.253471, g: 0.6037736, b: 0.27143475, a: 1}
-  clickColor: {r: 0.10565582, g: 0.4339623, b: 0.07164471, a: 1}
-  _forceBaseColorAfterClick: 0
 --- !u!95 &2067658496
 Animator:
   serializedVersion: 5
