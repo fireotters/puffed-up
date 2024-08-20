@@ -1,3 +1,4 @@
+using FMODUnity;
 using System;
 using UnityEngine;
 
@@ -7,6 +8,9 @@ namespace GameLogic.Entities.Enemies
     {
         private PuffStateHandler _enemyPuffStateHandler;
         private Animator _animator;
+
+        // Sound
+        [SerializeField] private StudioEventEmitter sndEnemyTriggered;
 
         private void Start()
         {
@@ -20,6 +24,7 @@ namespace GameLogic.Entities.Enemies
             {
                 _animator.Play("Scare");
                 _enemyPuffStateHandler.SetPuffed();
+                sndEnemyTriggered.Play();
             }
         }
     }
