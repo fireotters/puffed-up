@@ -50,8 +50,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2014720872932586943, guid: 053017c752079e8418c91e0f0a03a12d, type: 3}
       propertyPath: m_Name
-      value: HandLvl1
+      value: HandLvl2
       objectReference: {fileID: 0}
+    - target: {fileID: 8582225971320080148, guid: 053017c752079e8418c91e0f0a03a12d, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: f12910be6eb5e2a448a833487caf8fe8, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

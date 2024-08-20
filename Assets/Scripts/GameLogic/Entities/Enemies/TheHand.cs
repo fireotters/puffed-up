@@ -4,6 +4,7 @@ using UnityEngine;
 using GameLogic;
 using System;
 using FMODUnity;
+using Signals;
 
 public class TheHand : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class TheHand : MonoBehaviour
     [SerializeField][Range(0, 100)] private float maxDistance;
     private Animator _animator;
     [SerializeField] private StudioEventEmitter _sndPlrCaught;
-    private bool _hasPlayedCaughtSfx = false;
+    private bool playerIsCaught = false;
 
     void Start()
     {
@@ -27,11 +28,25 @@ public class TheHand : MonoBehaviour
     void Update()
     {
         var direction = (Vector2)player.transform.position - (Vector2)transform.position;
+        if (playerIsCaught)
+            direction = Vector2.up;
         _rb.AddForce(direction.normalized * GetSpeed());
+
+        // Rotate sprite
+        if (direction.x > 0f)
+        {
+            transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 0f));
+        }
+        else if (direction.x < -0f)
+        {
+            transform.rotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
+        }
     }
 
     float GetSpeed()
     {
+        if (playerIsCaught)
+            return 15f;
         float distance = Vector2.Distance(transform.position, player.transform.position);
         float mappedNormalizedDistance = Mathf.InverseLerp(minDistance, maxDistance, distance);
         return Mathf.Lerp(minSpeed, maxSpeed, mappedNormalizedDistance);
@@ -48,10 +63,18 @@ public class TheHand : MonoBehaviour
 
     private void CaughtPlayer()
     {
-        _animator.Play("GotYou");
-        if (!_hasPlayedCaughtSfx)
+        if (!playerIsCaught)
+        {
+            playerIsCaught = true;
+            _animator.Play("GotYou");
             _sndPlrCaught.Play();
-        _hasPlayedCaughtSfx = true;
+            Invoke(nameof(CaughtPlayer2), 2f);
+        }
+    }
+
+    private void CaughtPlayer2()
+    {
+        SignalBus<SignalGameEnded>.Fire(new SignalGameEnded { result = GameEndCondition.Loss });
     }
 
     private void OnDrawGizmos()
