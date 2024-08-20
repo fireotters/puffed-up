@@ -9,7 +9,7 @@ namespace GameLogic
         public ReactiveData<int> Shells;
         public ReactiveData<int> Pearls;
         public ReactiveData<int> Health;
-        public ReactiveData<int> PuffTimeCurrent, PuffTimeMax;
+        public ReactiveData<float> LastPlayerPuffTime, PlayerPuffWaitTime;
 
         private void OnEnable()
         {

@@ -25,6 +25,7 @@ public class PuffStateHandler : MonoBehaviour
     [Header("Misc")]
     [SerializeField] private float scaleWhenInflated;
     CancellationTokenSource cancellationToken;
+    [SerializeField] GameStateSo gameState;
 
     [SerializeField] UnityEvent OnPuffed;
     [SerializeField] UnityEvent OnDeflated;
@@ -69,6 +70,8 @@ public class PuffStateHandler : MonoBehaviour
 
     private void OnBecomeDeflated()
     {
+        gameState.LastPlayerPuffTime.Value = Time.time;
+        gameState.PlayerPuffWaitTime.Value = waitFromDeflateToNextInflate;
         lastDeflateTime = Time.time;
         GenericExtensions.CancelAndGenerateNew(ref cancellationToken);
         this.LerpScale(Vector2.one, 0.23f, AnimationCurve.EaseInOut(0, 0, 1, 1), cancellationToken.Token);

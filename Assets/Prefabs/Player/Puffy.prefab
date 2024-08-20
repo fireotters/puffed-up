@@ -1322,6 +1322,7 @@ MonoBehaviour:
   massWhenPuffed: 17
   massWhenDeflated: 3
   scaleWhenInflated: 2.77
+  gameState: {fileID: 11400000, guid: aa57637cd4f8e0748ba6b9e849b72579, type: 2}
   OnPuffed:
     m_PersistentCalls:
       m_Calls:
