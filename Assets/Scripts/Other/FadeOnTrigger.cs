@@ -24,7 +24,7 @@ public class FadeOnTrigger : MonoBehaviour
         if (collision.GetComponent<Player>() != null)
         {
             SpriteRenderer spr = GetComponent<SpriteRenderer>();
-            Tilemap tilemap = spr.GetComponent<Tilemap>();
+            Tilemap tilemap = GetComponent<Tilemap>();
             float startingOpacity = spr != null ? spr.color.a : tilemap.color.a;
             GenericExtensions.CancelAndGenerateNew(ref cancellationTokenSource);
             this.ExecuteOverDuration(duration, cancellationTokenSource.Token, timer =>
@@ -50,7 +50,7 @@ public class FadeOnTrigger : MonoBehaviour
         if (collision.GetComponent<Player>() != null && comeBack)
         {
             SpriteRenderer spr = GetComponent<SpriteRenderer>();
-            Tilemap tilemap = spr.GetComponent<Tilemap>();
+            Tilemap tilemap = GetComponent<Tilemap>();
             GenericExtensions.CancelAndGenerateNew(ref cancellationTokenSource);
             float startingOpacity = spr != null ? spr.color.a : tilemap.color.a;
             this.ExecuteOverDuration(duration, cancellationTokenSource.Token, timer =>
