@@ -10,7 +10,7 @@ public class HealthHandler : MonoBehaviour
     ICustomPhysics _rb;
     [SerializeField] float recoilImpulseForce = 2.5f;
     public int currentHealth { get; private set; }
-    [SerializeField] UnityEvent onHurt, onDeath;
+    [SerializeField] UnityEvent onHurt, onDeath, onCaught;
     private bool dead = false;
 
     [Header("Invulnerability Frames")]
@@ -70,5 +70,11 @@ public class HealthHandler : MonoBehaviour
         isInvulnerable = false;
         Color color = new(1, 1, 1, 1); // Reset to normal color
         _spr.color = color;
+    }
+
+    public void GotCaught()
+    {
+        dead = true;
+        onCaught?.Invoke();
     }
 }

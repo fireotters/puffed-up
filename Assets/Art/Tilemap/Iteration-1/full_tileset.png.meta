@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: full_tileset_0
+      name: tileset_purp00
       rect:
         serializedVersion: 2
         x: 0
@@ -131,7 +131,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_1
+      name: tileset_purp01
       rect:
         serializedVersion: 2
         x: 512
@@ -152,7 +152,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_2
+      name: tileset_purp02
       rect:
         serializedVersion: 2
         x: 1024
@@ -173,7 +173,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_3
+      name: tileset_purp03
       rect:
         serializedVersion: 2
         x: 1536
@@ -194,7 +194,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_4
+      name: tileset_wood0
       rect:
         serializedVersion: 2
         x: 2048
@@ -215,7 +215,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_5
+      name: tileset_wood01
       rect:
         serializedVersion: 2
         x: 2560
@@ -236,7 +236,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_6
+      name: tileset_wood02
       rect:
         serializedVersion: 2
         x: 3072
@@ -257,7 +257,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_7
+      name: tileset_wood03
       rect:
         serializedVersion: 2
         x: 3584
@@ -278,7 +278,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_8
+      name: tileset_purp04
       rect:
         serializedVersion: 2
         x: 0
@@ -299,7 +299,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_9
+      name: tileset_purp05
       rect:
         serializedVersion: 2
         x: 512
@@ -320,7 +320,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_10
+      name: tileset_purp06
       rect:
         serializedVersion: 2
         x: 1024
@@ -341,7 +341,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_11
+      name: tileset_purp07
       rect:
         serializedVersion: 2
         x: 1536
@@ -362,7 +362,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_12
+      name: tileset_wood04
       rect:
         serializedVersion: 2
         x: 2048
@@ -383,7 +383,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_13
+      name: tileset_wood05
       rect:
         serializedVersion: 2
         x: 2560
@@ -404,7 +404,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_14
+      name: tileset_wood06
       rect:
         serializedVersion: 2
         x: 3072
@@ -425,7 +425,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_15
+      name: tileset_wood07
       rect:
         serializedVersion: 2
         x: 3584
@@ -446,7 +446,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_16
+      name: tileset_purp08
       rect:
         serializedVersion: 2
         x: 0
@@ -467,7 +467,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_17
+      name: tileset_purp09
       rect:
         serializedVersion: 2
         x: 512
@@ -488,7 +488,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_18
+      name: tileset_purp10
       rect:
         serializedVersion: 2
         x: 1024
@@ -509,7 +509,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_19
+      name: tileset_purp11
       rect:
         serializedVersion: 2
         x: 1536
@@ -530,7 +530,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_20
+      name: tileset_wood08
       rect:
         serializedVersion: 2
         x: 2048
@@ -551,7 +551,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_21
+      name: tileset_wood09
       rect:
         serializedVersion: 2
         x: 2560
@@ -572,7 +572,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_22
+      name: tileset_wood10
       rect:
         serializedVersion: 2
         x: 3072
@@ -593,7 +593,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_23
+      name: tileset_wood11
       rect:
         serializedVersion: 2
         x: 3584
@@ -614,7 +614,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_24
+      name: tileset_purp12
       rect:
         serializedVersion: 2
         x: 512
@@ -635,7 +635,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_25
+      name: tileset_purp13
       rect:
         serializedVersion: 2
         x: 1024
@@ -656,7 +656,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_26
+      name: tileset_purp14
       rect:
         serializedVersion: 2
         x: 1536
@@ -677,7 +677,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_27
+      name: tileset_wood12
       rect:
         serializedVersion: 2
         x: 2560
@@ -698,7 +698,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_28
+      name: tileset_wood13
       rect:
         serializedVersion: 2
         x: 3072
@@ -719,7 +719,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_29
+      name: tileset_wood14
       rect:
         serializedVersion: 2
         x: 3584
@@ -740,7 +740,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_30
+      name: tileset_coral1
       rect:
         serializedVersion: 2
         x: 0
@@ -769,7 +769,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_31
+      name: tileset_coral2
       rect:
         serializedVersion: 2
         x: 512
@@ -801,7 +801,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_32
+      name: tileset_coral3
       rect:
         serializedVersion: 2
         x: 1024
@@ -832,7 +832,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_33
+      name: tileset_coral4
       rect:
         serializedVersion: 2
         x: 1536
@@ -863,7 +863,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_34
+      name: tileset_chest1
       rect:
         serializedVersion: 2
         x: 0
@@ -884,7 +884,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_35
+      name: tileset_chest2
       rect:
         serializedVersion: 2
         x: 512
@@ -905,7 +905,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_36
+      name: tileset_bubble1
       rect:
         serializedVersion: 2
         x: 0
@@ -926,7 +926,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_37
+      name: tileset_rock
       rect:
         serializedVersion: 2
         x: 512
@@ -947,7 +947,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_38
+      name: tileset_bubble2
       rect:
         serializedVersion: 2
         x: 256
@@ -968,7 +968,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_39
+      name: tileset_seaweed
       rect:
         serializedVersion: 2
         x: 512
@@ -989,7 +989,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_40
+      name: tileset_bubble3
       rect:
         serializedVersion: 2
         x: 0
@@ -1010,7 +1010,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_41
+      name: tileset_bubble4
       rect:
         serializedVersion: 2
         x: 256
@@ -1031,7 +1031,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_42
+      name: tileset_bubble5
       rect:
         serializedVersion: 2
         x: 0
@@ -1052,7 +1052,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_43
+      name: tileset_bubble6
       rect:
         serializedVersion: 2
         x: 256
@@ -1073,7 +1073,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_44
+      name: tileset_bubble7
       rect:
         serializedVersion: 2
         x: 0
@@ -1094,7 +1094,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_45
+      name: tileset_bubble8
       rect:
         serializedVersion: 2
         x: 256
@@ -1115,7 +1115,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_46
+      name: tileset_shell1
       rect:
         serializedVersion: 2
         x: 1024
@@ -1136,7 +1136,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_47
+      name: tileset_shell2
       rect:
         serializedVersion: 2
         x: 1280
@@ -1157,7 +1157,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_48
+      name: tileset_shell3
       rect:
         serializedVersion: 2
         x: 1024
@@ -1178,7 +1178,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_49
+      name: tileset_shell4
       rect:
         serializedVersion: 2
         x: 1280
@@ -1199,7 +1199,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_50
+      name: tileset_prettypearl
       rect:
         serializedVersion: 2
         x: 1536
@@ -1220,7 +1220,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_51
+      name: tileset_prettygem
       rect:
         serializedVersion: 2
         x: 1792
@@ -1241,7 +1241,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_52
+      name: tileset_box
       rect:
         serializedVersion: 2
         x: 1024
@@ -1262,7 +1262,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: full_tileset_53
+      name: tileset_sign
       rect:
         serializedVersion: 2
         x: 1024
@@ -1270,7 +1270,7 @@ TextureImporter:
         width: 512
         height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1293,60 +1293,60 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      full_tileset_0: -706108912
-      full_tileset_1: -985070681
-      full_tileset_10: 1696309992
-      full_tileset_11: -2071600541
-      full_tileset_12: 1298016076
-      full_tileset_13: 1965275790
-      full_tileset_14: -1626287161
-      full_tileset_15: -1867579699
-      full_tileset_16: 509045233
-      full_tileset_17: 1211044713
-      full_tileset_18: -221607421
-      full_tileset_19: -1352977543
-      full_tileset_2: 1312223311
-      full_tileset_20: 713827196
-      full_tileset_21: 2119788341
-      full_tileset_22: 1989195717
-      full_tileset_23: 1658800670
-      full_tileset_24: -1634762166
-      full_tileset_25: 499641206
-      full_tileset_26: -1136772996
-      full_tileset_27: 1582799989
-      full_tileset_28: -22866742
-      full_tileset_29: 1320963873
-      full_tileset_3: -968485848
-      full_tileset_30: 1834055460
-      full_tileset_31: 1707214644
-      full_tileset_32: -951883201
-      full_tileset_33: 624909766
-      full_tileset_34: 1146085730
-      full_tileset_35: 457582121
-      full_tileset_36: -955454733
-      full_tileset_37: 535610699
-      full_tileset_38: -943774601
-      full_tileset_39: -23247284
-      full_tileset_4: 369479470
-      full_tileset_40: -1805545095
-      full_tileset_41: 1389999311
-      full_tileset_42: -1980043810
-      full_tileset_43: 1709758367
-      full_tileset_44: -144066888
-      full_tileset_45: -2080041157
-      full_tileset_46: -177253453
-      full_tileset_47: 1983492241
-      full_tileset_48: -427819005
-      full_tileset_49: 1371723753
-      full_tileset_5: -2040498829
-      full_tileset_50: -2118389979
-      full_tileset_51: 797581967
-      full_tileset_52: -328714019
-      full_tileset_53: -2082837028
-      full_tileset_6: 1688291429
-      full_tileset_7: -293606645
-      full_tileset_8: 1493458571
-      full_tileset_9: -765701995
+      tileset_box: -328714019
+      tileset_bubble1: -955454733
+      tileset_bubble2: -943774601
+      tileset_bubble3: -1805545095
+      tileset_bubble4: 1389999311
+      tileset_bubble5: -1980043810
+      tileset_bubble6: 1709758367
+      tileset_bubble7: -144066888
+      tileset_bubble8: -2080041157
+      tileset_chest1: 1146085730
+      tileset_chest2: 457582121
+      tileset_coral1: 1834055460
+      tileset_coral2: 1707214644
+      tileset_coral3: -951883201
+      tileset_coral4: 624909766
+      tileset_prettygem: 797581967
+      tileset_prettypearl: -2118389979
+      tileset_purp00: -706108912
+      tileset_purp01: -985070681
+      tileset_purp02: 1312223311
+      tileset_purp03: -968485848
+      tileset_purp04: 1493458571
+      tileset_purp05: -765701995
+      tileset_purp06: 1696309992
+      tileset_purp07: -2071600541
+      tileset_purp08: 509045233
+      tileset_purp09: 1211044713
+      tileset_purp10: -221607421
+      tileset_purp11: -1352977543
+      tileset_purp12: -1634762166
+      tileset_purp13: 499641206
+      tileset_purp14: -1136772996
+      tileset_rock: 535610699
+      tileset_seaweed: -23247284
+      tileset_shell1: -177253453
+      tileset_shell2: 1983492241
+      tileset_shell3: -427819005
+      tileset_shell4: 1371723753
+      tileset_sign: -2082837028
+      tileset_wood0: 369479470
+      tileset_wood01: -2040498829
+      tileset_wood02: 1688291429
+      tileset_wood03: -293606645
+      tileset_wood04: 1298016076
+      tileset_wood05: 1965275790
+      tileset_wood06: -1626287161
+      tileset_wood07: -1867579699
+      tileset_wood08: 713827196
+      tileset_wood09: 2119788341
+      tileset_wood10: 1989195717
+      tileset_wood11: 1658800670
+      tileset_wood12: 1582799989
+      tileset_wood13: -22866742
+      tileset_wood14: 1320963873
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

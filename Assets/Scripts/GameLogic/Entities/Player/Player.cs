@@ -54,7 +54,7 @@ namespace GameLogic
 
         [Header("Sound")]
         [SerializeField] private StudioEventEmitter sndPlrMoveSmall;
-        [SerializeField] private StudioEventEmitter sndPlrMoveBig, sndPlrInflate, sndPlrDeflate, sndPlrBounce, sndPlrDamage, sndPlrDeathNormal, sndPlrDeathExplode;
+        [SerializeField] private StudioEventEmitter sndPlrMoveBigCreaks, sndPlrInflate, sndPlrDeflate, sndPlrBounce, sndPlrDamage, sndPlrDeathNormal, sndPlrDeathExplode;
 
         [Header("Vitals")]
         private HealthHandler _healthHandler;
@@ -84,6 +84,10 @@ namespace GameLogic
             UpdateAbilities();
         }
 
+
+        // ----------------------------------------------------------------------------------------------------
+        // Physics
+        // ----------------------------------------------------------------------------------------------------
         private void UpdateMovement()
         {
             Vector2 direction = GetMovementDirection();
@@ -195,7 +199,25 @@ namespace GameLogic
             _animator.SetFloat("speed", (trueVelocity / config.targetMoveSpeed).magnitude);
             puffPushEffector.transform.rotation = Quaternion.Euler(new Vector3(0f, transform.rotation.y, 0f));
         }
+        public void ResetVelocity()
+        {
+            currentVelocity = Vector2.zero;
+        }
 
+        public void AddImpulse(Vector2 impulseForce, bool resetPreviousVelocity = true)
+        {
+            if (resetPreviousVelocity)
+                ResetVelocity();
+
+            _rigidbody2D.AddForce(impulseForce, ForceMode2D.Impulse);
+        }
+
+        // ----------------------------------------------------------------------------------------------------
+        // Health States
+        //   - Hurt: Temporary recoil & i-frames
+        //   - Dead: Can no longer move, essentially Game Over
+        //   - Caught: Game Over for real, play cutscene of being caught.
+        // ----------------------------------------------------------------------------------------------------
         public void Hurt()
         {
             sndPlrDamage.SetParameter("Inflated", _puffStateHandler.IsPuffed ? 1 : 0);
@@ -212,8 +234,11 @@ namespace GameLogic
 
         public void Die()
         {
-            sndPlrDeathNormal.Play();
             ChangeAnimationState("Death");
+            if (_puffStateHandler.IsPuffed)
+                sndPlrDeathNormal.Play();
+            else
+                sndPlrDeathExplode.Play();
 
             // I removed PuffStateHandler.OnDeath method because of the first SOLID principle.
             // PuffStateHandler mustn't know about lives, dead or any other state other than the puff state.
@@ -222,6 +247,17 @@ namespace GameLogic
             // It doesn't make sure to have a member variable just for this, getting it on the fly is good in this case
         }
 
+        public void Caught()
+        {
+            gameObject.SetActive(false); // Is end of the line for feesh
+        }
+
+        // ----------------------------------------------------------------------------------------------------
+        // Ability States
+        //   - Deflated: Normal movement
+        //   - Puffed: Temporary force against boxes, scares enemies, slow movement
+        //   - Boost: Deflating from Puffed grants a speed boost
+        // ----------------------------------------------------------------------------------------------------
         public void Puff()
         {
             if (_healthHandler.IsAlive)
@@ -265,7 +301,6 @@ namespace GameLogic
             currentAnimaton = "Idle";
 
         }
-
         private IEnumerator InflatePush()
         {
             puffPushEffector.SetActive(true);
@@ -283,18 +318,7 @@ namespace GameLogic
             }
         }
 
-        public void ResetVelocity()
-        {
-            currentVelocity = Vector2.zero;
-        }
 
-        public void AddImpulse(Vector2 impulseForce, bool resetPreviousVelocity = true)
-        {
-            if (resetPreviousVelocity)
-                ResetVelocity();
-
-            _rigidbody2D.AddForce(impulseForce, ForceMode2D.Impulse);
-        }
 
         // quick animation manager :3c
         void ChangeAnimationState(string newAnimation)

@@ -93,11 +93,24 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: handSprites_0
+      name: hand1_idle1
       rect:
         serializedVersion: 2
         x: 0
@@ -105,7 +118,7 @@ TextureImporter:
         width: 2048
         height: 2048
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -118,7 +131,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: handSprites_1
+      name: hand1_gotyou1
       rect:
         serializedVersion: 2
         x: 2048
@@ -126,7 +139,7 @@ TextureImporter:
         width: 2048
         height: 2048
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -139,15 +152,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: handSprites_2
+      name: hand2_idle1
       rect:
         serializedVersion: 2
-        x: 4096
+        x: 4081
         y: 2048
         width: 2048
         height: 2048
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -160,15 +173,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: handSprites_3
+      name: hand2_gotyou1
       rect:
         serializedVersion: 2
-        x: 6144
+        x: 6159
         y: 2048
         width: 2048
         height: 2048
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -181,7 +194,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: handSprites_4
+      name: hand3_idle1
       rect:
         serializedVersion: 2
         x: 8192
@@ -189,7 +202,7 @@ TextureImporter:
         width: 2048
         height: 2048
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -202,7 +215,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: handSprites_5
+      name: hand3_gotyou1
       rect:
         serializedVersion: 2
         x: 10240
@@ -210,7 +223,7 @@ TextureImporter:
         width: 2048
         height: 2048
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -223,7 +236,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: handSprites_6
+      name: hand1_idle2
       rect:
         serializedVersion: 2
         x: 0
@@ -231,7 +244,7 @@ TextureImporter:
         width: 2048
         height: 2048
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -244,7 +257,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: handSprites_7
+      name: hand1_gotyou2
       rect:
         serializedVersion: 2
         x: 2048
@@ -252,7 +265,7 @@ TextureImporter:
         width: 2048
         height: 2048
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -265,7 +278,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: handSprites_8
+      name: hand2_idle2
       rect:
         serializedVersion: 2
         x: 4096
@@ -273,7 +286,7 @@ TextureImporter:
         width: 2048
         height: 2048
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -286,7 +299,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: handSprites_9
+      name: hand2_gotyou2
       rect:
         serializedVersion: 2
         x: 6144
@@ -294,7 +307,7 @@ TextureImporter:
         width: 2048
         height: 2048
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -307,7 +320,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: handSprites_10
+      name: hand3_idle2
       rect:
         serializedVersion: 2
         x: 8192
@@ -315,7 +328,7 @@ TextureImporter:
         width: 2048
         height: 2048
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -328,7 +341,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: handSprites_11
+      name: hand3_gotyou2
       rect:
         serializedVersion: 2
         x: 10240
@@ -336,7 +349,7 @@ TextureImporter:
         width: 2048
         height: 2048
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -359,18 +372,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      handSprites_0: 314254602
-      handSprites_1: 156443304
-      handSprites_10: 509780764
-      handSprites_11: 638458643
-      handSprites_2: 2017219067
-      handSprites_3: -1898575565
-      handSprites_4: -935250079
-      handSprites_5: 590524151
-      handSprites_6: -1511985475
-      handSprites_7: 938297762
-      handSprites_8: -1689290337
-      handSprites_9: 2063103984
+      hand1_gotyou1: 156443304
+      hand1_gotyou2: 938297762
+      hand1_idle1: 314254602
+      hand1_idle2: -1511985475
+      hand2_gotyou1: -1898575565
+      hand2_gotyou2: 2063103984
+      hand2_idle1: 2017219067
+      hand2_idle2: -1689290337
+      hand3_gotyou1: 590524151
+      hand3_gotyou2: 638458643
+      hand3_idle1: -935250079
+      hand3_idle2: 509780764
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using GameLogic;
 using System;
+using FMODUnity;
 
 public class TheHand : MonoBehaviour
 {
@@ -12,9 +13,12 @@ public class TheHand : MonoBehaviour
     [SerializeField][Range(0, 100)] private float maxSpeed;
     [SerializeField][Range(0, 100)] private float minDistance;
     [SerializeField][Range(0, 100)] private float maxDistance;
+    private Animator _animator;
+    [SerializeField] private StudioEventEmitter _sndPlrCaught;
 
     void Start()
     {
+        _animator = GetComponent<Animator>();
         player = FindAnyObjectByType<Player>();
         _rb = GetComponent<Rigidbody2D>();
     }
@@ -35,9 +39,10 @@ public class TheHand : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.TryGetComponent<HealthHandler>(out HealthHandler hh))
-        {
-            Vector2 recoilDirection = ((Vector2)collision.transform.position - (Vector2)transform.position).normalized;
-            hh.Damage(Int16.MaxValue, recoilDirection);
+        { 
+            hh.GotCaught();
+            _animator.Play("GotYou");
+            _sndPlrCaught.Play();
         }
     }
 
