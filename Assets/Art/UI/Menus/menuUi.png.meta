@@ -483,7 +483,7 @@ TextureImporter:
         width: 512
         height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -504,7 +504,7 @@ TextureImporter:
         width: 512
         height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -512,6 +512,48 @@ TextureImporter:
       bones: []
       spriteID: ebfc149412b85f54c951e6215d2cd172
       internalID: 116553806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_btn_save
+      rect:
+        serializedVersion: 2
+        x: 4096
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 152f656fa2a735643ad087f199b82e9a
+      internalID: -1550348847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_btn_delete
+      rect:
+        serializedVersion: 2
+        x: 4096
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2aec0f7c77a3b7246ba23feca030d776
+      internalID: -949856551
       vertices: []
       indices: 
       edges: []
@@ -531,6 +573,7 @@ TextureImporter:
       ui_btn_bubble1: -632716989
       ui_btn_bubble2: 492728413
       ui_btn_credits: -1454876804
+      ui_btn_delete: -949856551
       ui_btn_exit: 1632372270
       ui_btn_fullscreen: 695091436
       ui_btn_next: -927603741
@@ -540,6 +583,7 @@ TextureImporter:
       ui_btn_pop1: -27467002
       ui_btn_pop2: 1647402776
       ui_btn_restart: 1214933116
+      ui_btn_save: -1550348847
       ui_btn_settings: 116553806
       ui_indicator_display: -1736547314
       ui_indicator_gameplay: 76810399
