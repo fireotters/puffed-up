@@ -273,6 +273,8 @@ MonoBehaviour:
   sndPlrDamage: {fileID: 7300575239924187740}
   sndPlrDeathNormal: {fileID: 3338245354975318065}
   sndPlrDeathExplode: {fileID: 78021626286497779}
+  _col1: {fileID: 6285540761522473382}
+  _col2: {fileID: 9054231225471109740}
 --- !u!50 &1102466918635060855
 Rigidbody2D:
   serializedVersion: 4

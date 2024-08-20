@@ -63,6 +63,7 @@ namespace GameLogic
 
         private readonly CompositeDisposable _disposables = new();
         private bool _levelOverMoveRight = false;
+        [SerializeField] private Collider2D _col1, _col2;
 
         private void OnDestroy()
         {
@@ -150,7 +151,11 @@ namespace GameLogic
         private Vector2 GetMovementDirection()
         {
             if (_levelOverMoveRight)
+            {
+                _col1.enabled = false;
+                _col2.enabled = false;
                 return new Vector2(1, 0).normalized;
+            }
             else if (_healthHandler.IsAlive)
                 return new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
             return Vector2.zero;
