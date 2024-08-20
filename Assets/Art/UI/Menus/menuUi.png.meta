@@ -352,13 +352,13 @@ TextureImporter:
       name: ui_slider_track
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 512
-        height: 512
+        x: 203
+        y: 204
+        width: 104
+        height: 104
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 255, y: 255, z: 256, w: 256}
+      border: {x: 50, y: 50, z: 50, w: 50}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -379,7 +379,7 @@ TextureImporter:
         height: 512
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 294, y: 256, z: 159, w: 256}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -399,7 +399,7 @@ TextureImporter:
         width: 512
         height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -420,7 +420,7 @@ TextureImporter:
         width: 512
         height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -441,7 +441,7 @@ TextureImporter:
         width: 512
         height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -462,7 +462,7 @@ TextureImporter:
         width: 512
         height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -470,6 +470,48 @@ TextureImporter:
       bones: []
       spriteID: e4ca640e0e396a04088773f382096ed0
       internalID: 1632372270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_btn_pla
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a75f44b4c414354191c928cbbd111eb
+      internalID: 2002712018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_btn_settings
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebfc149412b85f54c951e6215d2cd172
+      internalID: 116553806
       vertices: []
       indices: 
       edges: []
@@ -493,10 +535,12 @@ TextureImporter:
       ui_btn_fullscreen: 695091436
       ui_btn_next: -927603741
       ui_btn_options: 259968850
+      ui_btn_pla: 2002712018
       ui_btn_play: 789301298
       ui_btn_pop1: -27467002
       ui_btn_pop2: 1647402776
       ui_btn_restart: 1214933116
+      ui_btn_settings: 116553806
       ui_indicator_display: -1736547314
       ui_indicator_gameplay: 76810399
       ui_indicator_music: -1400976672
