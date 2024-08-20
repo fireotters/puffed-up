@@ -26,10 +26,13 @@ namespace UI
                     Application.OpenURL("https://crossfirecam.itch.io/");
                     break;
                 case "rioni":
-                    Application.OpenURL("https://rioni.itch.io/");
+                    Application.OpenURL("https://github.com/Nrosa01");
                     break;
                 case "darelt":
                     Application.OpenURL("https://darelt.itch.io/");
+                    break;
+                case "danribu":
+                    Application.OpenURL("https://www.youtube.com/@danirbumusic");
                     break;
                 case "tesla":
                     Application.OpenURL("https://teslasp2.itch.io/");

@@ -360,7 +360,6 @@ GameObject:
   - component: {fileID: 51711106}
   - component: {fileID: 51711109}
   - component: {fileID: 51711108}
-  - component: {fileID: 51711110}
   - component: {fileID: 51711107}
   - component: {fileID: 51711111}
   - component: {fileID: 51711112}
@@ -509,22 +508,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 51711105}
   m_CullTransparentMesh: 1
---- !u!114 &51711110
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 51711105}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6d39b8e0a5c48541bd01ae8e5776269, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 1}
-  highlightColor: {r: 0.253471, g: 0.6037736, b: 0.27143475, a: 1}
-  clickColor: {r: 0.10565582, g: 0.4339623, b: 0.07164471, a: 1}
-  _forceBaseColorAfterClick: 0
 --- !u!95 &51711111
 Animator:
   serializedVersion: 5
@@ -1191,7 +1174,6 @@ GameObject:
   - component: {fileID: 394740098}
   - component: {fileID: 394740101}
   - component: {fileID: 394740100}
-  - component: {fileID: 394740102}
   - component: {fileID: 394740099}
   - component: {fileID: 394740103}
   - component: {fileID: 394740104}
@@ -1340,22 +1322,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 394740097}
   m_CullTransparentMesh: 1
---- !u!114 &394740102
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 394740097}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6d39b8e0a5c48541bd01ae8e5776269, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 1}
-  highlightColor: {r: 0.253471, g: 0.6037736, b: 0.27143475, a: 1}
-  clickColor: {r: 0.10565582, g: 0.4339623, b: 0.07164471, a: 1}
-  _forceBaseColorAfterClick: 0
 --- !u!95 &394740103
 Animator:
   serializedVersion: 5
@@ -1951,7 +1917,6 @@ GameObject:
   - component: {fileID: 795906791}
   - component: {fileID: 795906794}
   - component: {fileID: 795906793}
-  - component: {fileID: 795906795}
   - component: {fileID: 795906792}
   - component: {fileID: 795906796}
   - component: {fileID: 795906799}
@@ -2100,22 +2065,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 795906790}
   m_CullTransparentMesh: 1
---- !u!114 &795906795
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 795906790}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6d39b8e0a5c48541bd01ae8e5776269, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 1}
-  highlightColor: {r: 0.253471, g: 0.6037736, b: 0.27143475, a: 1}
-  clickColor: {r: 0.10565582, g: 0.4339623, b: 0.07164471, a: 1}
-  _forceBaseColorAfterClick: 0
 --- !u!95 &795906796
 Animator:
   serializedVersion: 5
@@ -2189,7 +2138,6 @@ GameObject:
   - component: {fileID: 832459445}
   - component: {fileID: 832459450}
   - component: {fileID: 832459449}
-  - component: {fileID: 832459448}
   - component: {fileID: 832459447}
   - component: {fileID: 832459446}
   - component: {fileID: 832459451}
@@ -2321,22 +2269,6 @@ MonoBehaviour:
           m_StringArgument: Pressed
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &832459448
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 832459444}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6d39b8e0a5c48541bd01ae8e5776269, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 1}
-  highlightColor: {r: 0.253471, g: 0.6037736, b: 0.27143475, a: 1}
-  clickColor: {r: 0.10565582, g: 0.4339623, b: 0.07164471, a: 1}
-  _forceBaseColorAfterClick: 0
 --- !u!114 &832459449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3004,7 +2936,6 @@ GameObject:
   - component: {fileID: 1025128635}
   - component: {fileID: 1025128638}
   - component: {fileID: 1025128637}
-  - component: {fileID: 1025128639}
   - component: {fileID: 1025128636}
   - component: {fileID: 1025128640}
   - component: {fileID: 1025128641}
@@ -3153,22 +3084,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1025128634}
   m_CullTransparentMesh: 1
---- !u!114 &1025128639
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1025128634}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6d39b8e0a5c48541bd01ae8e5776269, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 1}
-  highlightColor: {r: 0.253471, g: 0.6037736, b: 0.27143475, a: 1}
-  clickColor: {r: 0.10565582, g: 0.4339623, b: 0.07164471, a: 1}
-  _forceBaseColorAfterClick: 0
 --- !u!95 &1025128640
 Animator:
   serializedVersion: 5
@@ -3665,7 +3580,6 @@ GameObject:
   - component: {fileID: 1503855479}
   - component: {fileID: 1503855484}
   - component: {fileID: 1503855483}
-  - component: {fileID: 1503855482}
   - component: {fileID: 1503855481}
   - component: {fileID: 1503855480}
   - component: {fileID: 1503855485}
@@ -3797,22 +3711,6 @@ MonoBehaviour:
           m_StringArgument: Pressed
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1503855482
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1503855478}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6d39b8e0a5c48541bd01ae8e5776269, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 1}
-  highlightColor: {r: 0.253471, g: 0.6037736, b: 0.27143475, a: 1}
-  clickColor: {r: 0.10565582, g: 0.4339623, b: 0.07164471, a: 1}
-  _forceBaseColorAfterClick: 0
 --- !u!114 &1503855483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4623,7 +4521,6 @@ GameObject:
   - component: {fileID: 1966674388}
   - component: {fileID: 1966674393}
   - component: {fileID: 1966674392}
-  - component: {fileID: 1966674391}
   - component: {fileID: 1966674390}
   - component: {fileID: 1966674389}
   - component: {fileID: 1966674394}
@@ -4755,22 +4652,6 @@ MonoBehaviour:
           m_StringArgument: Pressed
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1966674391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1966674387}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6d39b8e0a5c48541bd01ae8e5776269, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 1}
-  highlightColor: {r: 0.253471, g: 0.6037736, b: 0.27143475, a: 1}
-  clickColor: {r: 0.10565582, g: 0.4339623, b: 0.07164471, a: 1}
-  _forceBaseColorAfterClick: 0
 --- !u!114 &1966674392
 MonoBehaviour:
   m_ObjectHideFlags: 0
