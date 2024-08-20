@@ -1,6 +1,8 @@
+using ExtensionsFunctions;
 using GameLogic;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -8,19 +10,24 @@ public class FadeOnTrigger : MonoBehaviour
 {
     [SerializeField] float duration;
     [SerializeField] AnimationCurve curve;
-    [SerializeField] bool faded;
     [SerializeField] bool comeBack;
-    bool comingBack;
+
+    CancellationTokenSource cancellationTokenSource = new();
+
+    private void OnDestroy()
+    {
+        GenericExtensions.CancelAndGenerateNew(ref cancellationTokenSource);
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<Player>() != null && !faded)
+        if (collision.GetComponent<Player>() != null)
         {
             SpriteRenderer spr = GetComponent<SpriteRenderer>();
             Tilemap tilemap = spr.GetComponent<Tilemap>();
             float startingOpacity = spr != null ? spr.color.a : tilemap.color.a;
-            faded = true;
-            this.ExecuteOverDuration(duration, destroyCancellationToken, timer =>
+            GenericExtensions.CancelAndGenerateNew(ref cancellationTokenSource);
+            this.ExecuteOverDuration(duration, cancellationTokenSource.Token, timer =>
             {
                 if (spr != null)
                 {
@@ -40,31 +47,25 @@ public class FadeOnTrigger : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.GetComponent<Player>() != null && faded && comeBack && !comingBack)
+        if (collision.GetComponent<Player>() != null && comeBack)
         {
             SpriteRenderer spr = GetComponent<SpriteRenderer>();
             Tilemap tilemap = spr.GetComponent<Tilemap>();
-            comingBack = true;
-            this.ExecuteOverDuration(duration, destroyCancellationToken, timer =>
+            GenericExtensions.CancelAndGenerateNew(ref cancellationTokenSource);
+            float startingOpacity = spr != null ? spr.color.a : tilemap.color.a;
+            this.ExecuteOverDuration(duration, cancellationTokenSource.Token, timer =>
             {
                 if (spr != null)
                 {
                     var color = spr.color;
-                    color.a = Mathf.Lerp(0, 1, curve.Evaluate(timer));
+                    color.a = Mathf.Lerp(startingOpacity, 1, curve.Evaluate(timer));
                     spr.color = color;
                 }
                 else if (tilemap != null)
                 {
                     var color = tilemap.color;
-                    color.a = Mathf.Lerp(0, 1, curve.Evaluate(timer));
+                    color.a = Mathf.Lerp(startingOpacity, 1, curve.Evaluate(timer));
                     tilemap.color = color;
-                }
-
-
-                if(timer == 1)
-                {
-                    faded = false;
-                    comingBack = false;
                 }
             }).Forget();
         }
