@@ -27,6 +27,8 @@ public class TheHand : MonoBehaviour
 
     void Update()
     {
+        if (player == null)
+            return;
         var direction = (Vector2)player.transform.position - (Vector2)transform.position;
         if (playerIsCaught)
             direction = Vector2.up;
@@ -91,15 +93,17 @@ public class TheHand : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (player == null)
+        # if UNITY_EDITOR
+            if (player == null)
             player = FindAnyObjectByType<Player>();
 
-        Vector3 direction = (Vector2)player.transform.position - (Vector2)transform.position;
-        Gizmos.DrawLine(transform.position + direction.normalized * minDistance, transform.position + direction.normalized * maxDistance);
-        Gizmos.DrawWireSphere(transform.position + direction.normalized * minDistance, 1.0f);
-        Gizmos.DrawWireSphere(transform.position + direction.normalized * maxDistance, 1.0f);
+            Vector3 direction = (Vector2)player.transform.position - (Vector2)transform.position;
+            Gizmos.DrawLine(transform.position + direction.normalized * minDistance, transform.position + direction.normalized * maxDistance);
+            Gizmos.DrawWireSphere(transform.position + direction.normalized * minDistance, 1.0f);
+            Gizmos.DrawWireSphere(transform.position + direction.normalized * maxDistance, 1.0f);
 
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, transform.position + direction.normalized * GetSpeed());
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(transform.position, transform.position + direction.normalized * GetSpeed());
+        #endif
     }
 }

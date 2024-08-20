@@ -32,7 +32,7 @@ namespace GameLogic.Camera
                 {
                     if (bigFish.TryGetComponent(out BigFishEnemy bigFishEnemy))
                     {
-                        print("enabling big fish");
+                        //print("enabling big fish");
                         bigFishEnemy.SetBehaviour(true);   
                     }
                 });
@@ -53,7 +53,7 @@ namespace GameLogic.Camera
                 {
                     if (bigFish.TryGetComponent(out BigFishEnemy bigFishEnemy))
                     {
-                        print("disabling big fish");
+                        //print("disabling big fish");
                         bigFishEnemy.SetBehaviour(false);   
                     }
                 });

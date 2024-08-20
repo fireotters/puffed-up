@@ -34,13 +34,13 @@ public class GameHudUi : MonoBehaviour
         if (Time.time < timeOfLastInflate + (waitTimeToInflate/3))
         {
             float drainValue = (howMuchWaitLeft / waitTimeToInflate * 3) - 2;
-            print("Imma draining: " + drainValue);
+            //print("Imma draining: " + drainValue);
             UpdateInflateDisplay(drainValue);
         }
         else if (Time.time < timeOfLastInflate + waitTimeToInflate)
         {
             float fillValue = 1 - (howMuchWaitLeft / waitTimeToInflate * 1.5f);
-            print("Imma fillin: " + fillValue);
+            //print("Imma fillin: " + fillValue);
             UpdateInflateDisplay(fillValue);
         }
         else

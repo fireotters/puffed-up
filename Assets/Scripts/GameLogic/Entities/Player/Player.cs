@@ -128,7 +128,9 @@ namespace GameLogic
             MoveAnimator(direction, slowedDown ? currentVelocity / 2 : currentVelocity);
             if (isBoosting) // While boosting, only let code above determine Animator, not movement. TODO ask Rioni/Benchi about this
                 return;
-            _rigidbody2D.AccelerateTo2D(slowedDown ? currentVelocity / 2 : currentVelocity);
+
+            if (Time.timeScale != 0)
+                _rigidbody2D.AccelerateTo2D(slowedDown ? currentVelocity / 2 : currentVelocity);
 
             // Sound
             float movePitch = currentVelocity.magnitude / targetMoveSpeed * 0.8f; // Keep within 0.0f - 0.8f
