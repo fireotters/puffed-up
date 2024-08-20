@@ -65,6 +65,7 @@ public class HealthHandler : MonoBehaviour
             print("Died-ed");
             dead = true;
             onDeath?.Invoke();
+            Invoke(nameof(SendDieSignal), 2f);
         }
         else
         {
@@ -96,5 +97,10 @@ public class HealthHandler : MonoBehaviour
         gameState.Health.Value = 0;
         dead = true;
         onCaught?.Invoke();
+    }
+
+    public void SendDieSignal()
+    {
+        SignalBus<SignalGameEnded>.Fire(new SignalGameEnded { result = GameEndCondition.Loss });
     }
 }
