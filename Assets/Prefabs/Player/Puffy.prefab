@@ -432,6 +432,7 @@ MonoBehaviour:
   numOfFlashes: 3
   _spr: {fileID: 8396419124290923689}
   _colorWhenDamaged: {r: 1, g: 0.3254717, b: 0.3254717, a: 1}
+  gameState: {fileID: 11400000, guid: aa57637cd4f8e0748ba6b9e849b72579, type: 2}
 --- !u!114 &2939101326297447424
 MonoBehaviour:
   m_ObjectHideFlags: 0

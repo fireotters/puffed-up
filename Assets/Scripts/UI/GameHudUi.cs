@@ -30,13 +30,23 @@ public class GameHudUi : MonoBehaviour
         gameStateSo.Health.OnValueChanged -= UpdateHealthDisplay;
     }
 
+    private string SpriteAssetString(int input)
+    {
+        string output = string.Empty;
+        foreach (char c in input.ToString())
+        {
+            output += "<sprite=" + c + ">";
+        }
+        return output;
+    }
+
     void UpdateShellsText(int shells)
     {
-        txtShells.text = shells.ToString();
+        txtShells.text = SpriteAssetString(shells);
     }
     void UpdatePearlsText(int pearls)
     {
-        txtPearls.text = pearls.ToString();
+        txtPearls.text = SpriteAssetString(pearls);
     }
     void UpdateHealthDisplay(int currentHealth)
     {

@@ -21,9 +21,13 @@ public class HealthHandler : MonoBehaviour
     [SerializeField] private SpriteRenderer _spr;
     [SerializeField] private Color _colorWhenDamaged;
 
+    [Header("Other")]
+    [SerializeField] GameStateSo gameState;
+
     private void Start()
     {
         currentHealth = startingHealth;
+        gameState.Health.Value = startingHealth;
         _rb = GetComponent<ICustomPhysics>();
     }
 
@@ -51,6 +55,7 @@ public class HealthHandler : MonoBehaviour
         }).Forget();
 
         currentHealth -= damage;
+        gameState.Health.Value = currentHealth;
         if (currentHealth <= 0)
         {
             print("Died-ed");
@@ -74,6 +79,8 @@ public class HealthHandler : MonoBehaviour
 
     public void GotCaught()
     {
+        currentHealth = 0;
+        gameState.Health.Value = 0;
         dead = true;
         onCaught?.Invoke();
     }

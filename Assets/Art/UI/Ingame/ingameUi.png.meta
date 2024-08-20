@@ -93,6 +93,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -184,9 +197,9 @@ TextureImporter:
       name: ui_num1
       rect:
         serializedVersion: 2
-        x: 2
-        y: 1022
-        width: 512
+        x: 71
+        y: 1024
+        width: 300
         height: 512
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -205,9 +218,9 @@ TextureImporter:
       name: ui_num2
       rect:
         serializedVersion: 2
-        x: 512
+        x: 623
         y: 1024
-        width: 512
+        width: 300
         height: 512
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -226,9 +239,9 @@ TextureImporter:
       name: ui_num3
       rect:
         serializedVersion: 2
-        x: 1024
+        x: 1125
         y: 1024
-        width: 512
+        width: 300
         height: 512
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -247,9 +260,9 @@ TextureImporter:
       name: ui_num4
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 1024
-        width: 512
+        x: 1619
+        y: 1028
+        width: 320
         height: 512
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -268,9 +281,9 @@ TextureImporter:
       name: ui_num5
       rect:
         serializedVersion: 2
-        x: 0
+        x: 98
         y: 512
-        width: 512
+        width: 300
         height: 512
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -289,9 +302,9 @@ TextureImporter:
       name: ui_num6
       rect:
         serializedVersion: 2
-        x: 512
+        x: 609
         y: 512
-        width: 512
+        width: 300
         height: 512
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -310,9 +323,9 @@ TextureImporter:
       name: ui_num7
       rect:
         serializedVersion: 2
-        x: 1024
+        x: 1115
         y: 512
-        width: 512
+        width: 340
         height: 512
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -331,9 +344,9 @@ TextureImporter:
       name: ui_num8
       rect:
         serializedVersion: 2
-        x: 1536
+        x: 1637
         y: 512
-        width: 512
+        width: 320
         height: 512
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -352,9 +365,9 @@ TextureImporter:
       name: ui_num9
       rect:
         serializedVersion: 2
-        x: 0
+        x: 87
         y: 0
-        width: 512
+        width: 320
         height: 512
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -373,9 +386,9 @@ TextureImporter:
       name: ui_numx
       rect:
         serializedVersion: 2
-        x: 512
+        x: 618
         y: 0
-        width: 512
+        width: 300
         height: 512
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -394,9 +407,9 @@ TextureImporter:
       name: ui_num0
       rect:
         serializedVersion: 2
-        x: 1024
+        x: 1105
         y: 0
-        width: 512
+        width: 356
         height: 512
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -415,12 +428,12 @@ TextureImporter:
       name: ui_help
       rect:
         serializedVersion: 2
-        x: 1536
+        x: 1634
         y: 0
-        width: 512
+        width: 300
         height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
