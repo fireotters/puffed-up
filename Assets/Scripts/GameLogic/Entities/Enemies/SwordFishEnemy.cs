@@ -8,7 +8,7 @@ namespace GameLogic.Entities.Enemies
 {
     public class SwordFishEnemy : MonoBehaviour
     {
-        [SerializeField] private GameObject swordTip;
+        [SerializeField] private GameObject swordTip, effectorForPlayerStuckBugfix;
         [SerializeField][Range(30, 100)] private float moveSpeed;
         [SerializeField] private LayerMask wallLayer, targetLayerMask;
         private Rigidbody2D _rigidbody2D;
@@ -34,6 +34,7 @@ namespace GameLogic.Entities.Enemies
                 _charging = true;
                 if (!alreadyPlayedAttackSnd)
                 {
+                    effectorForPlayerStuckBugfix.SetActive(true);
                     int swimType = (int)Math.Round(Random.Range(1f, 2f));
                     _animator.Play("Swim" + swimType);
                     sndRazorAttack.Play();
@@ -55,6 +56,7 @@ namespace GameLogic.Entities.Enemies
             {
                 if (col.gameObject.IsInLayerMask(wallLayer))
                 {
+                    effectorForPlayerStuckBugfix.SetActive(false);
                     sndRazorStick.Play();
                     _rigidbody2D.constraints = RigidbodyConstraints2D.FreezeAll;
                     _animator.Play("Idle");
