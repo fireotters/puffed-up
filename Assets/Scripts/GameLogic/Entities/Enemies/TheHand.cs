@@ -15,7 +15,7 @@ public class TheHand : MonoBehaviour
     [SerializeField][Range(0, 100)] private float minDistance;
     [SerializeField][Range(0, 100)] private float maxDistance;
     private Animator _animator;
-    [SerializeField] private StudioEventEmitter _sndPlrCaught;
+    [SerializeField] private StudioEventEmitter _sndPlrCaught, _stageLevel;
     private bool playerIsCaught = false;
 
     void Start()
@@ -30,8 +30,20 @@ public class TheHand : MonoBehaviour
         var direction = (Vector2)player.transform.position - (Vector2)transform.position;
         if (playerIsCaught)
             direction = Vector2.up;
-        _rb.AddForce(direction.normalized * GetSpeed());
 
+        var currentSpeed = GetSpeed();
+        
+        _rb.AddForce(direction.normalized * currentSpeed);
+
+        if (currentSpeed <= minSpeed + 3) // i dont care one bit, hardcoding time fuckers
+        {
+            _stageLevel.SetParameter("In_Danger", 1);
+        }
+        else
+        {
+            _stageLevel.SetParameter("In_Danger", 0);
+        }
+        
         // Rotate sprite
         if (direction.x > 0f)
         {
