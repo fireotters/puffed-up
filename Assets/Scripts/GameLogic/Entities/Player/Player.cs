@@ -61,6 +61,9 @@ namespace GameLogic
         [Header("Vitals")]
         private HealthHandler _healthHandler;
 
+        private readonly CompositeDisposable _disposables = new();
+        private bool _levelOverMoveRight = false;
+
         private void OnDestroy()
         {
             GenericExtensions.CancelAndGenerateNew(ref cancellationToken);
@@ -75,6 +78,7 @@ namespace GameLogic
             _puffStateHandler = GetComponentInChildren<PuffStateHandler>();
             _healthHandler = GetComponent<HealthHandler>();
             checkTimeBigCreak = Time.time + delayBetweenBigCreakCheck;
+            SignalBus<SignalGameEnded>.Subscribe(HandleEndGame).AddTo(_disposables);
         }
 
         private void Update()
@@ -149,7 +153,9 @@ namespace GameLogic
 
         private Vector2 GetMovementDirection()
         {
-            if (_healthHandler.IsAlive)
+            if (_levelOverMoveRight)
+                return new Vector2(1, 0).normalized;
+            else if (_healthHandler.IsAlive)
                 return new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
             return Vector2.zero;
         }
@@ -357,6 +363,21 @@ namespace GameLogic
 
             _animator.Play(trueAnimName);
             currentAnimaton = trueAnimName;
+        }
+
+        // quicker level manager :3cc
+        private void HandleEndGame(SignalGameEnded signal)
+        {
+            if (signal.result == GameEndCondition.Win)
+            {
+                _levelOverMoveRight = true;
+                Invoke(nameof(DestroyFeeshLevelEnd), 1f);
+            }
+        }
+        private void DestroyFeeshLevelEnd()
+        {
+            sndPlrMoveSmall.Stop();
+            Destroy(gameObject);
         }
     }
 }

@@ -19,7 +19,7 @@ namespace Signals
     // Game End Signals
     public enum GameEndCondition
     {
-        Loss, WinType1, WinType2
+        Loss, Win
     }
     public struct SignalGameEnded
     {

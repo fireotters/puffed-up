@@ -146,15 +146,10 @@ namespace UI
 
         public void SetupVictoryDialog(GameEndCondition victoryType, int currentScore, int bestScore, bool wasThisNewHighscore)
         {
-            if (victoryType == GameEndCondition.WinType1)
+            if (victoryType == GameEndCondition.Win)
             {
                 txtVictoryCurrent.color = clrVictoryScore1;
                 txtVictoryBest.color = clrVictoryScore1Best;
-            }
-            else if (victoryType == GameEndCondition.WinType2)
-            {
-                txtVictoryCurrent.color = clrVictoryScore2;
-                txtVictoryBest.color = clrVictoryScore2Best;
             }
 
             txtVictoryCurrent.text = currentScore.ToString() + (currentScore > 1 ? " pts" : " pt");

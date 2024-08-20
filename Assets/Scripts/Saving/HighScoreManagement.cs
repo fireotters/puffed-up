@@ -41,13 +41,11 @@ namespace Saving
             {
                 // If one score exists, then overwrite or notify that the score wasn't beaten.
                 currentLevelScore = levelScores.highscoreEntryList.Where(hs => hs.levelName == levelName).ToList()[0];
-                if (scoreType == GameEndCondition.WinType1 && score > currentLevelScore.scoreType1)
+                if (scoreType == GameEndCondition.Win && score > currentLevelScore.scoreType1)
                     currentLevelScore.scoreType1 = score;
-                else if (scoreType == GameEndCondition.WinType2 && score > currentLevelScore.scoreType2)
-                    currentLevelScore.scoreType2 = score;
                 else
                 {
-                    int highscoreToReturn = scoreType == GameEndCondition.WinType1
+                    int highscoreToReturn = scoreType == GameEndCondition.Win
                         ? currentLevelScore.scoreType1
                         : currentLevelScore.scoreType2;
                     return (false, highscoreToReturn);
@@ -61,12 +59,9 @@ namespace Saving
                     Debug.LogError(
                         $"Level '{levelName}': Multiple HighscoreEntry entries in PlayerPrefs. This isn't expected. Overwrite them all with latest score.");
 
-                if (scoreType == GameEndCondition.WinType1)
+                if (scoreType == GameEndCondition.Win)
                     currentLevelScore = new HighscoreEntry
                         { levelName = levelName, scoreType1 = score, scoreType2 = -1 };
-                else if (scoreType == GameEndCondition.WinType2)
-                    currentLevelScore = new HighscoreEntry
-                        { levelName = levelName, scoreType1 = -1, scoreType2 = score };
                 else
                     throw new InvalidEnumArgumentException();
                 score = -1; // Flag highscore as the first attempt at a level, don't congratulate for new high score
