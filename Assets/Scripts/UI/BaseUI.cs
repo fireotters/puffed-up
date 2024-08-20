@@ -57,12 +57,12 @@ namespace UI
                     }
                 }
             }
-            if (tmProBtns != tmProBtnsCorrect)
-            {
-                Debug.LogWarning($"<b><color=yellow>(Debug Missing Components Warn)</color></b> - " +
-                          $"TMPro Buttons without 'TMPro_BtnText_HoverColor' script attached: <color=red>{tmProBtns - tmProBtnsCorrect}</color> " +
-                          $"<i>(Buttons in the entire scene with TMPro Text: {tmProBtns})</i>");
-            }
+            //if (tmProBtns != tmProBtnsCorrect)
+            //{
+            //    Debug.LogWarning($"<b><color=yellow>(Debug Missing Components Warn)</color></b> - " +
+            //              $"TMPro Buttons without 'TMPro_BtnText_HoverColor' script attached: <color=red>{tmProBtns - tmProBtnsCorrect}</color> " +
+            //              $"<i>(Buttons in the entire scene with TMPro Text: {tmProBtns})</i>");
+            //}
         }
     }
 }

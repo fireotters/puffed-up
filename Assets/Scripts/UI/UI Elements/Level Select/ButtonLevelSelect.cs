@@ -19,8 +19,8 @@ namespace UI.UI_Elements.Level_Select
             attachedLevel = levelNum.Length == 1 ? "Level0" + levelNum : "Level" + levelNum;
             _button = GetComponentInChildren<Button>();
             _button.onClick.AddListener(LoadLevel);
-            _textLevelNum = transform.Find("TxtLvlNum").GetComponent<TextMeshProUGUI>();
-            _textLevelNum.text = levelNum;
+            //_textLevelNum = transform.Find("TxtLvlNum").GetComponent<TextMeshProUGUI>();
+            //_textLevelNum.text = levelNum;
             _textScore1 = transform.Find("ScoreRecords").Find("TxtScore1").GetComponent<TextMeshProUGUI>();
             _textScore2 = transform.Find("ScoreRecords").Find("TxtScore2").GetComponent<TextMeshProUGUI>();
         }
