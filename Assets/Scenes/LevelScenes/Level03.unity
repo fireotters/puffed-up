@@ -456160,6 +456160,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5533509742035778731, guid: 134d80a743b0d0c4286a6caa7b2deb00, type: 3}
+      propertyPath: m_Size.x
+      value: 4.418045
+      objectReference: {fileID: 0}
+    - target: {fileID: 5533509742035778731, guid: 134d80a743b0d0c4286a6caa7b2deb00, type: 3}
+      propertyPath: m_Size.y
+      value: 12.547028
+      objectReference: {fileID: 0}
+    - target: {fileID: 5533509742035778731, guid: 134d80a743b0d0c4286a6caa7b2deb00, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.9342575
+      objectReference: {fileID: 0}
+    - target: {fileID: 5533509742035778731, guid: 134d80a743b0d0c4286a6caa7b2deb00, type: 3}
+      propertyPath: m_Offset.y
+      value: 2.8421745
+      objectReference: {fileID: 0}
     - target: {fileID: 7148376574232756593, guid: 134d80a743b0d0c4286a6caa7b2deb00, type: 3}
       propertyPath: m_Name
       value: PlayerEnd

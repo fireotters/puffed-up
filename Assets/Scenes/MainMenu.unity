@@ -3982,7 +3982,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelNum: 1
-  levelName: 
+  levelName: Level01
   attachedLevel: 
 --- !u!1 &1441354890
 GameObject:
@@ -4734,7 +4734,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 773ff24ae176a8f4d942e167c422829b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelNum: 2
+  levelNum: 3
   levelName: Level03
   attachedLevel: 
 --- !u!1 &1696416232

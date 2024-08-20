@@ -22,7 +22,7 @@ namespace Audio
 
             if (!PlayerPrefs.HasKey("music"))
             {
-                PlayerPrefs.SetFloat("music", -12f);
+                PlayerPrefs.SetFloat("music", -25f);
                 PlayerPrefs.SetFloat("sfx", -5f);
             }
             
@@ -111,7 +111,7 @@ namespace Audio
 
         private float BottomDecibelsIfLowEnough(float dB)
         {
-            return dB == -19.5f ? -200f : dB;
+            return dB <= -39.5f ? -200f : dB;
         }
 
         private void SaveVolumePreferences(string bus, float dB)

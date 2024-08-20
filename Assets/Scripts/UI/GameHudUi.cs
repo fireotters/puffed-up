@@ -77,6 +77,8 @@ public class GameHudUi : MonoBehaviour
     }
     void UpdateHealthDisplay(int currentHealth)
     {
+        if (currentHealth > 3)
+            currentHealth = 3;
         for (int i = 0; i < healthIndicators.Length; i++)
         {
             if (i < currentHealth)
