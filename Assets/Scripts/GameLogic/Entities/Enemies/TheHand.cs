@@ -15,6 +15,7 @@ public class TheHand : MonoBehaviour
     [SerializeField][Range(0, 100)] private float maxDistance;
     private Animator _animator;
     [SerializeField] private StudioEventEmitter _sndPlrCaught;
+    private bool _hasPlayedCaughtSfx = false;
 
     void Start()
     {
@@ -41,9 +42,16 @@ public class TheHand : MonoBehaviour
         if (collision.gameObject.TryGetComponent<HealthHandler>(out HealthHandler hh))
         { 
             hh.GotCaught();
-            _animator.Play("GotYou");
-            _sndPlrCaught.Play();
+            Invoke(nameof(CaughtPlayer), 0.15f); // 0.15 is duration of 'big to small' Puffy anim
         }
+    }
+
+    private void CaughtPlayer()
+    {
+        _animator.Play("GotYou");
+        if (!_hasPlayedCaughtSfx)
+            _sndPlrCaught.Play();
+        _hasPlayedCaughtSfx = true;
     }
 
     private void OnDrawGizmos()

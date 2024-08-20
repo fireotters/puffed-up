@@ -249,6 +249,17 @@ namespace GameLogic
 
         public void Caught()
         {
+            if (_puffStateHandler.IsPuffed)
+            {
+                _puffStateHandler.SetState(PuffStateHandler.State.Deflated);
+                ChangeAnimationState("InfToDef");
+            }
+            Invoke(nameof(Caught2), 0.15f); // 0.15 is duration of 'big to small' Puffy anim
+        }
+        private void Caught2()
+        {
+
+            sndPlrMoveSmall.Stop(); // Stop the only looping sound effect
             gameObject.SetActive(false); // Is end of the line for feesh
         }
 

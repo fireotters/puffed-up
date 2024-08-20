@@ -53,11 +53,11 @@ TagManager:
   - name: Tilemap - Walls n' Obstacles
     uniqueID: 82927817
     locked: 0
-  - name: Enemies n' Interactibles
-    uniqueID: 540696015
-    locked: 0
   - name: Text
     uniqueID: 3975953811
+    locked: 0
+  - name: Enemies n' Interactibles
+    uniqueID: 540696015
     locked: 0
   - name: Player
     uniqueID: 560503427
