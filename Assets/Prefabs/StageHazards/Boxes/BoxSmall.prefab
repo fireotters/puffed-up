@@ -9,10 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6013645236848055486}
+  - component: {fileID: 6815005923829654367}
+  - component: {fileID: 8591528868372901504}
   - component: {fileID: 8597983124098883542}
   - component: {fileID: 2136394668649046287}
   - component: {fileID: 3065163956920571336}
-  - component: {fileID: 8591528868372901504}
   m_Layer: 13
   m_Name: BoxSmall
   m_TagString: Untagged
@@ -35,6 +36,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6815005923829654367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4323452013322030963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe7e6afc3ffc20f4ca4c96052e06a8ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8591528868372901504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4323452013322030963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dc7e49f2c503fb47870952b73e2c75e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  puffStateSO: {fileID: 11400000, guid: ef644e0bd7f4ba4df90fb91e1d1691f8, type: 2}
+  rb: {fileID: 8597983124098883542}
+  massWhenDeflated: 50
+  massWhenPuffed: 10
 --- !u!50 &8597983124098883542
 Rigidbody2D:
   serializedVersion: 4
@@ -47,7 +76,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 20
+  m_Mass: 50
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0.2
@@ -101,7 +130,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 540696015
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -328714019, guid: 5cb9b1f2df07b4845ba9f7fd090eb159, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -159,19 +188,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.512, y: 0.512}
   m_EdgeRadius: 0
---- !u!114 &8591528868372901504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4323452013322030963}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dc7e49f2c503fb47870952b73e2c75e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  puffStateSO: {fileID: 11400000, guid: ef644e0bd7f4ba4df90fb91e1d1691f8, type: 2}
-  rb: {fileID: 8597983124098883542}
-  massWhenDeflated: 20
-  massWhenPuffed: 0.1

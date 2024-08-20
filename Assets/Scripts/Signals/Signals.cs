@@ -36,5 +36,12 @@ namespace Signals
     {
         public Collider2D ColliderToSwitch;
     }
+
+    public struct SignalBoxesSwitchToContinuousRbDetection
+    {
+        // Boxes can clip through terrain if Puffy inflates while very close to them.
+        // To prevent expensive operations every frame, call this Signal to rapidly turn on/off the continous detection
+        public bool ContinuousMode;
+    }
 }
 

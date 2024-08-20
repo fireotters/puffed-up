@@ -1,5 +1,6 @@
 using ExtensionsFunctions;
 using FMODUnity;
+using Signals;
 using System;
 using System.Collections;
 using System.Threading;
@@ -314,10 +315,15 @@ namespace GameLogic
         }
         private IEnumerator InflatePush()
         {
+            SignalBus<SignalBoxesSwitchToContinuousRbDetection>.Fire(new SignalBoxesSwitchToContinuousRbDetection { ContinuousMode = true });
             puffPushEffector.SetActive(true);
             yield return new WaitForSeconds(0.08f);
+
             puffPushEffector.SetActive(false);
             currentAnimaton = "Inf_Idle";
+            yield return new WaitForSeconds(1f);
+
+            SignalBus<SignalBoxesSwitchToContinuousRbDetection>.Fire(new SignalBoxesSwitchToContinuousRbDetection { ContinuousMode = false });
         }
 
         public void WasCrushed()

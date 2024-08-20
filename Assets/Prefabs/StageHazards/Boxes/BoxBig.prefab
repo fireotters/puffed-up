@@ -60,9 +60,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8591528868372901504, guid: 9dba4e996466b0d45bbb6cb98cb6f8c9, type: 3}
+      propertyPath: massWhenPuffed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8591528868372901504, guid: 9dba4e996466b0d45bbb6cb98cb6f8c9, type: 3}
+      propertyPath: massWhenDeflated
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 8597983124098883542, guid: 9dba4e996466b0d45bbb6cb98cb6f8c9, type: 3}
       propertyPath: m_Mass
-      value: 50
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
