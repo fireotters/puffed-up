@@ -2129,6 +2129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextSceneToLoad: 
+  _sndMusicStage: {fileID: 4949301845316417000}
   _dialogs:
     tutorialIndex: 0
     paused: {fileID: 5871841619916156956}

@@ -13,6 +13,7 @@ namespace UI
     public class GameDialogsUi : MonoBehaviour
     {
         public string nextSceneToLoad;
+        public StudioEventEmitter _sndMusicStage;
 
         [SerializeField] private GameUiDialogs _dialogs;
         [SerializeField] private GameUiSound _sound;
@@ -68,6 +69,7 @@ namespace UI
 
         private void HandleEndGame(SignalGameEnded context)
         {
+            _sndMusicStage.Stop();
             if (context.result == GameEndCondition.Loss)
             {
                 _dialogs.gameLost.SetActive(true);
