@@ -83,10 +83,6 @@ namespace GameLogic
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                SceneManager.LoadScene("Level02");
-            }
             UpdateMovement();
             UpdateAbilities();
         }
@@ -165,7 +161,7 @@ namespace GameLogic
             if (!_healthHandler.IsAlive)
                 return;
 
-            if (Input.GetKeyDown(KeyCode.F))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 if (_puffStateHandler.IsDeflated && _puffStateHandler.CanInflateAgainYet)
                     Puff();
