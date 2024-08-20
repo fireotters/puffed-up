@@ -56,6 +56,7 @@ namespace GameLogic
         [Header("Sound")]
         [SerializeField] private StudioEventEmitter sndPlrMoveSmall;
         [SerializeField] private StudioEventEmitter sndPlrMoveBigCreaks, sndPlrInflate, sndPlrDeflate, sndPlrBounce, sndPlrDamage, sndPlrDeathNormal, sndPlrDeathExplode;
+        private float checkTimeBigCreak, delayBetweenBigCreakCheck = 2f;
 
         [Header("Vitals")]
         private HealthHandler _healthHandler;
@@ -73,6 +74,7 @@ namespace GameLogic
             _puffingTimer = GetComponent<Timer>();
             _puffStateHandler = GetComponentInChildren<PuffStateHandler>();
             _healthHandler = GetComponent<HealthHandler>();
+            checkTimeBigCreak = Time.time + delayBetweenBigCreakCheck;
         }
 
         private void Update()
@@ -130,17 +132,19 @@ namespace GameLogic
             // Sound
             float movePitch = currentVelocity.magnitude / targetMoveSpeed * 0.8f; // Keep within 0.0f - 0.8f
             if (_puffStateHandler.IsPuffed)
-                movePitch /= 2f; // Pitch down when beeg
+            {
+                if (Time.time > checkTimeBigCreak && Random.Range(0, 10) < 1) // Play occasional creaking sounds whilst huge
+                {
+                    checkTimeBigCreak = Time.time + delayBetweenBigCreakCheck;
+                    sndPlrMoveBigCreaks.Play();
+                }
+                movePitch /= 2f; // Pitch down movement sounds when beeg
+            }
             sndPlrMoveSmall.SetParameter("Movement_Pitch", movePitch);
             if (!stopped && !sndPlrMoveSmall.IsPlaying())
-            {
                 sndPlrMoveSmall.Play();
-            }
             else if (stopped && sndPlrMoveSmall.IsPlaying())
-            {
                 sndPlrMoveSmall.Stop();
-            }
-            // TODO: Implement Player_Movement_Thicc sfx - I'm unsure why it doesn't work like Player_Movement
         }
 
         private Vector2 GetMovementDirection()
@@ -236,7 +240,7 @@ namespace GameLogic
         public void Die()
         {
             ChangeAnimationState("Death");
-            if (_puffStateHandler.IsPuffed)
+            if (_puffStateHandler.IsDeflated)
                 sndPlrDeathNormal.Play();
             else
                 sndPlrDeathExplode.Play();
