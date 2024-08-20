@@ -4352,7 +4352,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1638985057}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
@@ -4360,14 +4360,14 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: -722030184
-      Data2: 1232939717
-      Data3: -357546348
-      Data4: -1858405644
-    Path: event:/2D/Test
+      Data1: -33391775
+      Data2: 1137717741
+      Data3: 1523393171
+      Data4: -1282980811
+    Path: event:/Music/Menu
   Event: 
   PlayEvent: 1
-  StopEvent: 0
+  StopEvent: 2
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0

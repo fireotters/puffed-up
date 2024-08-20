@@ -22,7 +22,7 @@ namespace Audio
 
             if (!PlayerPrefs.HasKey("music"))
             {
-                PlayerPrefs.SetFloat("music", -5f);
+                PlayerPrefs.SetFloat("music", -12f);
                 PlayerPrefs.SetFloat("sfx", -5f);
             }
             
