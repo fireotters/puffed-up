@@ -43,5 +43,9 @@ namespace Signals
         // To prevent expensive operations every frame, call this Signal to rapidly turn on/off the continous detection
         public bool ContinuousMode;
     }
+    public struct SignalPlayerHealed
+    {
+        public int heal;
+    }
 }
 

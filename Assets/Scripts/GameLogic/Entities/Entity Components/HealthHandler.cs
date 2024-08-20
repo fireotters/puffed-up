@@ -1,5 +1,7 @@
 using Cysharp.Threading.Tasks;
 using GameLogic;
+using Signals;
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -23,12 +25,14 @@ public class HealthHandler : MonoBehaviour
 
     [Header("Other")]
     [SerializeField] GameStateSo gameState;
+    private readonly CompositeDisposable _disposables = new();
 
     private void Start()
     {
         currentHealth = startingHealth;
         gameState.Health.Value = startingHealth;
         _rb = GetComponent<ICustomPhysics>();
+        SignalBus<SignalPlayerHealed>.Subscribe(Heal).AddTo(_disposables);
     }
 
     public bool IsAlive => dead == false;
@@ -67,6 +71,15 @@ public class HealthHandler : MonoBehaviour
             onHurt?.Invoke();
             _rb.AddImpulse(recoilDirection * this.recoilImpulseForce);
             print("Owie I took damage: " + damage.ToString());
+        }
+    }
+
+    public void Heal(SignalPlayerHealed signal)
+    {
+        if (currentHealth < startingHealth)
+        {
+            currentHealth += signal.heal;
+            gameState.Health.Value = currentHealth;
         }
     }
 

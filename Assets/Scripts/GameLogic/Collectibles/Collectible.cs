@@ -1,12 +1,13 @@
 using FMODUnity;
 using GameLogic;
+using Signals;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Collectible : MonoBehaviour
 {
-    public enum CollectibleType { Shell, Pearl };
+    public enum CollectibleType { Shell, Pearl, FishFood };
 
     [SerializeField] CollectibleType type;
     [SerializeField] GameStateSo gameState;
@@ -37,6 +38,8 @@ public class Collectible : MonoBehaviour
                             gameState.Shells.Value++;
                         if (type == CollectibleType.Pearl)
                             gameState.Pearls.Value++;
+                        if (type == CollectibleType.FishFood)
+                            SignalBus<SignalPlayerHealed>.Fire(new SignalPlayerHealed { heal = 1 });
 
                         _sndCollected.Play(); // TODO: Temporarily using UI_Back
                         gameObject.SetActive(false);
