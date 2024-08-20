@@ -3,6 +3,7 @@ using Signals;
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 namespace UI
@@ -14,6 +15,8 @@ namespace UI
         [SerializeField] private GameObject desktopButtons;
         [SerializeField] private GameObject webButtons;
         private StudioEventEmitter _menuSong;
+        [SerializeField] GameObject mainMenu, levelSelectMenu, settingsPanel, clickBlockerDuringButtonPops;
+        private float uiBubblePopDuration = 0.2f;
 
         private readonly CompositeDisposable _disposables = new();
 
@@ -37,10 +40,54 @@ namespace UI
             SignalBus<SignalUiMainMenuStartGame>.Subscribe(StartGame).AddTo(_disposables);
         }
 
+        public void WaitThenOpenLevelSelect()
+        {
+            clickBlockerDuringButtonPops.SetActive(true);
+            Invoke(nameof(OpenLevelSelect), uiBubblePopDuration);
+        }
+        public void WaitThenCloseLevelSelect()
+        {
+            clickBlockerDuringButtonPops.SetActive(true);
+            Invoke(nameof(OpenLevelSelect), uiBubblePopDuration);
+        }
+        public void WaitThenOpenSettings()
+        {
+            clickBlockerDuringButtonPops.SetActive(true);
+            Invoke(nameof(OpenSettings), uiBubblePopDuration);
+        }
+        public void WaitThenOpenHelp()
+        {
+            clickBlockerDuringButtonPops.SetActive(true);
+            Invoke(nameof(OpenHelp), uiBubblePopDuration);
+        }
+        public void WaitThenExit()
+        {
+            clickBlockerDuringButtonPops.SetActive(true);
+            Invoke(nameof(QuitGame), uiBubblePopDuration);
+        }
+
+        public void OpenLevelSelect()
+        {
+            clickBlockerDuringButtonPops.SetActive(false);
+            mainMenu.SetActive(false);
+            levelSelectMenu.SetActive(true);
+        }
+        public void CloseLevelSelect()
+        {
+            clickBlockerDuringButtonPops.SetActive(false);
+            mainMenu.SetActive(false);
+            levelSelectMenu.SetActive(true);
+        }
+
         public void StartGame(SignalUiMainMenuStartGame signal)
         {
             // menuSong.Stop();
             SceneManager.LoadScene($"Scenes/LevelScenes/{signal.levelToLoad}");
+        }
+        public void OpenSettings()
+        {
+            clickBlockerDuringButtonPops.SetActive(false);
+            settingsPanel.SetActive(true);
         }
         public void OpenHelp()
         {
