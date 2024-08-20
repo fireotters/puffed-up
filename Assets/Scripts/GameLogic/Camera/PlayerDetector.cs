@@ -25,9 +25,7 @@ namespace GameLogic.Camera
             if (other.gameObject.GetComponent<Player>() != null)
             {
                 _playerDetectorManager.PlayerEntered(this);
-                print($"player entered {other.gameObject.name}");
                 var bigFishesInCollider = new List<Collider2D>();
-                print("start on big fish search");
                 _polygonCollider2D.OverlapCollider(enemyContactFilter, bigFishesInCollider);
                 
                 bigFishesInCollider.ForEach((bigFish) =>
@@ -46,7 +44,20 @@ namespace GameLogic.Camera
         private void OnTriggerExit2D(Collider2D other)
         {
             if (other.gameObject.GetComponent<Player>() != null)
+            {
                 _playerDetectorManager.PlayerExited(this);
+                var bigFishesInCollider = new List<Collider2D>();
+                _polygonCollider2D.OverlapCollider(enemyContactFilter, bigFishesInCollider);
+                
+                bigFishesInCollider.ForEach((bigFish) =>
+                {
+                    if (bigFish.TryGetComponent(out BigFishEnemy bigFishEnemy))
+                    {
+                        print("disabling big fish");
+                        bigFishEnemy.SetBehaviour(false);   
+                    }
+                });
+            }
         }
     }
 }

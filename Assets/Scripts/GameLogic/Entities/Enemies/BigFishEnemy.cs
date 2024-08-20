@@ -46,7 +46,7 @@ namespace GameLogic.Entities.Enemies
             {
                 // evading behaviour
                 direction = _target + (Vector2)transform.position;
-                _rigidbody2D.AddForce(direction.normalized * moveSpeed);
+                _rigidbody2D.AccelerateTo2D(direction.normalized * moveSpeed, 7f);
                 _animator.SetFloat("speed", _rigidbody2D.velocity.magnitude / 7);
                 int swimType = (int)Math.Round(Random.Range(1f, 2f));
                 _animator.Play("Scare" + swimType);

@@ -2900,13 +2900,13 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 1059666769
-      Data2: 1284116682
-      Data3: 2039085503
-      Data4: 1598347319
-    Path: event:/2D/Music/Stage theme
+      Data1: 956496071
+      Data2: 1163546216
+      Data3: -1593359185
+      Data4: 130668222
+    Path: event:/Music/Stage
   Event: 
-  PlayEvent: 0
+  PlayEvent: 1
   StopEvent: 0
   AllowFadeout: 1
   TriggerOnce: 0
