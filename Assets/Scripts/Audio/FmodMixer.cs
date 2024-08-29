@@ -13,7 +13,7 @@ namespace Audio
         private Bus _music;
 
         [SerializeField] private List<EventReference> gameSongEvents;
-        private List<GUID> _gameSongGuids;
+        private List<GUID> _gameSongGuids = new();
 
         private void Start()
         {
@@ -22,7 +22,7 @@ namespace Audio
 
             if (!PlayerPrefs.HasKey("music"))
             {
-                PlayerPrefs.SetFloat("music", -25f);
+                PlayerPrefs.SetFloat("music", -15f);
                 PlayerPrefs.SetFloat("sfx", -5f);
             }
             

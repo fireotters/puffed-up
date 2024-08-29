@@ -804,19 +804,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 67956540}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1638985058}
-        m_TargetAssemblyTypeName: FMODUnity.StudioEventEmitter, FMODUnity
-        m_MethodName: Stop
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &67956540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1719,6 +1707,7 @@ MonoBehaviour:
   showVersionText: 0
   desktopButtons: {fileID: 995839752}
   webButtons: {fileID: 408290599}
+  _menuSong: {fileID: 1638985058}
   mainMenu: {fileID: 997934459}
   levelSelectMenu: {fileID: 930372006}
   settingsPanel: {fileID: 871443866}
@@ -1885,19 +1874,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 67956540}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1638985058}
-        m_TargetAssemblyTypeName: FMODUnity.StudioEventEmitter, FMODUnity
-        m_MethodName: Stop
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &727745187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2195,19 +2172,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 67956540}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1638985058}
-        m_TargetAssemblyTypeName: FMODUnity.StudioEventEmitter, FMODUnity
-        m_MethodName: Stop
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &782312109
 MonoBehaviour:
   m_ObjectHideFlags: 0
