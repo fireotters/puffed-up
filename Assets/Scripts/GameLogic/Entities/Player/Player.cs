@@ -291,6 +291,7 @@ namespace GameLogic
                 sndPlrInflate.Play();
                 _puffStateHandler.SetState(PuffStateHandler.State.Puffed);
                 StartCoroutine(InflatePush());
+                // TODO When Puffy dies at any time, any future calls to this will cause MissingReferenceException: Rigidbody2D has been destroyed
             }
         }
 

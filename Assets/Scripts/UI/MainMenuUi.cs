@@ -30,12 +30,9 @@ namespace UI
                         desktopButtons.SetActive(true);
                         webButtons.SetActive(false);
             #endif
-            if (Debug.isDebugBuild)
-                base.CheckForIncorrectlySetupComponents();
-
 
             // Main Menu start tasks
-            // menuSong = GetComponent<StudioEventEmitter>();
+            _menuSong = GetComponent<StudioEventEmitter>();
             base.ConfigureVersionText();
             SignalBus<SignalUiMainMenuStartGame>.Subscribe(StartGame).AddTo(_disposables);
         }
@@ -81,7 +78,7 @@ namespace UI
 
         public void StartGame(SignalUiMainMenuStartGame signal)
         {
-            // menuSong.Stop();
+            _menuSong.Stop();
             SceneManager.LoadScene($"Scenes/LevelScenes/{signal.levelToLoad}");
         }
         public void OpenSettings()
