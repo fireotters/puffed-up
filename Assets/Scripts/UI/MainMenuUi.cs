@@ -1,9 +1,7 @@
 using FMODUnity;
 using Signals;
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 namespace UI
@@ -16,10 +14,15 @@ namespace UI
         [SerializeField] private GameObject webButtons;
         [SerializeField] private StudioEventEmitter _menuSong;
         [SerializeField] GameObject mainMenu, levelSelectMenu, settingsPanel, clickBlockerDuringButtonPops;
-        private float uiBubblePopDuration = 0.1f;
+        private float uiBubblePopDuration = 0.15f;
         private string levelToLoad;
 
         private readonly CompositeDisposable _disposables = new();
+
+        private void OnDestroy()
+        {
+            _disposables.Dispose();
+        }
 
         private void Start()
         {
