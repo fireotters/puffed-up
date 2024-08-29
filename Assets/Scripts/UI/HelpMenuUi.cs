@@ -31,11 +31,11 @@ namespace UI
                 case "darelt":
                     Application.OpenURL("https://darelt.itch.io/");
                     break;
-                case "danribu":
+                case "danirbu":
                     Application.OpenURL("https://www.youtube.com/@danirbumusic");
                     break;
                 case "tesla":
-                    Application.OpenURL("https://teslasp2.itch.io/");
+                    Application.OpenURL("https://teslasp2.com/");
                     break;
                 case "fireotters":
                     Application.OpenURL("https://fireotters.com");
