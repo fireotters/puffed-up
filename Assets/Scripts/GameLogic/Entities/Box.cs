@@ -13,6 +13,11 @@ public class Box : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         SignalBus<SignalBoxesSwitchToContinuousRbDetection>.Subscribe(SwitchToContinuousRbDetection).AddTo(_disposables);
     }
+    private void OnDestroy()
+    {
+        _disposables.Dispose();
+    }
+
     private void SwitchToContinuousRbDetection(SignalBoxesSwitchToContinuousRbDetection signal)
     {
         if (signal.ContinuousMode)

@@ -34,6 +34,10 @@ public class HealthHandler : MonoBehaviour
         _rb = GetComponent<ICustomPhysics>();
         SignalBus<SignalPlayerHealed>.Subscribe(Heal).AddTo(_disposables);
     }
+    private void OnDestroy()
+    {
+        _disposables.Dispose();
+    }
 
     public bool IsAlive => dead == false;
 

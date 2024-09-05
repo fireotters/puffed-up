@@ -15,6 +15,10 @@ namespace GameLogic.Camera
             
             SignalBus<SignalSwitchCameraBoundary>.Subscribe(SwitchToBoundary).AddTo(_disposables);
         }
+        private void OnDestroy()
+        {
+            _disposables.Dispose();
+        }
 
         private void SwitchToBoundary(SignalSwitchCameraBoundary signal)
         {

@@ -68,6 +68,7 @@ namespace GameLogic
         private void OnDestroy()
         {
             GenericExtensions.CancelAndGenerateNew(ref cancellationToken);
+            _disposables.Dispose();
         }
 
         private void Awake()
