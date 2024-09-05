@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 180622396155197781}
   - component: {fileID: 5435430378155489299}
   - component: {fileID: 850658886302634689}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PuffyEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -277,6 +277,7 @@ MonoBehaviour:
   OnDeflated:
     m_PersistentCalls:
       m_Calls: []
+  isPlayer: 0
 --- !u!58 &7772563812711086046
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -320,7 +321,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4923987176428919247}
-  m_BodyType: 1
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
