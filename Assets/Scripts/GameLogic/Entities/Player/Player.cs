@@ -5,7 +5,6 @@ using System;
 using System.Collections;
 using System.Threading;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 namespace GameLogic
@@ -49,8 +48,7 @@ namespace GameLogic
 
         [Header("Animation")]
         private Animator _animator;
-        private string currentAnimaton = "Idle";
-        private float hurtAnimDuration = 0.3f;
+        private int swimAnimRandomize = 0; // Randomly choose variation 1 or 2 of swim animation
         [SerializeField] private ParticleSystem _particlesBoostBubbles;
 
         [Header("Sound")]
@@ -124,12 +122,14 @@ namespace GameLogic
                 currentVelocity = new Vector2(currentVelocity.x, Mathf.MoveTowards(currentVelocity.y, yDir * targetSpeed * _rigidbody2D.mass, config.moveAcceleration));
             }
 
-            // Final movement calc
+            // Set animator's swim speed. While boosting, return so that per-frame movement isn't calculated.
             bool slowedDown = seaweedAffectingPlayer > 0;
-            MoveAnimator(direction, slowedDown ? currentVelocity / 2 : currentVelocity);
-            if (isBoosting) // While boosting, only let code above determine Animator, not movement. TODO ask Rioni/Benchi about this
+            Vector2 animSwimSpeed = slowedDown ? currentVelocity / 2 : currentVelocity;
+            MoveAnimator(direction, animSwimSpeed);
+            if (isBoosting)
                 return;
 
+            // Per-frame movement
             if (Time.timeScale != 0)
                 _rigidbody2D.AccelerateTo2D(slowedDown ? currentVelocity / 2 : currentVelocity);
 
@@ -185,30 +185,25 @@ namespace GameLogic
         public void MoveAnimator(Vector2 direction, Vector2 trueVelocity)
         {
             PhysicsConfig config = _puffStateHandler.IsPuffed ? puffedPhysicsConfig : deflatedPhysicsConfig;
-            var swimName = (_puffStateHandler.IsPuffed ? "Inf_" : "") + "Swim";
 
-            if (direction.x > 0f)
+            if (direction.x > 0f || direction.x < -0f || direction.y > 0f || direction.y < -0f)
             {
-                this.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 0f));
-                if (!currentAnimaton.StartsWith(swimName) && !currentAnimaton.Contains("Hurt") && !currentAnimaton.Contains("Death") && !currentAnimaton.Contains("To"))
+                _animator.SetBool("swimming", true);
+                if (swimAnimRandomize == 0)
                 {
-                    int swimType = (int)Math.Round(Random.Range(1f, 2f));
-                    ChangeAnimationState("Swim" + swimType);
+                    swimAnimRandomize = Random.Range(1, 3);
+                    _animator.SetInteger("swim_anim_randomize", swimAnimRandomize);
                 }
-            }
-            else if (direction.x < -0f)
-            {
-                this.transform.rotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
-                if (!currentAnimaton.StartsWith(swimName) && !currentAnimaton.Contains("Hurt") && !currentAnimaton.Contains("Death") && !currentAnimaton.Contains("To"))
-                {
-                    int swimType = (int)Math.Round(Random.Range(1f, 2f));
-                    ChangeAnimationState("Swim" + swimType);
-                }
+                if (direction.x > 0f)
+                    transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 0f));
+                else if (direction.x < -0f)
+                    transform.rotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
             }
             else
             {
-                if (!currentAnimaton.Contains("Hurt") && !currentAnimaton.Contains("Death") && !currentAnimaton.Contains("To"))
-                    ChangeAnimationState("Idle");
+                _animator.SetBool("swimming", false);
+                swimAnimRandomize = 0;
+                _animator.SetInteger("swim_anim_randomize", swimAnimRandomize);
             }
 
             _animator.SetFloat("speed", (trueVelocity / config.targetMoveSpeed).magnitude);
@@ -238,22 +233,24 @@ namespace GameLogic
             sndPlrDamage.SetParameter("Inflated", _puffStateHandler.IsPuffed ? 1 : 0);
             sndPlrDamage.SetParameter("Player_Life", _healthHandler.currentHealth);
             sndPlrDamage.Play();
-            ChangeAnimationState("Hurt");
-            Invoke(nameof(NoLongerHurt), hurtAnimDuration);
-        }
-
-        private void NoLongerHurt()
-        {
-            ChangeAnimationState("Idle");
+            if (_puffStateHandler.IsDeflated)
+                _animator.Play("Hurt");
+            else
+                _animator.Play("Inf_Hurt");
         }
 
         public void Die()
         {
-            ChangeAnimationState("Death");
             if (_puffStateHandler.IsDeflated)
+            {
+                _animator.Play("Death");
                 sndPlrDeathNormal.Play();
+            }
             else
+            {
+                _animator.Play("Inf_Death");
                 sndPlrDeathExplode.Play();
+            }
 
             // I removed PuffStateHandler.OnDeath method because of the first SOLID principle.
             // PuffStateHandler mustn't know about lives, dead or any other state other than the puff state.
@@ -267,13 +264,12 @@ namespace GameLogic
             if (_puffStateHandler.IsPuffed)
             {
                 _puffStateHandler.SetState(PuffStateHandler.State.Deflated);
-                ChangeAnimationState("InfToDef");
+                _animator.Play("InfToDef");
             }
             Invoke(nameof(Caught2), 0.15f); // 0.15 is duration of 'big to small' Puffy anim
         }
         private void Caught2()
         {
-
             sndPlrMoveSmall.Stop(); // Stop the only looping sound effect
             gameObject.SetActive(false); // Is end of the line for feesh
         }
@@ -288,11 +284,10 @@ namespace GameLogic
         {
             if (_healthHandler.IsAlive)
             {
-                ChangeAnimationState("DefToInf");
+                _animator.Play("DefToInf");
                 sndPlrInflate.Play();
                 _puffStateHandler.SetState(PuffStateHandler.State.Puffed);
                 StartCoroutine(InflatePush());
-                // TODO When Puffy dies at any time, any future calls to this will cause MissingReferenceException: Rigidbody2D has been destroyed
             }
         }
 
@@ -300,16 +295,27 @@ namespace GameLogic
         {
             if (_healthHandler.IsAlive)
             {
+                _animator.Play("InfToDef");
                 sndPlrDeflate.Play();
                 _puffStateHandler.SetState(PuffStateHandler.State.Deflated);
                 StartCoroutine(Boost());
             }
         }
+        private IEnumerator InflatePush()
+        {
+            SignalBus<SignalBoxesSwitchToContinuousRbDetection>.Fire(new SignalBoxesSwitchToContinuousRbDetection { ContinuousMode = true });
+            puffPushEffector.SetActive(true);
+            yield return new WaitForSeconds(0.08f);
+
+            puffPushEffector.SetActive(false);
+            yield return new WaitForSeconds(1f);
+
+            SignalBus<SignalBoxesSwitchToContinuousRbDetection>.Fire(new SignalBoxesSwitchToContinuousRbDetection { ContinuousMode = false });
+        }
 
         private IEnumerator Boost()
         {
-            // Anim/FX Start
-            ChangeAnimationState("InfToDef");
+            // FX
             isBoosting = true;
             _particlesBoostBubbles.Play();
 
@@ -331,22 +337,9 @@ namespace GameLogic
             _rigidbody2D.constraints = contraintsBackup;
 
             // Anim/FX End
-            currentAnimaton = "Idle";
             _particlesBoostBubbles.Stop();
             isBoosting = false;
 
-        }
-        private IEnumerator InflatePush()
-        {
-            SignalBus<SignalBoxesSwitchToContinuousRbDetection>.Fire(new SignalBoxesSwitchToContinuousRbDetection { ContinuousMode = true });
-            puffPushEffector.SetActive(true);
-            yield return new WaitForSeconds(0.08f);
-
-            puffPushEffector.SetActive(false);
-            currentAnimaton = "Inf_Idle";
-            yield return new WaitForSeconds(1f);
-
-            SignalBus<SignalBoxesSwitchToContinuousRbDetection>.Fire(new SignalBoxesSwitchToContinuousRbDetection { ContinuousMode = false });
         }
 
         public void WasCrushed()
@@ -358,19 +351,7 @@ namespace GameLogic
             }
         }
 
-
-
-        // quick animation manager :3c
-        void ChangeAnimationState(string newAnimation)
-        {
-            var trueAnimName = (_puffStateHandler.IsPuffed ? "Inf_" : "") + newAnimation;
-            if (currentAnimaton == trueAnimName) return;
-
-            _animator.Play(trueAnimName);
-            currentAnimaton = trueAnimName;
-        }
-
-        // quicker level manager :3cc
+        // End of level
         private void HandleEndGame(SignalGameEnded signal)
         {
             if (signal.result == GameEndCondition.Win)

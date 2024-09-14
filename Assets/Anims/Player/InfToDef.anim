@@ -74,7 +74,7 @@ AnimationClip:
     curve:
     - time: 0
       value: {fileID: 1866143430, guid: 6d8c08c10e06fbd46a7ffaba531b3403, type: 3}
-    - time: 0.1
+    - time: 0.083333336
       value: {fileID: -1156973668, guid: 6d8c08c10e06fbd46a7ffaba531b3403, type: 3}
     attribute: m_Sprite
     path: FishSprite
