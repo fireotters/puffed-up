@@ -95,7 +95,7 @@ namespace Audio
                         case true when eventEmitter.IsPlaying():
                             eventEmitter.EventInstance.setPaused(true);
                             break;
-                        case false when !eventEmitter.IsPlaying():
+                        case false when eventEmitter.IsPlaying():
                             eventEmitter.EventInstance.setPaused(false);
                             break;
                     }

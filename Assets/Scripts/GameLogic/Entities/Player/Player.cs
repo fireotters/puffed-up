@@ -93,6 +93,13 @@ namespace GameLogic
         // ----------------------------------------------------------------------------------------------------
         private void UpdateMovement()
         {
+            // While game is paused, don't calculate physics, animator or sounds.
+            if (Time.timeScale == 0)
+                return;
+            // First frame after unpausing will have deltaTime at 0, causing errors. Skip this first frame.
+            if (Time.deltaTime == 0)
+                return;
+
             PhysicsConfig config = _puffStateHandler.IsPuffed ? puffedPhysicsConfig : deflatedPhysicsConfig;
             float moveAcceleration = config.moveAcceleration;
             float stoppingAcceleration = config.stoppingAcceleration;
@@ -119,7 +126,7 @@ namespace GameLogic
                 currentVelocity = new Vector2(currentVelocity.x, Mathf.MoveTowards(currentVelocity.y, yDir * targetSpeed * _rigidbody2D.mass, config.moveAcceleration));
             }
 
-            // Set animator's swim speed. While boosting, return so that per-frame movement isn't calculated.
+            // Set animator's swim speed. While boosting, return so that per-frame movement & sound isn't calculated.
             bool slowedDown = seaweedAffectingPlayer > 0;
             Vector2 animSwimSpeed = slowedDown ? currentVelocity / 2 : currentVelocity;
             MoveAnimator(direction, animSwimSpeed);
@@ -127,8 +134,7 @@ namespace GameLogic
                 return;
 
             // Per-frame movement
-            if (Time.timeScale != 0)
-                _rigidbody2D.AccelerateTo2D(slowedDown ? currentVelocity / 2 : currentVelocity);
+            _rigidbody2D.AccelerateTo2D(slowedDown ? currentVelocity / 2 : currentVelocity);
 
             // Sound
             float movePitch = currentVelocity.magnitude / targetMoveSpeed * 0.8f; // Keep within 0.0f - 0.8f

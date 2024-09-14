@@ -25,11 +25,11 @@ namespace UI
         // --------------------------------------------------------------------------------------------------------------
         private void Start()
         {
-            // Debug stuff
             if (nextSceneToLoad == "")
                 Debug.LogWarning("No 'CanvasGameUi.nextSceneToLoad' set! Selecting 'Next Level' will fail.");
 
             SignalBus<SignalGameEnded>.Subscribe(HandleEndGame).AddTo(_disposables);
+            PlayLevelTransition(LevelTransitionIntent.OpenScene);
         }
         private void OnDestroy()
         {
@@ -103,33 +103,77 @@ namespace UI
         {
             GameIsPaused(false);
         }
+        public bool IsPauseInterruptingPanelOpen()
+        {
+            return _dialogs.gameLost.activeInHierarchy || _dialogs.gameWon.activeInHierarchy || _dialogs.levelTransitionOverlay.gameObject.activeInHierarchy;
+        }
 
         public void ToggleOptionsPanel()
         {
             _dialogs.options.SetActive(!_dialogs.options.activeInHierarchy);
         }
 
+        // --------------------------------------------------------------------------------------------------------------
+        // Level Transitions
+        // --------------------------------------------------------------------------------------------------------------
+        public enum LevelTransitionIntent { OpenScene, ResetScene, NextScene, ExitToMainMenu }
+        public void PlayLevelTransition(LevelTransitionIntent intent)
+        {
+            _dialogs.levelTransitionOverlay.gameObject.SetActive(true);
+            // Level Start
+            if (intent == LevelTransitionIntent.OpenScene)
+            {
+                _dialogs.levelTransitionOverlay.SetTrigger("transitionEndToStart");
+                Invoke(nameof(OpenScene2), _dialogs.levelTransitionTime);
+                return;
+            }
+
+            // Level End
+            _sound.fmodMixer.KillEverySound();
+            _dialogs.levelTransitionOverlay.SetTrigger("transitionStartToEnd");
+            switch (intent)
+            {
+                case LevelTransitionIntent.ResetScene:
+                    StartCoroutine(ResetCurrentLevel2()); break;
+                case LevelTransitionIntent.ExitToMainMenu:
+                    StartCoroutine(ExitGame2()); break;
+                case LevelTransitionIntent.NextScene:
+                    StartCoroutine(LoadNextScene2()); break;
+            }
+        }
+        private void OpenScene2()
+        {
+            _dialogs.levelTransitionOverlay.gameObject.SetActive(false);
+        }
         public void LoadNextScene()
         {
-            _sound.fmodMixer.KillEverySound();
-            SceneManager.LoadScene(nextSceneToLoad);
+            PlayLevelTransition(LevelTransitionIntent.NextScene);
         }
+        private IEnumerator LoadNextScene2()
+        {
+            yield return new WaitForSecondsRealtime(_dialogs.levelTransitionTime);
+            Time.timeScale = 1;
+            SceneManager.LoadScene(nextSceneToLoad); }
         public void ResetCurrentLevel()
         {
-            _sound.fmodMixer.KillEverySound();
+            PlayLevelTransition(LevelTransitionIntent.ResetScene);
+        }
+        private IEnumerator ResetCurrentLevel2()
+        {
+            yield return new WaitForSecondsRealtime(_dialogs.levelTransitionTime);
+            Time.timeScale = 1;
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-        public void ExitGameFromPause()
+        public void ExitGame()
         {
-            _sound.fmodMixer.KillEverySound();
-            SceneManager.LoadScene("MainMenu");
+            PlayLevelTransition(LevelTransitionIntent.ExitToMainMenu);
+        }
+        private IEnumerator ExitGame2()
+        {
+            yield return new WaitForSecondsRealtime(_dialogs.levelTransitionTime);
             Time.timeScale = 1;
-        }
+            SceneManager.LoadScene("MainMenu"); }
 
-        public bool IsPauseInterruptingPanelOpen()
-        {
-            return _dialogs.gameLost.activeInHierarchy || _dialogs.gameWon.activeInHierarchy;
-        }
     }
 
     // --------------------------------------------------------------------------------------------------------------
@@ -145,6 +189,9 @@ namespace UI
         public GameObject gameLost, gameWon;
         public Color clrVictoryScore1, clrVictoryScore1Best, clrVictoryScore2, clrVictoryScore2Best;
         public TextMeshProUGUI txtVictoryCurrent, txtVictoryBest;
+
+        public Animator levelTransitionOverlay;
+        public float levelTransitionTime = 1.0f;
 
         public void SetupVictoryDialog(GameEndCondition victoryType, int currentScore, int bestScore, bool wasThisNewHighscore)
         {
