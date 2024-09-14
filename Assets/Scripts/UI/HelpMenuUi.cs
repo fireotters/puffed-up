@@ -5,7 +5,10 @@ namespace UI
 {
     public class HelpMenuUi : BaseUI
     {
-        [SerializeField] private GameObject helpPage, creditsPage;
+        private void Start()
+        {
+            base.OpeningTransition();
+        }
 
         private void Update()
         {
@@ -45,7 +48,8 @@ namespace UI
 
         public void BackToMainMenu()
         {
-            Invoke(nameof(BackToMainMenu2), 0.2f);
+            base.ClosingTransition();
+            Invoke(nameof(BackToMainMenu2), levelTransitionTime);
         }
 
         private void BackToMainMenu2()

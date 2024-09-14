@@ -8,36 +8,25 @@ namespace UI
 {
     public class BaseUI : MonoBehaviour
     {
-        [Header("Base UI")]
-        [SerializeField] private TextMeshProUGUI versionText;
-        [SerializeField] private bool showVersionText = false;
+        [Header("Level Transitions")]
+        public Animator levelTransitionOverlay;
+        internal float levelTransitionTime = 1.0f;
 
-
-        protected void ConfigureVersionText()
+        internal void OpeningTransition()
         {
-            versionText.gameObject.SetActive(Debug.isDebugBuild || showVersionText);
-            SetVersionText();
+            levelTransitionOverlay.gameObject.SetActive(true);
+            levelTransitionOverlay.SetTrigger("transitionEndToStart");
+            Invoke(nameof(OpeningTransition2), levelTransitionTime);
         }
-
-        private void SetVersionText()
+        private void OpeningTransition2()
         {
-            if (versionText != null)
-            {
-                if (Debug.isDebugBuild)
-                {
-                    versionText.text = Application.isEditor
-                        ? $"Version debug-{Application.version}-editor"
-                        : $"Version debug-{Application.version}-{Application.buildGUID}";
-                }
-                else
-                {
-                    versionText.text = $"Version {Application.version}";
-                }
-            }
-            else
-            {
-                Debug.LogWarning("No version text set!!!! please set one");
-            }
+            levelTransitionOverlay.gameObject.SetActive(false);
+        }
+        internal void ClosingTransition()
+        {
+            levelTransitionOverlay.gameObject.SetActive(true);
+            levelTransitionOverlay.SetTrigger("transitionStartToEnd");
+            // Scene is supposed to end here. Other duties should be handled by the derived scripts.
         }
     }
 }
