@@ -257,7 +257,7 @@ MonoBehaviour:
     moveAcceleration: 9
     turnAcceleration: 1
     stoppingAcceleration: 2
-  idleSinkSpeedWhenSmall: 0.5
+  idleSinkSpeedWhenSmall: 0.3
   idleFloatSpeedWhenBig: 0.9
   puffTimeout: 3
   boostDuration: 1

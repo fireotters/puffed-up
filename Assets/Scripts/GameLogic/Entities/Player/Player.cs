@@ -32,9 +32,9 @@ namespace GameLogic
         [SerializeField] float idleSinkSpeedWhenSmall; // Used when deflated and speed close to 0 or ded
         [SerializeField] float idleFloatSpeedWhenBig; // Used when puffed and speed close to 0 or ded
         private Rigidbody2D _rigidbody2D;
-        Vector2 currentVelocity;
+        private Vector2 currentVelocity;
         private int seaweedAffectingPlayer;
-        bool stopped = false;
+        private bool stopped = false;
         CancellationTokenSource cancellationToken;
 
         [Header("Abilities")]
@@ -93,28 +93,25 @@ namespace GameLogic
         // ----------------------------------------------------------------------------------------------------
         private void UpdateMovement()
         {
-            Vector2 direction = GetMovementDirection();
-
             PhysicsConfig config = _puffStateHandler.IsPuffed ? puffedPhysicsConfig : deflatedPhysicsConfig;
-
             float moveAcceleration = config.moveAcceleration;
             float stoppingAcceleration = config.stoppingAcceleration;
             float targetMoveSpeed = config.targetMoveSpeed;
             float turnAcceleration = config.turnAcceleration;
 
-            currentVelocity = new Vector2(
-                Mathf.MoveTowards(currentVelocity.x, direction.x * targetMoveSpeed,
+            Vector2 direction = GetMovementInput();
+            float currentX = Mathf.MoveTowards(currentVelocity.x, direction.x * targetMoveSpeed,
                     direction.x == 0 ? stoppingAcceleration :
-                    Mathf.Sign(direction.x) == Mathf.Sign(currentVelocity.x) ? moveAcceleration : turnAcceleration),
-                Mathf.MoveTowards(currentVelocity.y, direction.y * targetMoveSpeed,
+                    Mathf.Sign(direction.x) == Mathf.Sign(currentVelocity.x) ? moveAcceleration : turnAcceleration);
+            float currentY = Mathf.MoveTowards(currentVelocity.y, direction.y * targetMoveSpeed,
                     direction.y == 0 ? stoppingAcceleration :
-                    Mathf.Sign(direction.y) == Mathf.Sign(currentVelocity.y) ? moveAcceleration : turnAcceleration)
-            );
+                    Mathf.Sign(direction.y) == Mathf.Sign(currentVelocity.y) ? moveAcceleration : turnAcceleration);
+            currentVelocity = new Vector2(currentX, currentY);
 
             if (stopped && direction != Vector2.zero)
                 stopped = currentVelocity.magnitude < 0.05f;
 
-            if (currentVelocity.magnitude < 0.05f || stopped)
+            if ((currentVelocity.magnitude < 0.05f || stopped) && direction.y == 0)
             {
                 stopped = true;
                 float targetSpeed = _puffStateHandler.IsPuffed ? idleFloatSpeedWhenBig : idleSinkSpeedWhenSmall;
@@ -151,7 +148,7 @@ namespace GameLogic
                 sndPlrMoveSmall.Stop();
         }
 
-        private Vector2 GetMovementDirection()
+        private Vector2 GetMovementInput()
         {
             if (_levelOverMoveRight)
             {
