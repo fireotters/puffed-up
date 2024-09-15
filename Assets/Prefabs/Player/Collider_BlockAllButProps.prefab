@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4936434408300544111}
   - component: {fileID: 1910555838895216997}
   m_Layer: 14
-  m_Name: Collider_OnlyBlockPlayer
+  m_Name: Collider_BlockAllButProps
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

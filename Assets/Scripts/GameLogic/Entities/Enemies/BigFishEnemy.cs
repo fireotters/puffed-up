@@ -9,7 +9,7 @@ namespace GameLogic.Entities.Enemies
 {
     public class BigFishEnemy : MonoBehaviour
     {
-        [SerializeField][Range(0, 100)] private float moveSpeed;
+        [SerializeField][Range(0, 100)] private float moveSpeed, evadeSpeedMultiplier;
         [SerializeField] private PuffStateSo puffStateSo;
         private Rigidbody2D _rigidbody2D;
         private bool _chasing, _evading, _normalBehaviourRunning, _standby;
@@ -46,7 +46,7 @@ namespace GameLogic.Entities.Enemies
             {
                 // evading behaviour
                 direction = _target + (Vector2)transform.position;
-                _rigidbody2D.AccelerateTo2D(direction.normalized * moveSpeed, 7f);
+                _rigidbody2D.AccelerateTo2D(direction.normalized * moveSpeed * evadeSpeedMultiplier, 7f);
                 _animator.SetFloat("speed", _rigidbody2D.velocity.magnitude / 7);
                 int swimType = (int)Math.Round(Random.Range(1f, 2f));
                 _animator.Play("Scare" + swimType);

@@ -320,6 +320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 8.58
+  evadeSpeedMultiplier: 5
   puffStateSo: {fileID: 11400000, guid: ef644e0bd7f4ba4df90fb91e1d1691f8, type: 2}
   sndEnemyTriggered: {fileID: 4901243682558443656}
   sndEnemyBounce: {fileID: 8302997675951723473}

@@ -475579,7 +475579,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7406764154987464584, guid: abab96edbb9f1934b83f18ec82d0009a, type: 3}
       propertyPath: m_Name
-      value: Collider_OnlyBlockPlayer
+      value: Collider_BlockAllButProps
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
