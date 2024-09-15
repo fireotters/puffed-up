@@ -93,9 +93,9 @@ public class TheHand : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        # if UNITY_EDITOR
+        #if UNITY_EDITOR
             if (player == null)
-            player = FindAnyObjectByType<Player>();
+                return;
 
             Vector3 direction = (Vector2)player.transform.position - (Vector2)transform.position;
             Gizmos.DrawLine(transform.position + direction.normalized * minDistance, transform.position + direction.normalized * maxDistance);
