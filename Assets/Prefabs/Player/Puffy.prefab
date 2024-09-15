@@ -188,9 +188,9 @@ MonoBehaviour:
   TriggerOnce: 0
   Preload: 0
   Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  OverrideAttenuation: 1
+  OverrideMinDistance: 400
+  OverrideMaxDistance: 400
 --- !u!1 &854116601608941583
 GameObject:
   m_ObjectHideFlags: 0
