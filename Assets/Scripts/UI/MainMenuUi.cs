@@ -98,7 +98,7 @@ namespace UI
             levelToLoad = signal.levelToLoad;
             Invoke(nameof(StartGame), levelTransitionTime);
         }
-        public void StartGame()
+        private void StartGame()
         {
             SceneManager.LoadScene($"Scenes/LevelScenes/" + levelToLoad);
         }
@@ -111,7 +111,7 @@ namespace UI
             clickBlockerDuringButtonPops.SetActive(true);
             Invoke(nameof(OpenSettings), uiBubblePopDuration);
         }
-        public void OpenSettings()
+        private void OpenSettings()
         {
             clickBlockerDuringButtonPops.SetActive(false);
             settingsPanel.SetActive(true);
@@ -125,16 +125,15 @@ namespace UI
             base.ClosingTransition();
             Invoke(nameof(OpenHelp), levelTransitionTime);
         }
-        public void OpenHelp()
+        private void OpenHelp()
         {
             SceneManager.LoadScene("Scenes/HelpMenu");
         }
         public void WaitThenExit()
         {
-            base.ClosingTransition();
             Invoke(nameof(QuitGame), uiBubblePopDuration);
         }
-        public void QuitGame()
+        private void QuitGame()
         {
             Application.Quit();
         }

@@ -24,18 +24,16 @@ Linux - The game may not run as an executable.
 ------------------
 Changelog
 ------------------
-v.?? - Planned features (TBA 2024)
+v1.0.1 - Post-Jam Update (20 September 2024)
+• Added level transition animations & 'Story' help screen
+• Slight tweaks to enemy behavior & level designs
+• Bugfixes from v1.0
+    • Level 3 is now accessible via Level Select
+    • Puffy dying will not prevent the player from finishing levels
+    • Main menu audio no longer stutters while changing screens
+    • Game music no longer stops playing when the game is paused
+    • Fullscreen toggle now works on the Web version
 • Windows & Linux builds now available
-• Best time and pearls found per level is now recorded
-• A couple extra levels
-• Screen transitions (like Abduction on a Budget) & small between-level cutscenes explaining story
-
-v1.0.1 - Post-Jam Update (TBA 2024)
-• Audio & gameplay bugfixes from v1.0
-	• Level 3 is now accessible via Level Select, and Puffy dying will not prevent the player from finishing levels
-	• Main menu audio no longer stutters while changing screens
-	• Game music no longer stops playing when the game is paused
-	• Fullscreen toggle now works on the Web version
 
 v1.0 - GMTK Game Jam Submission (21 August 2024)
 • Game released!
