@@ -25,7 +25,7 @@ Linux - The game may not run as an executable.
 Changelog
 ------------------
 v1.0.2 - Patch for CVE-2025-59489 (4 October 2025)
-• Patched a Unity exploit (https://unity.com/security/sept-2025-01)
+• Patched a Unity vulnerability (https://unity.com/security/sept-2025-01)
 • Bugfix: Video settings now only allow 16x9 resolutions
 
 v1.0.1 - Post-Jam Update (20 September 2024)
