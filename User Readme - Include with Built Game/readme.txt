@@ -1,4 +1,4 @@
-Puffed Up! v1.0.1
+Puffed Up! v1.0.2
 
 Developed by: benchi99, CrossfireCam, Darelt, Danirbu, Rioni, TeslaSP2
 Full credits are available in the game's Credits (click the 🗒️ icon)
@@ -24,6 +24,10 @@ Linux - The game may not run as an executable.
 ------------------
 Changelog
 ------------------
+v1.0.2 - Patch for CVE-2025-59489 (4 October 2025)
+• Patched a Unity exploit (https://unity.com/security/sept-2025-01)
+• Bugfix: Video settings now only allow 16x9 resolutions
+
 v1.0.1 - Post-Jam Update (20 September 2024)
 • Added level transition animations & 'Story' help screen
 • Slight tweaks to enemy behavior & level designs
@@ -37,11 +41,6 @@ v1.0.1 - Post-Jam Update (20 September 2024)
 
 v1.0 - GMTK Game Jam Submission (21 August 2024)
 • Game released!
-
-------------------
-Troubleshooting
-------------------
-• No common problems have been reported yet
 
 ------------------
 Attributions

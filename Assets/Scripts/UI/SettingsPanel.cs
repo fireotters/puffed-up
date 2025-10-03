@@ -114,8 +114,8 @@ namespace UI
 
         private void PopulateVideoDropdowns()
         {
-            // TODO should we iterate over all supported resolutions or should we define a specific list?
             var resolutionOptions = Screen.resolutions
+                .Where(res => res.width / (float)res.height > 1.77f) // filter out non 16:9 resolutions
                 .Select(res =>
                 {
                     var text = res.ToString()[..(res.ToString().IndexOf('@') - 1)];
